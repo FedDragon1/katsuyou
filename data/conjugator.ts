@@ -256,7 +256,7 @@ function aruConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
             throw Error(`「有る」 has no conjugation of '${conjugationClass}' form`)
     }
     return {
-        ...data,
+        options: [data],
         original: "有る",
         conjugationType: conjugationClass
     } as ConjugatedVerb
@@ -303,8 +303,12 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
             break
         case "dictionary":
             return {
-                text: term.text,
-                ruby: term.ruby,
+                options: [
+                    {
+                        text: term.text,
+                        ruby: term.ruby,
+                    }
+                ],
                 original: term.text,
                 conjugationType: conjugationClass
             }
@@ -334,8 +338,12 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
         if (JSON.stringify(term) === JSON.stringify(getVerb("行く"))) {
             const conjugated = "行っ" + conjugation.suffix
             return {
-                text: conjugated,
-                ruby: ["い", null, null],
+                options: [
+                    {
+                        text: conjugated,
+                        ruby: ["い", null, null],
+                    }
+                ],
                 original: term.text,
                 conjugationType: conjugationClass
             }
@@ -345,8 +353,12 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
         const conjugated = term.text.slice(0, term.text.length - 1) + changedEnd + conjugation.suffix
 
         return {
-            text: conjugated,
-            ruby,
+            options: [
+                {
+                    text: conjugated,
+                    ruby,
+                }
+            ],
             original: term.text,
             conjugationType: conjugationClass
         }
@@ -356,11 +368,134 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
     const conjugated = term.text.slice(0, term.text.length - 1) + newEnding + conjugation.suffix
 
     return {
-        text: conjugated,
-        ruby,
+        options: [
+            {
+                text: conjugated,
+                ruby,
+            }
+        ],
         original: term.text,
         conjugationType: conjugationClass
     }
+}
+
+function sagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
+    let conjugated = null
+    switch (conjugationClass) {
+        case "negation":
+            conjugated = "しない"
+            break
+        case "passivity":
+            conjugated = "される"
+            break
+        case "causative":
+            conjugated = "させる"
+            break
+        case "dictionary":
+            conjugated = "する"
+            break
+        case "polite":
+            conjugated = "します"
+            break
+        case "te":
+            conjugated = "して"
+            break
+        case "ta":
+            conjugated = "した"
+            break
+        case "ba":
+            conjugated = "すれば"
+            break
+        case "intention":
+            conjugated = "しよう"
+            break
+        case "imperative":
+            return {
+                options: [
+                    {
+                        text: "しろ",
+                        ruby: [null, null]
+                    },
+                    {
+                        text: "せよ",
+                        ruby: [null, null]
+                    }
+                ],
+                original: "する",
+                conjugationType: conjugationClass
+            }
+        default:
+            throw new Error(`Unknown conjugation type '${conjugationClass}'`)
+    }
+    const ruby = [...conjugated].map(() => null)
+    return {
+        options: [
+            {
+                text: conjugated,
+                ruby,
+            }
+        ],
+        original: "する",
+        conjugationType: conjugationClass
+    }
+}
+
+function kagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
+    const conjugated: { text: null | string, ruby: (string | null)[] | null} = {
+        text: null,
+        ruby: null
+    }
+
+    switch (conjugationClass) {
+        case "negation":
+            conjugated.text = "来ない"
+            conjugated.ruby = ["こ", null, null]
+            break
+        case "passivity":
+            conjugated.text = "来られる"
+            conjugated.ruby = ["こ", null, null, null]
+            break
+        case "causative":
+            conjugated.text = "来させる"
+            conjugated.ruby = ["こ", null, null, null]
+            break
+        case "dictionary":
+            conjugated.text = "来る"
+            conjugated.ruby = ["く", null]
+            break
+        case "polite":
+            conjugated.text = "来ます"
+            conjugated.ruby = ["き", null, null]
+            break
+        case "te":
+            conjugated.text = "来て"
+            conjugated.ruby = ["き", null]
+            break
+        case "ta":
+            conjugated.text = "来た"
+            conjugated.ruby = ["き", null]
+            break
+        case "ba":
+            conjugated.text = "来れば"
+            conjugated.ruby = ["く", null, null]
+            break
+        case "intention":
+            conjugated.text = "来よう"
+            conjugated.ruby = ["こ", null, null]
+            break
+        case "imperative":
+            conjugated.text = "来い"
+            conjugated.ruby = ["こ", null]
+            break
+        default:
+            throw new Error(`Unknown conjugation type '${conjugationClass}'`)
+    }
+
+    return {
+        options: [conjugated],
+        original: "来る",
+        conjugationType: conjugationClass,
+    } as ConjugatedVerb
 }
 
 // class MonogradeConjugator extends Conjugator {
@@ -389,12 +524,16 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
  * @param verb
  * @param type
  */
-export function conjugateVerbStrict(verb: string, type: VerbConjugations) {
+export function conjugateVerbStrict(verb: string, type: VerbConjugations): ConjugatedVerb | undefined {
     const term = getVerbStrict(verb);
 
     switch (term.type) {
         case "pentagrade":
             return pentagradeConjugator(term, type)
+        case "sagyou":
+            return sagyouConjugator(type)
+        case "kagyou":
+            return kagyouConjugator(type)
     }
 }
 
@@ -406,7 +545,7 @@ export function conjugateVerbStrict(verb: string, type: VerbConjugations) {
  */
 export function conjugateVerb(verb: string, type: VerbConjugations) {
     try {
-        return conjugateVerbStrict(verb, type)?.text
+        return conjugateVerbStrict(verb, type)?.options
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         return

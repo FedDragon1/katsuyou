@@ -16,7 +16,10 @@ function conjugateToRuby(text: string | undefined, type: VerbConjugations) {
         return <></>
     }
 
-    return <Ruby text={conjugated.text} ruby={conjugated.ruby} />
+    return <div className="inline-flex gap-2 conjugation-list">
+        {conjugated.options.map(
+            (op) => <Ruby key={op.text} text={op.text} ruby={op.ruby}/>)}
+    </div>
 }
 
 const ConjugationViewer: FC<ViewerProps> = ({ term }) => {

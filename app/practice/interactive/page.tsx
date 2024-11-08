@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react";
-import { conjugateVerb } from "@/data/conjugator";
 import ConjugationSelector from "@/app/practice/interactive/ConjugationSelector";
 import ConjugationViewer from "@/app/practice/interactive/ConjugationViewer";
 
@@ -17,7 +16,6 @@ export default function Practice() {
             <input type="text" onChange={e => setInput(e.target.value)} />
             <ConjugationSelector setConjugationType={setConjugationType} defaultValue={defaultConjugationType} />
             <span>Current type: {conjugationType}</span>
-            <span>{conjugateVerb(input, conjugationType) ?? "unknown"}</span>
 
             <ConjugationViewer term={input} />
         </div>

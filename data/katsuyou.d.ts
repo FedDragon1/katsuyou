@@ -52,9 +52,13 @@ interface PentagradeConjugation {
     suffix: "ない" | "れる" | "せる" | "う" | "ます" | "て" | "た" | "で" | "だ" | "とき" | "ば" | "" | null
 }
 
-interface ConjugatedVerb {
+interface ConjugatedVerbOption {
     text: string,
     ruby: (string | null)[]
+}
+
+interface ConjugatedVerb {
+    options: ConjugatedVerbOption[]
     original: string,
     conjugationType: VerbConjugations
 }

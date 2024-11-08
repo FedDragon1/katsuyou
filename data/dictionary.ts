@@ -24,11 +24,11 @@ const verbsDictionary: VerbsDict = {
         type: "monograde"
     },
     "食べる": {
-        ruby: ["た", null],
+        ruby: ["た", null, null],
         type: "monograde"
     },
     "受ける": {
-        ruby: ["う", null],
+        ruby: ["う", null, null],
         type: "monograde"
     },
     "する": {
@@ -46,6 +46,22 @@ const verbsDictionary: VerbsDict = {
     "取り戻す": {
         ruby: ["と", null, "もど", null],
         type: "pentagrade"
+    },
+    "免れる": {
+        ruby: ["まぬか", null, null],
+        type: "pentagrade"
+    },
+    "引っかかる": {
+        ruby: ["ひ", null, null, null, null],
+        type: "pentagrade"
+    },
+    "暴れる": {
+        ruby: ["あば", null, null],
+        type: "monograde"
+    },
+    "買い替える": {
+        ruby: ["か", null, "か", null, null],
+        type: "monograde"
     }
 }
 

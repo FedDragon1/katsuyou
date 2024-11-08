@@ -57,6 +57,11 @@ interface ConjugatedVerbOption {
     ruby: (string | null)[]
 }
 
+interface NullableConjugatedVerbOption {
+    text: string | null,
+    ruby: (string | null)[] | null
+}
+
 interface ConjugatedVerb {
     options: ConjugatedVerbOption[]
     original: string,

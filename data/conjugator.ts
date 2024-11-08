@@ -379,6 +379,87 @@ function pentagradeConjugator(term: Term, conjugationClass: VerbConjugations): C
     }
 }
 
+function monogradeConjugator(term: Term, conjugationClass: VerbConjugations): ConjugatedVerb {
+    const options: ConjugatedVerbOption[] = []
+    
+    // 信じる -> 信じ
+    const verbStem = term.text.slice(0, term.text.length - 1)
+    switch (conjugationClass) {
+        case "negation":
+            options.push({
+                text: `${verbStem}ない`,
+                ruby: [...term.ruby, null]  // length + 1
+            })
+            break
+        case "passivity":
+            options.push({
+                text: `${verbStem}られる`,
+                ruby: [...term.ruby, null, null]  // length + 2
+            })
+            break
+        case "causative":
+            options.push({
+                text: `${verbStem}させる`,
+                ruby: [...term.ruby, null, null]  // length + 2
+            })
+            break
+        case "intention":
+            options.push({
+                text: `${verbStem}よう`,
+                ruby: [...term.ruby, null]  // length + 1
+            })
+            break
+        case "polite":
+            options.push({
+                text: `${verbStem}ます`,
+                ruby: [...term.ruby, null]  // length + 1
+            })
+            break
+        case "te":
+            options.push({
+                text: `${verbStem}て`,
+                ruby: term.ruby // no change
+            })
+            break
+        case "ta":
+            options.push({
+                text: `${verbStem}た`,
+                ruby: term.ruby // no change
+            })
+            break
+        case "dictionary":
+            options.push({
+                text: term.text,
+                ruby: term.ruby
+            })
+            break
+        case "ba":
+            options.push({
+                text: `${verbStem}れば`,
+                ruby: [...term.ruby, null]  // length + 1
+            })
+            break
+        case "imperative":
+            options.push(({
+                text: `${verbStem}ろ`,
+                ruby: term.ruby
+            }))
+            options.push(({
+                text: `${verbStem}よ`,
+                ruby: term.ruby
+            }))
+            break
+        default:
+            throw new Error(`Unknown conjugation type '${conjugationClass}'`)
+    }
+
+    return {
+        options,
+        original: term.text,
+        conjugationType: conjugationClass
+    }
+}
+
 function sagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
     let conjugated = null
     switch (conjugationClass) {
@@ -441,7 +522,7 @@ function sagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
 }
 
 function kagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
-    const conjugated: { text: null | string, ruby: (string | null)[] | null} = {
+    const conjugated: NullableConjugatedVerbOption = {
         text: null,
         ruby: null
     }
@@ -498,26 +579,6 @@ function kagyouConjugator(conjugationClass: VerbConjugations): ConjugatedVerb {
     } as ConjugatedVerb
 }
 
-// class MonogradeConjugator extends Conjugator {
-//
-// }
-//
-// class KagyouConjugator extends Conjugator {
-//
-// }
-//
-// class SagyouConjugator extends Conjugator {
-//
-// }
-//
-// class NagyouConjugator extends Conjugator {
-//
-// }
-//
-// class RagyouConjugator extends Conjugator {
-//
-// }
-
 /**
  * Conjugates the verb, and throws an error if the verb is unknown
  *
@@ -530,6 +591,8 @@ export function conjugateVerbStrict(verb: string, type: VerbConjugations): Conju
     switch (term.type) {
         case "pentagrade":
             return pentagradeConjugator(term, type)
+        case "monograde":
+            return monogradeConjugator(term, type)
         case "sagyou":
             return sagyouConjugator(type)
         case "kagyou":

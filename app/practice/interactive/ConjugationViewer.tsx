@@ -1,40 +1,41 @@
 import { FC } from "react";
-import { conjugateVerbFull, verbConjugationDisplay } from "@/data/conjugator";
-import { getVerb } from "@/data/dictionary";
 import Ruby from "@/app/Ruby";
 
+type Conjugator = (term: string, type: any) => ConjugatedVerb | ConjugatedAdjective | undefined
+
 interface ViewerProps {
-    term: string
+    term?: VerbTerm | AdjectiveTerm
+    conjugator: Conjugator
+    displayData: { [key: string]: string }
 }
 
-function conjugateToRuby(text: string | undefined, type: VerbConjugations) {
+function conjugateToRuby(conjugator: Conjugator, text: string | undefined, type: VerbConjugations) {
     if (!text) {
         return <></>
     }
-    const conjugated = conjugateVerbFull(text, type)
+    const conjugated = conjugator(text, type)
     if (!conjugated) {
         return <></>
     }
 
-    return <div className="inline-flex gap-2 conjugation-list">
+    return <div className="inline-flex gap-2 conjugation-list flex-wrap">
         {conjugated.options.map(
             (op) => <Ruby key={op.text} text={op.text} ruby={op.ruby}/>)}
     </div>
 }
 
-const ConjugationViewer: FC<ViewerProps> = ({ term }) => {
-    const termObject = getVerb(term)
+const ConjugationViewer: FC<ViewerProps> = ({ term, displayData, conjugator }) => {
     return (
-        <table className="max-w-[400px]">
+        <table className="max-w-[500px]">
             <tbody>
                 <tr>
                     <th className="text-left">Type</th>
                     <th className="text-left">Conjugation</th>
                 </tr>
-                {Object.entries(verbConjugationDisplay).map(([type, display]) => (
+                {Object.entries(displayData).map(([type, display]) => (
                     <tr key={type}>
-                        <td>{display}</td>
-                        <td>{conjugateToRuby(termObject?.text, type as VerbConjugations)}</td>
+                        <td className="text-nowrap pr-1 w-[100px]">{display}</td>
+                        <td>{conjugateToRuby(conjugator, term?.text, type as VerbConjugations)}</td>
                     </tr>
                 ))}
             </tbody>

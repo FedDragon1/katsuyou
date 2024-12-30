@@ -1,19 +1,80 @@
-type VerbTypes = "pentagrade" | "monograde" | "kagyou" | "sagyou" | "nagyou" | "ragyou"
+interface Term<T> {
+    text: string,
+    ruby: (string | null)[],
+    type: T
+}
 
-interface VerbsDict {
+interface Dict<T> {
     [term: string]: {
         ruby: (string | null)[],
-        type: VerbTypes
+        type: T
     };
 }
 
-interface Term {
+interface ConjugatedTermOption {
     text: string,
-    ruby: (string | null)[],
-    type: VerbTypes
+    ruby: (string | null)[]
 }
 
-type AdjectiveTypes = "pentagrade" | "monograde" | "kagyou" | "sagyou"
+interface ConjugatedTerm<T> {
+    options: ConjugatedTermOption[]
+    original: string,
+    conjugationType: T
+}
+
+// ない形、受身形、使役形、意向形、丁寧形、テ形、タ形、辞書形、バ形、命令形
+type VerbConjugations = "negation" | "passivity" | "causative" | "intentional" | "polite" | "te" | "ta" | "dictionary" | "ba" | "imperative"
+type VerbTypes = "pentagrade" | "monograde" | "kagyou" | "sagyou" | "nagyou" | "ragyou"
+type VerbDict = Dict<VerbTypes>
+type VerbTerm = Term<VerbTypes>
+type ConjugatedVerb = ConjugatedTerm<VerbConjugations>
+
+// ない形、テ形、意向形、辞書形、バ形、タ形
+type AdjectiveConjugations = "negation" | "te" | "intentional" | "dictionary" | "ba" | "ta"
+type AdjectiveTypes = "i" | "na"
+type AdjectiveDict = Dict<AdjectiveTypes>
+type AdjectiveTerm = Term<AdjectiveTypes>
+type ConjugatedAdjective = ConjugatedTerm<AdjectiveConjugations>
+
+// 「ある」 -> 丁寧形、テ形、タ形、否定形、バ形
+type AruConjugations = "polite" | "te" | "ta" | "negation" | "ba"
+// TODO: decide to include or not
+// 「ござる」 -> 否定形、意向形、丁寧形、テ形、タ形、辞書形、バ形、命令形
+type GozaruConjugation = "negation" | "polite" | "te" | "ta" | "dictionary" | "ba" | "imperative"
+
+// 未然形、連用形、終止形、連体形、仮定形、命令形
+type ConjugationClass = "irrealis" | "adverbial" | "conclusive" | "attributive" | "conditional" | "imperative"
+
+type AuxiliaryVerb = "せる"
+    | "させる"
+    | "れる"
+    | "られる"
+    | "たい"
+    | "たがる"
+    | "ない"
+    | "う"
+    | "よう"
+    | "まい"
+    | "た"
+    | "そうだ（様態）"
+    | "そうだ（伝聞）"
+    | "ようだ"
+    | "らしい"
+    | "ます"
+    | "だ"
+    | "です"
+    | "ている"
+    | "ば"   // technically not verb, it's an ending
+    | "ん"   // ません
+    | "（命令）"
+    | "（ば）"  // たら（ば）
+
+interface ConjugatedVerbMap {
+    ruby: Map<number, string>
+    conjugated: string
+}
+
+type ConjugatedSegment = ConjugatedVerbMap | string
 
 interface Activity {
     identifier: VerbTypes | AdjectiveTypes,
@@ -21,6 +82,16 @@ interface Activity {
     description: string,
     examples: string[],
     archaic: boolean
+}
+
+interface ConjugationQuestion {
+    verb: VerbTerm
+    auxiliary: AuxiliaryVerb[]
+}
+
+interface ConjugationAnswer {
+    conjugated: string,
+    ruby: (string | null)[]
 }
 
 interface Practice {
@@ -39,31 +110,8 @@ type HandakuonHiragana = "ぱ" | "ぴ" | "ぷ" | "ぺ" | "ぽ"
 
 type Grade = "a" | "i" | "u" | "e" | "o"
 
-// 未然形、連用形、終止形、連体形、仮定形、命令形、已然形（古い）
-type ConjugationClass = "irrealis" | "adverbial" | "conclusive" | "attributive" | "conditional" | "imperative" | "realis"
-
-// 否定形、受身形、使役形、意向形、丁寧形、テ形、タ形、辞書形、バ形、命令形
-type VerbConjugations = "negation" | "passivity" | "causative" | "intention" | "polite" | "te" | "ta" | "dictionary" | "ba" | "imperative"
-
-type AruConjugations = "polite" | "te" | "ta" | "negation" | "ba"
-
 interface PentagradeConjugation {
     grade: Grade | "sound change"　| null,
     suffix: "ない" | "れる" | "せる" | "う" | "ます" | "て" | "た" | "で" | "だ" | "とき" | "ば" | "" | null
 }
 
-interface ConjugatedVerbOption {
-    text: string,
-    ruby: (string | null)[]
-}
-
-interface NullableConjugatedVerbOption {
-    text: string | null,
-    ruby: (string | null)[] | null
-}
-
-interface ConjugatedVerb {
-    options: ConjugatedVerbOption[]
-    original: string,
-    conjugationType: VerbConjugations
-}

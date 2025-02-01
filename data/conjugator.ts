@@ -215,7 +215,7 @@ function nullOf<T>(length: number): T[] {
  * @param kana
  * @param grade
  */
-function kanaToGrade(kana: Hiragana, grade: Grade) {
+export function kanaToGrade(kana: Hiragana, grade: Grade) {
     const code = hiraganaCodes[kana]
 
     // technically we can change ぎゃ　to ぎょ, but we'll leave it for now
@@ -243,8 +243,8 @@ function kanaIsDakuon(kana: Hiragana) {
  *
  * @param kana
  */
-function voiceChangeToDakuon(kana: Hiragana) {
-    return ["ぶ", "む", "ぬ"].includes(kana)
+export function voiceChangeToDakuon(kana: Hiragana) {
+    return ["ぶ", "む", "ぬ"].includes(kana) || kanaIsDakuon(kana)
 }
 
 /**
@@ -253,7 +253,7 @@ function voiceChangeToDakuon(kana: Hiragana) {
  *
  * @param kana
  */
-function voiceChange(kana: Hiragana) {
+export function voiceChange(kana: Hiragana) {
     switch (kana) {
         case "う":
         case "る":
@@ -916,7 +916,6 @@ export function conjugateAdjective(adjective: string, type: AdjectiveConjugation
 
 // AUXILIARY VERB CONJUGATORS
 
-
 export const verbConjugationDisplay: { [type in VerbConjugations]: string } = {
     negation: "ない形",
     passivity: "受身形",
@@ -1327,6 +1326,12 @@ function conjugatePentagrade(verb: VerbTerm, auxiliary: AuxiliaryVerb): Conjugat
     }
 
     if (grade === "sound change") {
+        if (termEquals(verb, "行く")) {
+            return {
+                conjugated: "行っ",
+                ruby
+            }
+        }
         const changedEnd = voiceChange(lastKana)
         const conjugated = verb.text.slice(0, verb.text.length - 1) + changedEnd
         return {
@@ -1461,7 +1466,7 @@ function conjugateKagyou(auxiliary: AuxiliaryVerb): ConjugatedVerbMap {
             break
         case "ば":
             ruby = "く"
-            conjugated = "来"
+            conjugated = "来れ"
             break
         case "（命令）":
             ruby = "こ"

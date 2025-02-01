@@ -77,6 +77,7 @@ export default function Practice() {
         ruby: []
     })
 
+
     useEffect(() => {
         setQuestion(getConjugationList())
     }, []);

@@ -10,6 +10,7 @@ import {
     conjugateVerb,
     verbConjugationDisplay
 } from "@/data/conjugator";
+import { Katsuyou } from "@/data/katsuyou_v2";
 
 // const defaultConjugationType: VerbConjugations = "dictionary"
 
@@ -19,6 +20,15 @@ export default function Practice() {
     // const [conjugationType, setConjugationType] = useState<VerbConjugations>(defaultConjugationType)
     const verbTerm = useMemo(() => getVerb(verbInput), [verbInput])
     const adjTern = useMemo(() => getAdjective(adjInput), [adjInput])
+
+    const katsuyou = new Katsuyou()
+    katsuyou.feed({
+        type: "pentagrade",
+        baseForm: "有る",
+        display: "ある",
+        modern: true,
+        ruby: { 0: "あ" }
+    })
 
     return (
         <div className="p-20 flex flex-col gap-2">
@@ -30,6 +40,9 @@ export default function Practice() {
             {/*<span>Current type: {conjugationType}</span>*/}
             <ConjugationViewer term={verbTerm} conjugator={conjugateVerb} displayData={verbConjugationDisplay}/>
             <hr className="border-t-1 w-full"/>
+
+            {katsuyou.question}<br/>
+            {JSON.stringify(katsuyou.solution)}
 
             <input type="text"
                    placeholder="Enter an adjective"

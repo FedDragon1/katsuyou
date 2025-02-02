@@ -115,10 +115,12 @@ interface PentagradeConjugation {
     suffix: "ない" | "れる" | "せる" | "う" | "ます" | "て" | "た" | "で" | "だ" | "とき" | "ば" | "" | null
 }
 
+type KatsuyouVerbType = "pentagrade" | "honorific" | "monograde" | "kagyou" | "sagyou" | "aru"
+
 interface KatsuyouVerb {
-    type: "pentagrade" | "monograde" | "kagyou" | "sagyou" | "aru"
+    type: KatsuyouVerbType
     baseForm: string,
-    display: string,
-    modern: boolean,
-    ruby: Record<number, string>
+    display?: string,
+    modern?: boolean,
+    ruby?: Record<number, string>
 }

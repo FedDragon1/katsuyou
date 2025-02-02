@@ -259,29 +259,41 @@ class MonogradeToken extends FreeStandingToken {
     }
 }
 
+class HonorificToken extends FreeStandingToken {
+
+    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>) {
+        super(baseForm, display, modern, ruby);
+
+        const stem = baseForm.slice(0, baseForm.length - 1)
+
+        this.addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, `${stem}ら`)
+            .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, `${stem}い`)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, `${stem}い`)
+    }
+}
+
 class KagyouToken extends FreeStandingToken {
 
     constructor() {
         super("来る", "来る", true, { 0: "く" });
 
-        this
-            // .addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "こ")
-            // .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "こ")
-            // .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "こ")
-            // .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "こ")
-            // .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "き")
-            // .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "くる")
-            // .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "くる")
-            // .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "くる")
-            // .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "くる")
+        this.addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "こ")
+            .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "こ")
+            .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "こ")
+            .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "こ")
+            .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "き")
+            .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "くる")
+            .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "くる")
+            .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "くる")
+            .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "くる")
             .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "くる")
-            // .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれ")
-            // .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "こい")
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれ")
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "こい")
     }
 
     conjugate(lookAhead: KatsuyouDispatchInfo): KatsuyouResult {
@@ -315,28 +327,27 @@ export class Katsuyou {
     feed(term: KatsuyouVerb) {
         this.reset()
         let token: FreeStandingToken
-        if (term.baseForm === "有る") {
-            token = KatsuyouConstants.ある_TOKEN
-        } else {
-            switch (term.type) {
-                case "pentagrade":
-                    token = new PentagradeToken(term.baseForm, term.display, term.modern, term.ruby, term.baseForm === "行く")
-                    break;
-                case "monograde":
-                    token = new MonogradeToken(term.baseForm, term.display, term.modern, term.ruby)
-                    break;
-                case "sagyou":
-                    token = KatsuyouConstants.する_TOKEN
-                    break;
-                case "kagyou":
-                    token = KatsuyouConstants.くる_TOKEN
-                    break;
-                case "aru":
-                    token = KatsuyouConstants.ある_TOKEN
-                    break;
-                default:
-                    throw Error(`Unknown verb type ${term}`)
-            }
+        switch (term.type) {
+            case "pentagrade":
+                token = new PentagradeToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {}, term.baseForm === "行く")
+                break;
+            case "monograde":
+                token = new MonogradeToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {})
+                break;
+            case "sagyou":
+                token = KatsuyouConstants.する_TOKEN
+                break;
+            case "kagyou":
+                token = KatsuyouConstants.くる_TOKEN
+                break;
+            case "aru":
+                token = KatsuyouConstants.ある_TOKEN
+                break;
+            case "honorific":
+                token = new HonorificToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {})
+                break;
+            default:
+                throw Error(`Unknown verb type ${JSON.stringify(term)}`)
         }
         this.initialToken = token
 
@@ -554,7 +565,7 @@ KatsuyouConstants.ます_TOKEN
     .addDispatch(KatsuyouConstants.ん_TOKEN, 2, true, "ませ")
     .addDispatch(KatsuyouConstants.う_TOKEN, 2, true, "ましょ")
     .addDispatch(KatsuyouConstants.た_TOKEN, 2, true, "まし")
-    // .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "ませ")
+    .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "ませ")
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "ます")
 
 KatsuyouConstants.だ_TOKEN

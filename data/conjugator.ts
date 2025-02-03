@@ -137,6 +137,11 @@ const hiraganaCodes: { [key in Hiragana]: string[] } = {
     "ぬ": ["n", "u"],
     "ね": ["n", "e"],
     "の": ["n", "o"],
+    "は": ["h", "a"],
+    "ひ": ["h", "i"],
+    "ふ": ["h", "u"],
+    "へ": ["h", "e"],
+    "ほ": ["h", "o"],
     "ま": ["m", "a"],
     "み": ["m", "i"],
     "む": ["m", "u"],
@@ -180,7 +185,6 @@ const hiraganaCodes: { [key in Hiragana]: string[] } = {
     "ゑ": ["w", "e"],
     "を": ["w", "o"],
     "ん": ["N"],
-
 }
 
 const dakuonHiragana: DakuonHiragana[] = ["が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ"]
@@ -214,8 +218,9 @@ function nullOf<T>(length: number): T[] {
  *
  * @param kana
  * @param grade
+ * @param wagyou
  */
-export function kanaToGrade(kana: Hiragana, grade: Grade) {
+export function kanaToGrade(kana: Hiragana, grade: Grade, wagyou?: boolean) {
     const code = hiraganaCodes[kana]
 
     // technically we can change ぎゃ　to ぎょ, but we'll leave it for now
@@ -223,8 +228,13 @@ export function kanaToGrade(kana: Hiragana, grade: Grade) {
         return undefined
     }
 
+    if (wagyou) {
+        code[0] = "w"
+    }
+
+    debugger
     // @ts-expect-error stupid type system
-    return (hiraganaTable[code[0]] as { [key in Grade]: Hiragana })[grade]
+    return hiraganaTable[code[0]][grade]
 }
 
 /**

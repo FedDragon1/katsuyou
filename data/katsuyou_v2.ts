@@ -4,6 +4,8 @@ import { kanaToGrade, voiceChange, voiceChangeToDakuon } from "@/data/conjugator
 
 class KatsuyouConstants {
     static END_TOKEN: KatsuyouToken
+    static NOUN_TOKEN: KatsuyouToken
+    // 現代助動詞 / 助詞
     static せる_TOKEN: KatsuyouAuxiliary
     static させる_TOKEN: KatsuyouAuxiliary
     static れる_TOKEN: KatsuyouAuxiliary
@@ -34,9 +36,11 @@ class KatsuyouConstants {
     static 命令_TOKEN: KatsuyouAuxiliary
     static ら_TOKEN: KatsuyouAuxiliary
     static べき_TOKEN: KatsuyouAuxiliary
+    // 特殊な動詞
     static ある_TOKEN: FreeStandingToken
-    static する_TOKEN: FreeStandingToken
-    static くる_TOKEN: FreeStandingToken
+    // 古文
+    static ず_TOKEN: KatsuyouAuxiliary
+    static けり_TOKEN: KatsuyouAuxiliary
 }
 
 class KatsuyouConfig {
@@ -98,12 +102,14 @@ class KatsuyouToken {
     readonly baseForm: string;
     readonly display: string
     readonly modern: boolean;
+    readonly classic: boolean;
     dispatchables: KatsuyouDispatchInfo[]
 
-    constructor(baseForm: string, display: string, modern: boolean, dispatchables?: KatsuyouDispatchInfo[]) {
+    constructor(baseForm: string, display: string, modern: boolean, classic: boolean, dispatchables?: KatsuyouDispatchInfo[]) {
         this.baseForm = baseForm;
         this.display = display;
         this.modern = modern;
+        this.classic = classic
         this.dispatchables = dispatchables ?? [];
     }
 
@@ -115,10 +121,9 @@ class KatsuyouToken {
     }
 
     dispatch(): KatsuyouDispatchInfo | undefined {
-        debugger;
         const candidates = this.dispatchables.filter(
             (candidate) =>
-                ((KatsuyouConfig.showModern && candidate.modern) || (KatsuyouConfig.showClassic && !candidate.modern))
+                ((KatsuyouConfig.showModern && KatsuyouConfig.showClassic) || candidate.modern === KatsuyouConfig.showModern)
                 && KatsuyouConfig.allowedTokens.includes(candidate.to)
         )
         const totalWeight = candidates.map((c) => c.weight).reduce((a, b) => a + b, 0)
@@ -138,9 +143,19 @@ class KatsuyouToken {
 
 }
 
-class KatsuyouEndToken extends KatsuyouToken {
+/**
+ * 実は助動詞と助詞、二つもあり
+ */
+class KatsuyouAuxiliary extends KatsuyouToken {
+    conjugate(prev: KatsuyouResult, lookAhead: KatsuyouDispatchInfo | KatsuyouEndToken): KatsuyouResult {
+        const res = (lookAhead instanceof KatsuyouEndToken) ? this.baseForm : lookAhead.conjugation
+        return prev.merge(res)
+    }
+}
+
+class KatsuyouEndToken extends KatsuyouAuxiliary {
     constructor() {
-        super("", "", true);
+        super("", "", true, true);
     }
 
     addDispatch(): this {
@@ -156,21 +171,14 @@ class KatsuyouEndToken extends KatsuyouToken {
     }
 }
 
-class KatsuyouAuxiliary extends KatsuyouToken {
-    conjugate(prev: KatsuyouResult, lookAhead: KatsuyouDispatchInfo | KatsuyouEndToken): KatsuyouResult {
-        const res = (lookAhead instanceof KatsuyouEndToken) ? this.baseForm : lookAhead.conjugation
-        return prev.merge(res)
-    }
-}
-
 /**
- * 自立語
+ * 実は用言だけです
  */
 class FreeStandingToken extends KatsuyouToken {
     readonly ruby: Record<number, string>
 
-    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>, dispatcher?: KatsuyouDispatchInfo[]) {
-        super(baseForm, display, modern, dispatcher);
+    constructor(baseForm: string, display: string, modern: boolean, classic: boolean, ruby: Record<number, string>, dispatcher?: KatsuyouDispatchInfo[]) {
+        super(baseForm, display, modern, classic, dispatcher);
         this.ruby = ruby;
     }
 
@@ -186,12 +194,11 @@ class PentagradeToken extends FreeStandingToken {
      *
      * @param baseForm
      * @param display
-     * @param modern
      * @param ruby
      * @param iku
      */
-    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>, iku: boolean = false) {
-        super(baseForm, display, modern, ruby);
+    constructor(baseForm: string, display: string, ruby: Record<number, string>, iku: boolean = false) {
+        super(baseForm, display, true, false, ruby);
 
         const stem = baseForm.slice(0, baseForm.length - 1),
             lastKana = baseForm[baseForm.length - 1] as Hiragana,
@@ -222,6 +229,7 @@ class PentagradeToken extends FreeStandingToken {
             .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, eGrade)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 2, true, eGrade)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
     }
 }
 
@@ -232,10 +240,11 @@ class MonogradeToken extends FreeStandingToken {
      * @param baseForm
      * @param display
      * @param modern
+     * @param classic
      * @param ruby
      */
-    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>) {
-        super(baseForm, display, modern, ruby);
+    constructor(baseForm: string, display: string, modern: boolean, classic: boolean, ruby: Record<number, string>) {
+        super(baseForm, display, modern, classic, ruby);
 
         const stem = baseForm.slice(0, baseForm.length - 1)
 
@@ -256,55 +265,211 @@ class MonogradeToken extends FreeStandingToken {
             .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.ば_TOKEN, 2, true, `${stem}れ`)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 2, true, [`${stem}ろ`, `${stem}よ`])
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
+            // 古文
+            .addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, stem)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, `${stem}よ`)
     }
 }
 
 class HonorificToken extends FreeStandingToken {
-
-    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>) {
-        super(baseForm, display, modern, ruby);
+    constructor(baseForm: string, display: string, ruby: Record<number, string>) {
+        super(baseForm, display, true, false, ruby);
 
         const stem = baseForm.slice(0, baseForm.length - 1)
 
         this.addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, `${stem}ら`)
             .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, `${stem}い`)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, `${stem}い`)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
     }
 }
 
 class KagyouToken extends FreeStandingToken {
 
-    constructor() {
-        super("来る", "来る", true, { 0: "く" });
+    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>) {
+        super(baseForm, display, modern, !modern, ruby);
 
-        this.addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "こ")
-            .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "こ")
-            .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "こ")
-            .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "こ")
-            .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "き")
-            .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "くる")
-            .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "くる")
-            .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "くる")
-            .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "くる")
-            .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "くる")
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれ")
-            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "こい")
+        if (modern) {
+            this.addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "こ")
+                .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "こ")
+                .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "こ")
+                .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "こ")
+                .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "き")
+                .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "くる")
+                .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "くる")
+                .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "くる")
+                .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "くる")
+                .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "くる")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれ")
+                .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "こい")
+                .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, "くる")
+        } else {
+            this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, "こ")
+                .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, "き")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, "くれ")
+                .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, "くる")
+                .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, "こよ")
+        }
+
     }
 
     conjugate(lookAhead: KatsuyouDispatchInfo): KatsuyouResult {
         const katsuyouResultHiragana = super.conjugate(lookAhead);
         if (katsuyouResultHiragana.options.length !== 1) {
-            throw new Error(`来る conjugation should only contains one result, found ${katsuyouResultHiragana}`)
+            throw new Error(`来る conjugation should only contains one result, found ${JSON.stringify(katsuyouResultHiragana)}`)
         }
         const hiragana = katsuyouResultHiragana.options[0]
         const ruby = { 0: hiragana[0] === "来" ? "く" : hiragana[0] }
         const updated = `来${hiragana.slice(1)}`
         return new KatsuyouResult(updated, ruby)
+    }
+}
+
+class SagyouToken extends FreeStandingToken {
+
+    constructor(baseForm: string, display: string, modern: boolean, ruby: Record<number, string>) {
+        super(baseForm, display, modern, !modern, ruby);
+
+        if (modern) {
+            this.addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "")
+                .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "")
+                .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "し")
+                .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "する")
+                .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "する")
+                .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "する")
+                .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "する")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "すれ")
+                .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, ["しろ", "せよ"])
+        } else {
+            const stem = baseForm.slice(0, -1),
+                mizen = `${stem}せ`,
+                renyou = `${stem}し`,
+                rentai = `${stem}する`,
+                izen = `${stem}すれ`,
+                meirei = `${stem}せよ`
+            this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+                .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, renyou)
+                .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, rentai)
+                .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
+        }
+    }
+}
+
+// 古文の動詞の種類
+
+class QuadrigradeToken extends FreeStandingToken {
+
+    constructor(baseForm: string, display: string, ruby: Record<number, string>) {
+        super(baseForm, display, false, true, ruby);
+
+        const stem = baseForm.slice(0, -1),
+            lastKana = baseForm[baseForm.length - 1] as Hiragana,
+            aGrade = `${stem}${kanaToGrade(lastKana, "a")}`,
+            iGrade = `${stem}${kanaToGrade(lastKana, "i")}`,
+            eGrade = `${stem}${kanaToGrade(lastKana, "e")}`
+
+        this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, aGrade)
+            .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, iGrade)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, baseForm)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, eGrade)
+    }
+}
+
+class BigradeToken extends FreeStandingToken {
+    readonly grade: Grade;
+    readonly singleKanji: boolean;
+
+    constructor(baseForm: string, display: string, grade: Grade, wagyou: boolean, ruby: Record<number, string>) {
+        super(baseForm, display, false, true, ruby);
+
+        this.grade = grade
+        this.singleKanji = baseForm.length === 1
+
+        console.log(wagyou, baseForm)
+
+        const stem = baseForm.slice(0, -1),
+            lastKana = (this.singleKanji ? ruby[0] : baseForm[baseForm.length - 1]) as Hiragana,
+            changed = `${stem}${kanaToGrade(lastKana, grade, wagyou)}`,
+            base = this.singleKanji ? lastKana : baseForm
+
+        this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, changed)
+            .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, changed)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${base}れ`)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, `${base}る`)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, `${changed}よ`)
+    }
+
+    conjugate(lookAhead: KatsuyouDispatchInfo): KatsuyouResult {
+        const katsuyouResultHiragana = super.conjugate(lookAhead);
+
+        if (this.baseForm.length !== 1) {
+            return katsuyouResultHiragana
+        }
+
+        if (katsuyouResultHiragana.options.length !== 1) {
+            throw new Error(`${this.baseForm} conjugation should only contains one result, found ${JSON.stringify(katsuyouResultHiragana)}`)
+        }
+
+        const res = katsuyouResultHiragana.options[0]
+        if (res === this.baseForm) {
+            return katsuyouResultHiragana
+        }
+        const ruby = { 0: res[0] }
+        const updated = `${this.baseForm}${res.slice(1)}`
+        return new KatsuyouResult(updated, ruby)
+    }
+}
+
+class NagyouToken extends FreeStandingToken {
+
+    constructor(baseForm: string, display: string, ruby: Record<number, string>) {
+        super(baseForm, display, false, true, ruby);
+
+        const stem = baseForm.slice(0, -1),
+            mizen = `${stem}な`,
+            renyou = `${stem}に`,
+            rentai = `${baseForm}る`,
+            izen = `${baseForm}れ`,
+            meirei = `${stem}ね`
+
+        this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
+            .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, renyou)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, rentai)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
+    }
+}
+
+class RagyouToken extends FreeStandingToken {
+
+    constructor(baseForm: string, display: string, ruby: Record<number, string>) {
+        super(baseForm, display, false, true, ruby);
+
+        const stem = baseForm.slice(0, -1),
+            mizen = `${stem}ら`,
+            reitai = `${stem}る`,
+            izen = `${stem}れ`,
+            meirei = `${stem}れ`
+
+        this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
+            .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, baseForm)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+            .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, reitai)
+            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
     }
 }
 
@@ -327,25 +492,42 @@ export class Katsuyou {
     feed(term: KatsuyouVerb) {
         this.reset()
         let token: FreeStandingToken
+        let grade: Grade = "i"
+
         switch (term.type) {
             case "pentagrade":
-                token = new PentagradeToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {}, term.baseForm === "行く")
+                token = new PentagradeToken(term.baseForm, term.display ?? term.baseForm, term.ruby ?? {}, term.baseForm === "行く")
                 break;
             case "monograde":
-                token = new MonogradeToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {})
+                token = new MonogradeToken(term.baseForm, term.display ?? term.baseForm, term.modern, term.classic, term.ruby ?? {})
                 break;
             case "sagyou":
-                token = KatsuyouConstants.する_TOKEN
+                token = new SagyouToken(term.baseForm, term.display ?? term.baseForm, term.modern, term.ruby ?? {})
                 break;
             case "kagyou":
-                token = KatsuyouConstants.くる_TOKEN
+                token = new KagyouToken(term.baseForm, term.display ?? term.baseForm, term.modern, term.ruby ?? {})
                 break;
+            case "nagyou":
+                token = new NagyouToken(term.baseForm, term.display ?? term.baseForm, term.ruby ?? {})
+                break
+            case "ragyou":
+                token = new RagyouToken(term.baseForm, term.display ?? term.baseForm, term.ruby ?? {})
+                break
             case "aru":
                 token = KatsuyouConstants.ある_TOKEN
                 break;
             case "honorific":
-                token = new HonorificToken(term.baseForm, term.display ?? term.baseForm, term.modern ?? true, term.ruby ?? {})
+                token = new HonorificToken(term.baseForm, term.display ?? term.baseForm, term.ruby ?? {})
                 break;
+            case "quadrigrade":
+                token = new QuadrigradeToken(term.baseForm, term.display ?? term.baseForm, term.ruby ?? {})
+                break;
+            case "lower_bigrade":
+                grade = "e"
+            // fall through
+            case "upper_bigrade":
+                token = new BigradeToken(term.baseForm, term.display ?? term.baseForm, grade, term.wagyou ?? false, term.ruby ?? {})
+                break
             default:
                 throw Error(`Unknown verb type ${JSON.stringify(term)}`)
         }
@@ -354,7 +536,6 @@ export class Katsuyou {
         let dispatched: KatsuyouDispatchInfo | undefined
         let currentToken: KatsuyouToken = token
         while (true) {
-            debugger;
             dispatched = currentToken.dispatch()
             if (!dispatched) {
                 break
@@ -367,7 +548,6 @@ export class Katsuyou {
         for (const dispatch of this.sequence.slice(1)) {
             result = (dispatch.from as KatsuyouAuxiliary).conjugate(result, dispatch)
         }
-        // result = (this.sequence[this.sequence.length - 1].to as KatsuyouAuxiliary).conjugate(result)
         this.solution = result
     }
 
@@ -378,42 +558,52 @@ export class Katsuyou {
         const comps = this.sequence.map((v) => v.from.display)
         return comps.reduce((s1, s2) => `${s1} + ${s2}`)
     }
+
+    toggleClassic(to?: boolean): boolean {
+        KatsuyouConfig.showClassic = to ?? !KatsuyouConfig.showClassic
+        return KatsuyouConfig.showClassic
+    }
+
+    toggleModern(to?: boolean): boolean {
+        KatsuyouConfig.showModern = to ?? !KatsuyouConfig.showModern
+        return KatsuyouConfig.showModern
+    }
 }
 
 const tokens = [
-    { name: "せる_TOKEN", baseForm: "せる", display: "せる", modern: true },
-    { name: "させる_TOKEN", baseForm: "させる", display: "させる", modern: true },
-    { name: "れる_TOKEN", baseForm: "れる", display: "れる", modern: true },
-    { name: "られる_TOKEN", baseForm: "られる", display: "られる", modern: true },
-    { name: "たい_TOKEN", baseForm: "たい", display: "たい", modern: true },
-    { name: "たがる_TOKEN", baseForm: "たがる", display: "たがる", modern: true },
-    { name: "ない_TOKEN", baseForm: "ない", display: "ない", modern: true },
-    { name: "ない_SHORT_TOKEN", baseForm: "ない", display: "ない", modern: true },
-    { name: "う_TOKEN", baseForm: "う", display: "う", modern: true },
-    { name: "よう_TOKEN", baseForm: "よう", display: "よう", modern: true },
-    { name: "まい_TOKEN", baseForm: "まい", display: "まい", modern: true },
-    { name: "た_TOKEN", baseForm: "た", display: "た", modern: true },
-    { name: "た_SHORT_TOKEN", baseForm: "た", display: "た", modern: true },
-    { name: "た濁音_TOKEN", baseForm: "た", display: "た", modern: true },
-    { name: "そうだ様態_TOKEN", baseForm: "そうだ様態", display: "そうだ（様態）", modern: true },
-    { name: "そうだ伝聞_TOKEN", baseForm: "そうだ伝聞", display: "そうだ（伝聞）", modern: true },
-    { name: "ようだ_TOKEN", baseForm: "ようだ", display: "ようだ", modern: true },
-    { name: "らしい_TOKEN", baseForm: "らしい", display: "らしい", modern: true },
-    { name: "ます_TOKEN", baseForm: "ます", display: "ます", modern: true },
-    { name: "ます_SHORT_TOKEN", baseForm: "ます", display: "ます", modern: true },
-    { name: "だ_TOKEN", baseForm: "だ", display: "だ", modern: true },
-    { name: "です_TOKEN", baseForm: "です", display: "です", modern: true },
-    { name: "です_SHORT_TOKEN", baseForm: "です", display: "です", modern: true },
-    { name: "ている_TOKEN", baseForm: "ている", display: "ている", modern: true },
-    { name: "ている濁音_TOKEN", baseForm: "ている", display: "ている", modern: true },
-    { name: "ば_TOKEN", baseForm: "ば", display: "ば", modern: true },
-    { name: "ん_TOKEN", baseForm: "ん", display: "ない", modern: true },
-    { name: "命令_TOKEN", baseForm: "", display: "（命令）", modern: true },
-    { name: "ら_TOKEN", baseForm: "ら", display: "（ば）", modern: true },
-    { name: "べき_TOKEN", baseForm: "べき", display: "べき", modern: true },
+    { name: "せる_TOKEN", baseForm: "せる", display: "せる", modern: true, classic: false },
+    { name: "させる_TOKEN", baseForm: "させる", display: "させる", modern: true, classic: false },
+    { name: "れる_TOKEN", baseForm: "れる", display: "れる", modern: true, classic: false },
+    { name: "られる_TOKEN", baseForm: "られる", display: "られる", modern: true, classic: false },
+    { name: "たい_TOKEN", baseForm: "たい", display: "たい", modern: true, classic: false },
+    { name: "たがる_TOKEN", baseForm: "たがる", display: "たがる", modern: true, classic: false },
+    { name: "ない_TOKEN", baseForm: "ない", display: "ない", modern: true, classic: false },
+    { name: "ない_SHORT_TOKEN", baseForm: "ない", display: "ない", modern: true, classic: false },
+    { name: "う_TOKEN", baseForm: "う", display: "う", modern: true, classic: false },
+    { name: "よう_TOKEN", baseForm: "よう", display: "よう", modern: true, classic: false },
+    { name: "まい_TOKEN", baseForm: "まい", display: "まい", modern: true, classic: true },
+    { name: "た_TOKEN", baseForm: "た", display: "た", modern: true, classic: false },
+    { name: "た_SHORT_TOKEN", baseForm: "た", display: "た", modern: true, classic: false },
+    { name: "た濁音_TOKEN", baseForm: "た", display: "た", modern: true, classic: false },
+    { name: "そうだ様態_TOKEN", baseForm: "そうだ様態", display: "そうだ（様態）", modern: true, classic: false },
+    { name: "そうだ伝聞_TOKEN", baseForm: "そうだ伝聞", display: "そうだ（伝聞）", modern: true, classic: false },
+    { name: "ようだ_TOKEN", baseForm: "ようだ", display: "ようだ", modern: true, classic: false },
+    { name: "らしい_TOKEN", baseForm: "らしい", display: "らしい", modern: true, classic: false },
+    { name: "ます_TOKEN", baseForm: "ます", display: "ます", modern: true, classic: false },
+    { name: "ます_SHORT_TOKEN", baseForm: "ます", display: "ます", modern: true, classic: false },
+    { name: "だ_TOKEN", baseForm: "だ", display: "だ", modern: true, classic: false },
+    { name: "です_TOKEN", baseForm: "です", display: "です", modern: true, classic: false },
+    { name: "です_SHORT_TOKEN", baseForm: "です", display: "です", modern: true, classic: false },
+    { name: "ている_TOKEN", baseForm: "ている", display: "ている", modern: true, classic: false },
+    { name: "ている濁音_TOKEN", baseForm: "ている", display: "ている", modern: true, classic: false },
+    { name: "ば_TOKEN", baseForm: "ば", display: "ば", modern: true, classic: true },
+    { name: "ん_TOKEN", baseForm: "ん", display: "ない", modern: true, classic: false },
+    { name: "命令_TOKEN", baseForm: "", display: "（命令）", modern: true, classic: true },
+    { name: "ら_TOKEN", baseForm: "ら", display: "（ば）", modern: true, classic: false },
+    { name: "べき_TOKEN", baseForm: "べき", display: "べき", modern: true, classic: false },
 
     // more to support
-    // { name: "ず_TOKEN", baseForm: "ず", display: "ず", modern: false },
+    { name: "ず_TOKEN", baseForm: "ず", display: "ず", modern: false, classic: true },
     // { name: "べし_TOKEN", baseForm: "べし", display: "べし", modern: false },
     // { name: "つ_TOKEN", baseForm: "つ", display: "つ", modern: false },  // https://www.try-it.jp/chapters-14469/lessons-14638/
     // { name: "ぬ_TOKEN", baseForm: "ぬ", display: "ぬ", modern: false },
@@ -423,24 +613,23 @@ const tokens = [
     // { name: "さす_TOKEN", baseForm: "さす", display: "さす", modern: false },
     // { name: "しむ_TOKEN", baseForm: "しむ", display: "しむ", modern: false },
     // { name: "き_TOKEN", baseForm: "き", display: "き", modern: false },
-    // { name: "けり_TOKEN", baseForm: "けり", display: "けり", modern: false },
+    { name: "けり_TOKEN", baseForm: "けり", display: "けり", modern: false, classic: true },
     // { name: "しむ_TOKEN", baseForm: "しむ", display: "しむ", modern: false },
     // { name: "しむ_TOKEN", baseForm: "しむ", display: "しむ", modern: false },
 ] as const
 
 for (const token of tokens) {
-    KatsuyouConstants[token.name] = new KatsuyouAuxiliary(token.baseForm, token.display, token.modern)
+    KatsuyouConstants[token.name] = new KatsuyouAuxiliary(token.baseForm, token.display, token.modern, token.classic)
 }
 
 const verbTokens = [
-    { name: "ある_TOKEN", baseForm: "有る", display: "ある", modern: true, ruby: {} },
-    { name: "する_TOKEN", baseForm: "する", display: "する", modern: true, ruby: {} },
+    { name: "ある_TOKEN", baseForm: "有る", display: "ある", modern: true, classic: false, ruby: { 0: "あ" } },
 ] as const
 
 for (const verbToken of verbTokens) {
-    KatsuyouConstants[verbToken.name] = new FreeStandingToken(verbToken.baseForm, verbToken.display, verbToken.modern, verbToken.ruby)
+    KatsuyouConstants[verbToken.name] = new FreeStandingToken(verbToken.baseForm, verbToken.display, verbToken.modern, verbToken.classic, verbToken.ruby)
 }
-KatsuyouConstants.くる_TOKEN = new KagyouToken()
+KatsuyouConstants.NOUN_TOKEN = new KatsuyouAuxiliary("とき", "とき", true, true)
 KatsuyouConstants.END_TOKEN = new KatsuyouEndToken()
 
 const せる_dispatch = [
@@ -592,26 +781,9 @@ KatsuyouConstants.ある_TOKEN
     .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "あり")
     .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "ある")
 
-KatsuyouConstants.する_TOKEN
-    .addDispatch(KatsuyouConstants.させる_TOKEN, 1, true, "")
-    .addDispatch(KatsuyouConstants.られる_TOKEN, 1, true, "")
-    .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.よう_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.たがる_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "し")
-    .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, "する")
-    .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "する")
-    .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "する")
-    .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "する")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "すれ")
-    .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, ["しろ", "せよ"])
-
 KatsuyouConfig.allowedTokens = [
     KatsuyouConstants.END_TOKEN,
+    KatsuyouConstants.NOUN_TOKEN,
     KatsuyouConstants.せる_TOKEN,
     KatsuyouConstants.させる_TOKEN,
     KatsuyouConstants.れる_TOKEN,
@@ -639,5 +811,7 @@ KatsuyouConfig.allowedTokens = [
     KatsuyouConstants.ん_TOKEN,
     KatsuyouConstants.命令_TOKEN,
     KatsuyouConstants.ら_TOKEN,
-    KatsuyouConstants.べき_TOKEN
+    KatsuyouConstants.べき_TOKEN,
+    KatsuyouConstants.ず_TOKEN,
+    KatsuyouConstants.けり_TOKEN
 ]

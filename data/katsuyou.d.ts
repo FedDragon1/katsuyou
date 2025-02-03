@@ -23,7 +23,17 @@ interface ConjugatedTerm<T> {
 }
 
 // ない形、受身形、使役形、意向形、丁寧形、テ形、タ形、辞書形、バ形、命令形
-type VerbConjugations = "negation" | "passivity" | "causative" | "intentional" | "polite" | "te" | "ta" | "dictionary" | "ba" | "imperative"
+type VerbConjugations =
+    "negation"
+    | "passivity"
+    | "causative"
+    | "intentional"
+    | "polite"
+    | "te"
+    | "ta"
+    | "dictionary"
+    | "ba"
+    | "imperative"
 type VerbTypes = "pentagrade" | "monograde" | "kagyou" | "sagyou" | "nagyou" | "ragyou"
 type VerbDict = Dict<VerbTypes>
 type VerbTerm = Term<VerbTypes>
@@ -103,24 +113,57 @@ type Hiragana = "あ" | "い" | "う" | "え" | "お" | "か" | "き" | "く" | 
     | "た" | "ち" | "つ" | "て" | "と" | "な" | "に" | "ぬ" | "ね" | "の" | "ま" | "み" | "む" | "め" | "も" | "や"
     | "ゆ" | "よ" | "ら" | "り" | "る" | "れ" | "ろ" | "わ" | "ゐ" | "ゑ" | "を" | "ん" | "が" | "ぎ" | "ぐ"
     | "げ" | "ご" | "ざ" | "じ" | "ず" | "ぜ" | "ぞ" | "だ" | "ぢ" | "づ" | "で" | "ど" | "ぱ" | "ぴ" | "ぷ"
-    | "ぺ" | "ぽ" | "ば" | "び" | "ぶ" | "べ" | "ぼ"
+    | "ぺ" | "ぽ" | "ば" | "び" | "ぶ" | "べ" | "ぼ"　| "は" | "ひ" | "ふ" | "へ" | "ほ"
 
-type DakuonHiragana = "が" | "ぎ" | "ぐ" | "げ" | "ご" | "ざ" | "じ" | "ず" | "ぜ" | "ぞ" | "だ" | "ぢ" | "づ" | "で" | "ど" | "ば" | "び" | "ぶ" | "べ" | "ぼ"
+type DakuonHiragana =
+    "が"
+    | "ぎ"
+    | "ぐ"
+    | "げ"
+    | "ご"
+    | "ざ"
+    | "じ"
+    | "ず"
+    | "ぜ"
+    | "ぞ"
+    | "だ"
+    | "ぢ"
+    | "づ"
+    | "で"
+    | "ど"
+    | "ば"
+    | "び"
+    | "ぶ"
+    | "べ"
+    | "ぼ"
 type HandakuonHiragana = "ぱ" | "ぴ" | "ぷ" | "ぺ" | "ぽ"
 
 type Grade = "a" | "i" | "u" | "e" | "o"
 
 interface PentagradeConjugation {
-    grade: Grade | "sound change"　| null,
+    grade: Grade | "sound change" | null,
     suffix: "ない" | "れる" | "せる" | "う" | "ます" | "て" | "た" | "で" | "だ" | "とき" | "ば" | "" | null
 }
 
-type KatsuyouVerbType = "pentagrade" | "honorific" | "monograde" | "kagyou" | "sagyou" | "aru"
+type KatsuyouVerbType =
+    | "aru"
+    | "pentagrade"
+    | "honorific"
+    | "monograde"
+    | "kagyou"
+    | "sagyou"
+    | "quadrigrade"
+    | "upper_bigrade"
+    | "lower_bigrade"
+    | "nagyou"
+    | "ragyou"
 
 interface KatsuyouVerb {
     type: KatsuyouVerbType
     baseForm: string,
+    modern: boolean,
+    classic: boolean
     display?: string,
-    modern?: boolean,
+    wagyou?: boolean,
     ruby?: Record<number, string>
 }

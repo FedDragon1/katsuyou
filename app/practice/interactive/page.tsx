@@ -11,7 +11,7 @@ import {
     verbConjugationDisplay
 } from "@/data/conjugator";
 import { Katsuyou } from "@/data/katsuyou_v2";
-import { getRandomVerbByType } from "@/data/dictionary_v2";
+import { getRandomVerb } from "@/data/dictionary_v2";
 
 // const defaultConjugationType: VerbConjugations = "dictionary"
 
@@ -23,7 +23,9 @@ export default function Practice() {
     const adjTern = useMemo(() => getAdjective(adjInput), [adjInput])
 
     const katsuyou = new Katsuyou()
-    const verb = getRandomVerbByType("honorific")
+    katsuyou.toggleClassic(true)
+    katsuyou.toggleModern(false)
+    const verb = getRandomVerb()
     katsuyou.feed(verb)
 
     return (

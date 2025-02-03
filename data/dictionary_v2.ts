@@ -2,6 +2,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "急ぐ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "いそ"
         }
@@ -9,6 +11,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "生きる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "い"
         }
@@ -16,6 +20,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "行く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "い"
         }
@@ -23,6 +29,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "戴く",
+        modern: true,
+        classic: false,
         display: "いただく",
         ruby: {
             0: "いただ"
@@ -31,6 +39,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "頂く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "いただ"
         }
@@ -38,6 +48,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "言う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "い"
         }
@@ -45,6 +57,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "居る",
+        modern: true,
+        classic: false,
         display: "いる",
         ruby: {
             0: "い"
@@ -53,6 +67,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "祈る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "いの"
         }
@@ -60,6 +76,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "入れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "い"
         }
@@ -67,6 +85,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "動く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "うご"
         }
@@ -74,6 +94,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "売る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -81,6 +103,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "動かす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "うご"
         }
@@ -88,6 +112,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "歌う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -95,6 +121,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "受ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -102,6 +130,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "置く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -109,6 +139,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "起きる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -116,6 +148,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "打つ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -123,6 +157,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "選ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "えら"
         }
@@ -130,6 +166,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "産む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -137,6 +175,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "移す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "うつ"
         }
@@ -144,6 +184,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "送る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おく"
         }
@@ -151,6 +193,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "生まれる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -158,6 +202,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "移る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "うつ"
         }
@@ -165,6 +211,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "生む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "う"
         }
@@ -172,6 +220,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "引き受ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ひ",
             2: "う"
@@ -180,6 +230,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "買う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -187,6 +239,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "落ちる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -194,6 +248,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "怒る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おこ"
         }
@@ -201,6 +257,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "遅れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おく"
         }
@@ -208,6 +266,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "押す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -215,6 +275,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "起こす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -222,6 +284,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "落とす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -229,6 +293,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "起こる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -236,6 +302,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "降りる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -243,6 +311,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "踊る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おど"
         }
@@ -250,6 +320,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "終わる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -257,6 +329,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "泳ぐ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "およ"
         }
@@ -264,6 +338,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "推す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -271,6 +347,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "下りる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -278,6 +356,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "贈る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おく"
         }
@@ -285,6 +365,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "降ろす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -292,6 +374,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "思う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おも"
         }
@@ -299,6 +383,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "下ろす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "お"
         }
@@ -306,6 +392,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "教える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おし"
         }
@@ -313,6 +401,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "覚える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "おぼ"
         }
@@ -320,6 +410,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "構う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かま"
         }
@@ -327,6 +419,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "返す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かえ"
         }
@@ -334,6 +428,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "考える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かんが"
         }
@@ -341,6 +437,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "掛かる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -348,6 +446,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "変える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -355,6 +455,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "貸す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -362,6 +464,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "換わる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -369,6 +473,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "飾る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かざ"
         }
@@ -376,6 +482,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "変える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -383,6 +491,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "被る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かぶ"
         }
@@ -390,6 +500,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "噛む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -397,6 +509,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "帰る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かえ"
         }
@@ -404,6 +518,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "変わる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -411,6 +527,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "書く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -418,6 +536,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "掛ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -425,6 +545,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "換わる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -432,6 +554,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "帰す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かえ"
         }
@@ -439,6 +563,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "渇く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かわ"
         }
@@ -446,6 +572,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "替える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -453,6 +581,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "借りる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "か"
         }
@@ -460,6 +590,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "感じる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "かん"
         }
@@ -467,6 +599,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "斬る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -474,6 +608,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "切る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -481,6 +617,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "聞く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -488,6 +626,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "消える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -495,6 +635,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "咲く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -502,6 +644,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "答える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "いら"
         }
@@ -509,6 +653,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "探す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さが"
         }
@@ -516,6 +662,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "切れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -523,6 +671,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "聴く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "き"
         }
@@ -530,6 +680,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "kagyou",
         baseForm: "来る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "く"
         }
@@ -537,6 +689,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "曇る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "くも"
         }
@@ -544,6 +698,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "壊す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "こわ"
         }
@@ -551,6 +707,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "消す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "け"
         }
@@ -558,6 +716,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "下がる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -565,6 +725,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "壊れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "こわ"
         }
@@ -572,6 +734,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "頑張る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "がん",
             1: "ば"
@@ -580,6 +744,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "着る",
+        modern: true,
+        classic: true,
         ruby: {
             0: "き"
         }
@@ -587,6 +753,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "混む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "こ"
         }
@@ -594,6 +762,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "比べる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "くら"
         }
@@ -601,6 +771,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "捨てる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -608,6 +780,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "座る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "すわ"
         }
@@ -615,6 +789,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "吸う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -622,6 +798,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "刺す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -629,6 +807,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "閉まる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "し"
         }
@@ -636,6 +816,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "好く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -643,6 +825,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "住む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -650,6 +834,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "信じる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "しん"
         }
@@ -657,6 +843,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "指す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -664,6 +852,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "出す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "だ"
         }
@@ -671,17 +861,23 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "差す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
     },
     {
         type: "sagyou",
-        baseForm: "する"
+        baseForm: "する",
+        modern: true,
+        classic: false,
     },
     {
         type: "monograde",
         baseForm: "閉める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "し"
         }
@@ -689,6 +885,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "知る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "し"
         }
@@ -696,6 +894,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "過ごす",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -703,6 +903,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "提げる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -710,6 +912,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "死ぬ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "し"
         }
@@ -717,6 +921,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "下げる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "さ"
         }
@@ -724,6 +930,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "過ぎる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "す"
         }
@@ -731,6 +939,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "出来る",
+        modern: true,
+        classic: false,
         display: "できる",
         ruby: {
             0: "で",
@@ -740,6 +950,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "着く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つ"
         }
@@ -747,6 +959,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "付く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つ"
         }
@@ -754,6 +968,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "続く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つづ"
         }
@@ -761,6 +977,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "助ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "たす"
         }
@@ -768,6 +986,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "出る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "で"
         }
@@ -775,6 +995,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "包む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "くる"
         }
@@ -782,6 +1004,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "着ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つ"
         }
@@ -789,6 +1013,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "違う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ちが"
         }
@@ -796,6 +1022,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "助かる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "たす"
         }
@@ -803,6 +1031,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "立つ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "た"
         }
@@ -810,6 +1040,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "建つ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "た"
         }
@@ -817,6 +1049,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "建てる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "た"
         }
@@ -824,6 +1058,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "作る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つく"
         }
@@ -831,6 +1067,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "使う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つか"
         }
@@ -838,6 +1076,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "疲れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つか"
         }
@@ -845,6 +1085,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "付ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つ"
         }
@@ -852,6 +1094,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "続ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "つづ"
         }
@@ -859,6 +1103,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "食べる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "た"
         }
@@ -866,6 +1112,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "立てる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "た"
         }
@@ -873,6 +1121,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "並べる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なら"
         }
@@ -880,6 +1130,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "届く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "とど"
         }
@@ -887,6 +1139,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "取る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
@@ -894,6 +1148,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "治す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なお"
         }
@@ -901,6 +1157,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "直る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なお"
         }
@@ -908,6 +1166,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "習う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なら"
         }
@@ -915,6 +1175,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "通る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "とお"
         }
@@ -922,6 +1184,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "泊める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
@@ -929,6 +1193,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "跳ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
@@ -936,6 +1202,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "並ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なら"
         }
@@ -943,6 +1211,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "飛ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
@@ -950,6 +1220,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "泣く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "な"
         }
@@ -957,6 +1229,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "直す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "なお"
         }
@@ -964,6 +1238,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "届ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "とど"
         }
@@ -971,17 +1247,26 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "止める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
     },
     {
         type: "pentagrade",
-        baseForm: "治る"
+        baseForm: "治る",
+        modern: true,
+        classic: false,
+        ruby: {
+            0: "なお"
+        }
     },
     {
         type: "pentagrade",
         baseForm: "無くす",
+        modern: true,
+        classic: false,
         display: "なくす",
         ruby: {
             0: "な"
@@ -990,6 +1275,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "泊まる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "と"
         }
@@ -997,6 +1284,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "留まる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "とど"
         }
@@ -1004,6 +1293,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "慣れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "な"
         }
@@ -1011,6 +1302,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "乗せる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "の"
         }
@@ -1018,6 +1311,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "寝る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ね"
         }
@@ -1025,6 +1320,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "残す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "のこ"
         }
@@ -1032,6 +1329,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "履く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "は"
         }
@@ -1039,6 +1338,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "願う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ねが"
         }
@@ -1046,6 +1347,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "登る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "のぼ"
         }
@@ -1053,6 +1356,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "入る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はい"
         }
@@ -1060,6 +1365,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "始める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はじ"
         }
@@ -1067,6 +1374,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "飲む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "の"
         }
@@ -1074,6 +1383,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "働く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はたら"
         }
@@ -1081,6 +1392,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "上る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "のぼ"
         }
@@ -1088,6 +1401,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "脱ぐ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ぬ"
         }
@@ -1095,6 +1410,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "運ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はこ"
         }
@@ -1102,6 +1419,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "似る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "に"
         }
@@ -1109,6 +1428,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "残る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "のこ"
         }
@@ -1116,6 +1437,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "成る",
+        modern: true,
+        classic: false,
         display: "なる",
         ruby: {
             0: "な"
@@ -1124,6 +1447,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "引く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ひ"
         }
@@ -1131,6 +1456,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "払う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はら"
         }
@@ -1138,6 +1465,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "弾く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はじ"
         }
@@ -1145,6 +1474,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "褒める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ほ"
         }
@@ -1152,6 +1483,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "晴れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "は"
         }
@@ -1159,6 +1492,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "回す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "まわ"
         }
@@ -1166,6 +1501,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "離れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はな"
         }
@@ -1173,6 +1510,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "間に合う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ま",
             2: "あ"
@@ -1181,6 +1520,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "話す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "はな"
         }
@@ -1188,6 +1529,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "弾く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ひ"
         }
@@ -1195,6 +1538,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "待つ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ま"
         }
@@ -1202,6 +1547,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "降る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ふ"
         }
@@ -1209,6 +1556,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "回る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "まわ"
         }
@@ -1216,6 +1565,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "吹く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ふ"
         }
@@ -1223,6 +1574,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "太る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ふと"
         }
@@ -1230,6 +1583,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "開く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ひら"
         }
@@ -1237,6 +1592,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "巻く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ま"
         }
@@ -1244,6 +1601,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "見かける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "み"
         }
@@ -1251,6 +1610,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "見える",
+        modern: true,
+        classic: false,
         ruby: {
             0: "み"
         }
@@ -1258,6 +1619,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "貰う",
+        modern: true,
+        classic: false,
         display: "もらう",
         ruby: {
             0: "もら"
@@ -1266,6 +1629,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "忘れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わす"
         }
@@ -1273,6 +1638,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "見る",
+        modern: true,
+        classic: true,
         ruby: {
             0: "み"
         }
@@ -1280,6 +1647,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "笑う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わら"
         }
@@ -1287,6 +1656,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "休む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "やす"
         }
@@ -1294,6 +1665,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "判る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わか"
         }
@@ -1301,6 +1674,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "見せる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "み"
         }
@@ -1308,6 +1683,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "止む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "や"
         }
@@ -1315,10 +1692,14 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "やる",
+        modern: true,
+        classic: false,
     },
     {
         type: "monograde",
         baseForm: "分ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わ"
         }
@@ -1326,6 +1707,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "呼ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "よ"
         }
@@ -1333,6 +1716,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "痩せる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "や"
         }
@@ -1340,6 +1725,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "結ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "むす"
         }
@@ -1347,6 +1734,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "辞める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "や"
         }
@@ -1354,6 +1743,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "読む",
+        modern: true,
+        classic: false,
         ruby: {
             0: "よ"
         }
@@ -1361,6 +1752,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "渡す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わた"
         }
@@ -1368,6 +1761,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "分かる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わ"
         }
@@ -1375,6 +1770,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "渡る",
+        modern: true,
+        classic: false,
         ruby: {
             0: "わた"
         }
@@ -1382,6 +1779,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "持つ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "も"
         }
@@ -1389,6 +1788,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "集まる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あつ"
         }
@@ -1396,6 +1797,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "現れる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あらわ"
         }
@@ -1403,6 +1806,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "浴びる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1410,6 +1815,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "遊ぶ",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あそ"
         }
@@ -1417,6 +1824,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "表す",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あらわ"
         }
@@ -1424,6 +1833,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "洗う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あら"
         }
@@ -1431,6 +1842,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "歩く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "ある"
         }
@@ -1438,6 +1851,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "集める",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あつ"
         }
@@ -1445,6 +1860,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "上げる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1452,6 +1869,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "monograde",
         baseForm: "開ける",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1459,6 +1878,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "開く",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1466,6 +1887,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "上がる",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1473,6 +1896,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "pentagrade",
         baseForm: "会う",
+        modern: true,
+        classic: false,
         ruby: {
             0: "あ"
         }
@@ -1480,6 +1905,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "aru",
         baseForm: "有る",
+        modern: true,
+        classic: false,
         display: "ある",
         ruby: {
             0: "あ"
@@ -1488,10 +1915,14 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "honorific",
         baseForm: "いらっしゃる",
+        modern: true,
+        classic: false,
     },
     {
         type: "honorific",
         baseForm: "仰る",
+        modern: true,
+        classic: false,
         display: "おっしゃる",
         ruby: {
             0: "おっしゃ"
@@ -1500,6 +1931,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "honorific",
         baseForm: "下さる",
+        modern: true,
+        classic: false,
         display: "くださる",
         ruby: {
             0: "くだ"
@@ -1508,6 +1941,8 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "honorific",
         baseForm: "為さい",
+        modern: true,
+        classic: false,
         display: "なさい",
         ruby: {
             0: "な"
@@ -1516,10 +1951,196 @@ const verbs: KatsuyouVerb[] = [
     {
         type: "honorific",
         baseForm: "御座る",
+        modern: true,
+        classic: false,
         display: "ござる",
         ruby: {
             0: "ご",
             1: "ざ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "言ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "過ぐ",
+        modern: true,
+        classic: true,
+        ruby: {
+            0: "す"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "出づ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "monograde",
+        baseForm: "蹴る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "け"
+        }
+    },
+    {
+        type: "kagyou",
+        baseForm: "来",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "く"
+        }
+    },
+    {
+        type: "sagyou",
+        baseForm: "す",
+        modern: false,
+        classic: true
+    },
+    {
+        type: "sagyou",
+        baseForm: "おはす",
+        modern: false,
+        classic: true
+    },
+    {
+        type: "nagyou",
+        baseForm: "死ぬ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "し"
+        }
+    },
+    {
+        type: "nagyou",
+        baseForm: "往ぬ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "nagyou",
+        baseForm: "去ぬ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "ragyou",
+        baseForm: "有り",
+        display: "あり",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あ"
+        }
+    },
+    {
+        type: "ragyou",
+        baseForm: "侍り",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "はべ"
+        }
+    },
+    {
+        type: "ragyou",
+        baseForm: "居り",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "を"
+        }
+    },
+    {
+        type: "ragyou",
+        baseForm: "いまそかり",
+        modern: false,
+        classic: true
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "老ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "植う",
+        modern: false,
+        classic: true,
+        wagyou: true,
+        ruby: {
+            0: "う"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "飢う",
+        modern: false,
+        classic: true,
+        wagyou: true,
+        ruby: {
+            0: "う"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "据う",
+        modern: false,
+        classic: true,
+        wagyou: true,
+        ruby: {
+            0: "す"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "得",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "う"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "経",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ふ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "寝",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ぬ"
         }
     }
 ]
@@ -1527,9 +2148,14 @@ const verbs: KatsuyouVerb[] = [
 const verbsByType: { [key in KatsuyouVerbType]: KatsuyouVerb[] } = {
     pentagrade: [],
     monograde: [],
+    quadrigrade: [],
+    upper_bigrade: [],
+    lower_bigrade: [],
     honorific: [],
     kagyou: [],
     sagyou: [],
+    nagyou: [],
+    ragyou: [],
     aru: []
 }
 verbs.forEach((v) => verbsByType[v.type].push(v))

@@ -1978,15 +1978,6 @@ const verbs: KatsuyouVerb[] = [
         }
     },
     {
-        type: "lower_bigrade",
-        baseForm: "出づ",
-        modern: false,
-        classic: true,
-        ruby: {
-            0: "い"
-        }
-    },
-    {
         type: "monograde",
         baseForm: "蹴る",
         modern: false,
@@ -2142,6 +2133,730 @@ const verbs: KatsuyouVerb[] = [
         ruby: {
             0: "ぬ"
         }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "受く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "う"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "明く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "集む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あつ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "荒る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "出づ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "教ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "おし"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "終ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "欠く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "か"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "隠る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "かく"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "兼ぬ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "か"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "消ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "き"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "聞こゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "き"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "越ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "定む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "さだ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "沈む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "しず"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "調ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "しら"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "助く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "たす"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "貯ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "たくは"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "伝ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "つた"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "続く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "つづ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "連ぬ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "つら"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "解く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "と"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "届く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "とど"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "逃ぐ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "に"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "初む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "はじ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "外る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "はず"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "求む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "もと"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "忘る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "わす"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "流る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "なが"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "捨つ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "す"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "答ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こた"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "混ず",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "まじ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "破る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "やぶ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "数ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "かず"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "考ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "かんが"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "鎮む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "しず"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "逃る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "にぐ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "企つ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "くわだ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "散る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ち"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "裂く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "さ"
+        }
+    },
+    {
+        type: "lower_bigrade",
+        baseForm: "満つ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "み"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "過ぐ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "す"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "老ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "恥づ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "は"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "閉づ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "と"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "試む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こころ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "喜ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "よろこ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "降る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "避く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "さ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "尽く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "つ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "起く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "抉ず",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "落つ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "強ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "し"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "生ふ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "お"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "停む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "とど"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "回む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "た"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "夢む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ゆめ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "凍ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こご"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "報ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "むく"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "悔ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "く"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "許る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ゆ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "用ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "もち"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "臥ゆ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "浴む",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "和ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "にき"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "奇ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "し"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "寂ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "さ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "嬉しぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "うれし"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "故ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ゆえ"
+        }
+    },
+    {
+        type: "upper_bigrade",
+        baseForm: "辞ぶ",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "いな"
+        }
+    },
+]
+
+const adjectives: KatsuyouModernAdjective[] = [
+    {
+        baseForm: "高い",
+        nounify: {
+            ge: false
+        },
+        ruby: {
+            0: "たか"
+        }
+    },
+    {
+        baseForm: "嬉しい",
+        nounify: {
+            mi: false,
+            me: false
+        },
+        ruby: {
+            0: "うれ"
+        }
+    },
+    {
+        baseForm: "赤い",
+        nounify: {
+            stem: true
+        },
+        ruby: {
+            0: "あか"
+        }
+    },
+    {
+        baseForm: "悔しい",
+        nounify: {
+            mi: false,
+            me: false
+        },
+        ruby: {
+            0: "くや"
+        }
+    },
+    {
+        baseForm: "勿体ない",
+        nounify: {
+            mi: false,
+            me: false,
+            ge: false
+        },
+        ruby: {
+            0: "もっ",
+            1: "たい"
+        }
+    },
+]
+
+const adjectivalNouns: KatsuyouModernAdjectivalNoun[] = [
+    {
+        baseForm: "賑やか",
+        nounify: {
+            me: false,
+            ge: false
+        },
+        ruby: {
+            0: "にぎ"
+        }
+    },
+    {
+        baseForm: "同じ",
+        nounify: {
+            stem: true
+        },
+        ruby: {
+            0: "おな"
+        }
+    },
+    {
+        baseForm: "得意",
+        nounify: {
+            me: false
+        },
+        ruby: {
+            0: "とく",
+            1: "い"
+        }
     }
 ]
 
@@ -2160,6 +2875,14 @@ const verbsByType: { [key in KatsuyouVerbType]: KatsuyouVerb[] } = {
 }
 verbs.forEach((v) => verbsByType[v.type].push(v))
 
+function getRandomItem<T>(targets: T[], predicate?: (term: T) => boolean): T {
+    if (predicate) {
+        targets = targets.filter(predicate)
+    }
+    const index = Math.floor(Math.random() * targets.length)
+    return targets[index]
+}
+
 /**
  * Randomly selects a verb from the dictionary.
  *
@@ -2169,12 +2892,7 @@ verbs.forEach((v) => verbsByType[v.type].push(v))
  * @param predicate function used in filter
  */
 export function getRandomVerb(predicate?: (term: KatsuyouVerb) => boolean): KatsuyouVerb {
-    let targets = verbs
-    if (predicate) {
-        targets = targets.filter(predicate)
-    }
-    const index = Math.floor(Math.random() * targets.length)
-    return targets[index]
+    return getRandomItem(verbs, predicate)
 }
 
 /**
@@ -2185,4 +2903,28 @@ export function getRandomVerb(predicate?: (term: KatsuyouVerb) => boolean): Kats
  */
 export function getRandomVerbByType(type: KatsuyouVerbType): KatsuyouVerb {
     return getRandomVerb((k) => k.type === type)
+}
+
+/**
+ * Randomly selects an adjective from the dictionary
+ *
+ * Optionally a predicate can be passed in to filter the
+ * dictionary before selection
+ *
+ * @param predicate
+ */
+export function getRandomAdjective(predicate?: (term: KatsuyouModernAdjective) => boolean) {
+    return getRandomItem(adjectives, predicate)
+}
+
+/**
+ * Randomly selects an adjectival noun from the dictionary
+ *
+ * Optionally a predicate can be passed in to filter the
+ * dictionary before selection
+ *
+ * @param predicate
+ */
+export function getRandomAdjectivalNoun(predicate?: (term: KatsuyouModernAdjectivalNoun) => boolean) {
+    return getRandomItem(adjectivalNouns, predicate)
 }

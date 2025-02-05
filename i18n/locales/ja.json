@@ -1,0 +1,51 @@
+{
+  "Landing": {
+    "links": {
+      "solution": "ソリューション",
+      "login": "ログイン",
+      "about": "お問い合わせ"
+    },
+    "title": {
+      "slogan": {
+        "line1": "ゼロから",
+        "line2": "古文へ。",
+        "emphasis": "カツヨウ",
+        "remainder": "で"
+      },
+      "description": "動詞、助動詞、形容詞、形容動詞の活用を楽しくて学ぼう！\n日常会話から文学作品鑑賞まで、日本語力を飛躍的に高めるオールインワンソリューションです。",
+      "scroll": "スクロール"
+    },
+    "solution": {
+      "title": "ソリューション",
+      "aside": "Our Solution",
+      "subtitle": "生徒と日本語学習者のために、分かりやすい活用を。",
+      "verb": {
+        "description": "現代動詞の活用形から始める学び",
+        "emphasis": "五段・一段活用"
+      },
+      "adjective": {
+        "description": "現代形容詞、\n難しくないで",
+        "emphasis": "イ・ナ形容詞"
+      },
+      "adjectivalNoun": {
+        "description": "得意に活用して、\n簡単に学ぶ",
+        "emphasis": "形容動詞"
+      },
+      "classic": {
+        "description": "「むかしおとこありけり」",
+        "emphasis": "古文の活用"
+      },
+      "auxiliary": {
+        "description": "形容詞の品詞転換と助動詞への接続のポイント"
+      }
+    },
+    "join": {
+      "slogan": {
+        "line1": "活用、一緒に極めよう！",
+        "emphasis": "待たずに、",
+        "remainder": "さっさと始めよう！"
+      },
+      "button": "JOIN カツヨウ"
+    }
+  }
+}

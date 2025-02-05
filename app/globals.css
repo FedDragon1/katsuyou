@@ -1,20 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
+  --emphasis: #FF5252;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.fancy-link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--foreground);
+  transition: border 150ms ease-in-out;
+}
+
+.fancy-link:hover::before {
+  border-bottom: 1px solid rgb(212 212 216);
+}
+
+.emphasis {
+  position: relative;
+  z-index: 10;
+}
+
+.emphasis:before {
+  --h: calc(min(50%, 2.5rem));
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: var(--h);
+  bottom: 10%;
+  z-index: -1;
+  background-color: var(--emphasis);
+  transition: border 150ms ease-in-out;
+}
+
+.f-button {
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+  outline: 1px solid var(--foreground);
+  border: 2px solid var(--background);
+  transition: all 0.5s ease-out;
+}
+
+.f-button::after {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  content: "";
+  background-color: var(--foreground);
+  left: 22%;
+  bottom: -20%;
+  border-radius: 999999px;
+  z-index: -10;
+  transition: all 0.5s ease-out;
+}
+
+.f-button:hover::after {
+  width: 200%;
+  height: 400%;
+  left: -50%;
+  bottom: 0;
 }

@@ -2773,6 +2773,280 @@ const verbs: KatsuyouVerb[] = [
             0: "いな"
         }
     },
+    {
+        type: "quadrigrade",
+        baseForm: "世付く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "よ",
+            1: "づ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "事行く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こと",
+            1: "ゆ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "二行く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ふた",
+            1: "ゆ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "人めく",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ひと"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "分く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "わ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "労く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "いたず"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "動く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "いご"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "口付く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "くち",
+            1: "づ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "生く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "い"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "食く",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "す"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "崩す",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "くず"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "圧す",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "へ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "壊す",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "こわ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "絆す",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ほだ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "萌やす",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "も"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "欲る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ほ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "忘る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "わす"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "苦る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "にが"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "逆る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "さか"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "宣る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "の"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "侮る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あなず"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "震る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ふ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "赤る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あか"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "伸る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "の"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "広る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ひろ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "探る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "あなぐ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "賜ばる",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "た"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "揺る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ゆ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "聖る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ひじ"
+        }
+    },
+    {
+        type: "quadrigrade",
+        baseForm: "茶る",
+        modern: false,
+        classic: true,
+        ruby: {
+            0: "ちゃ"
+        }
+    },
 ]
 
 const adjectives: KatsuyouModernAdjective[] = [

@@ -3,11 +3,8 @@
 import { FC } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 
-interface KatsuyouModernProps {
-    s: string
-}
 
-const KatsuyouModern: FC<KatsuyouModernProps> = () => {
+const KatsuyouModern: FC = () => {
     return (
         <main className={"w-screen h-screen"}>
             <KatsuyouInterface onClick={console.log}>

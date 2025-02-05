@@ -4,7 +4,7 @@ import { FC } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 
 interface KatsuyouModernProps {
-
+    s: string
 }
 
 const KatsuyouModern: FC<KatsuyouModernProps> = () => {

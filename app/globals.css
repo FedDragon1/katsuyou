@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+SC:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,7 +13,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Inter", "Noto Sans JP", sans-serif;
+  font-family: "Inter", "Noto Sans JP", "Noto Sans SC", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -29,6 +29,28 @@ body {
 
 .fancy-link:hover::before {
   border-bottom: 1px solid rgb(212 212 216);
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.arrow-link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: -30px;
+  background-color: rgb(212 212 216);
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+}
+
+.arrow-link:hover::before {
+  opacity: 1;
 }
 
 .emphasis {

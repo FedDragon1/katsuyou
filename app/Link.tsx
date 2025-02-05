@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 
@@ -8,9 +8,10 @@ interface KatsuyouLinkProps {
     display: string
     redirect: string
     className?: string
+    onClick?: MouseEventHandler
 }
 
-const KatsuyouLink: FC<KatsuyouLinkProps> = ({ display, redirect, className }) => {
+const KatsuyouLink: FC<KatsuyouLinkProps> = ({ display, redirect, className, onClick }) => {
     const router = useRouter()
 
     const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -18,6 +19,9 @@ const KatsuyouLink: FC<KatsuyouLinkProps> = ({ display, redirect, className }) =
 
         if (!redirect.startsWith("#")) {
             router.push(redirect)
+            if (onClick) {
+                onClick(e)
+            }
             return;
         }
 
@@ -31,6 +35,10 @@ const KatsuyouLink: FC<KatsuyouLinkProps> = ({ display, redirect, className }) =
             });
 
             window.history.pushState({}, '', `#${targetId}`);
+        }
+
+        if (onClick) {
+            onClick(e)
         }
     };
 

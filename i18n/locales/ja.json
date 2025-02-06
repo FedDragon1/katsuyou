@@ -47,5 +47,62 @@
       },
       "button": "JOIN カツヨウ"
     }
+  },
+  "Login": {
+    "title": "ログイン",
+    "caption": "おかえりなさい",
+    "form": {
+      "email": {
+        "name": "Eメール",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "パスワード",
+        "placeholder": "ヒミツ"
+      },
+      "button": "次に進む"
+    },
+    "sso": {
+      "name": "他のアカウントでログイン",
+      "google": "Googleで続ける",
+      "microsoft": "Microsoftで続ける"
+    },
+    "signup": {
+      "name": "初めてカツヨウをご利用ですか？",
+      "link": "登録する"
+    }
+  },
+  "Signup": {
+    "title": "登録",
+    "caption": "アカウント作成",
+    "form": {
+      "username": {
+        "name": "ユーザー名",
+        "placeholder": "カツヨウへようこそ"
+      },
+      "email": {
+        "name": "Eメール",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "パスワード",
+        "placeholder": "最低6文字、20文字以内"
+      },
+      "verification": {
+        "name": "パスワード再入力",
+        "placeholder": "もう一度入力してください"
+      },
+      "button": "次に進む"
+    },
+    "sso": {
+      "name": "他のアカウントでログイン",
+      "google": "Googleで続ける",
+      "microsoft": "Microsoftで続ける"
+    },
+    "login": {
+      "name": "すでにアカウントを持ちますか？",
+      "link": "ログイン"
+    },
+    "callback": "登録用メールを送信しました。メール内のリンクをクリックし、アカウント登録を完了してください。"
   }
 }

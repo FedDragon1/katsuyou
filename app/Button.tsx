@@ -1,13 +1,16 @@
-import { FC, ReactNode } from "react";
+import { FC, MouseEventHandler, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps {
     children: ReactNode
     className?: string
+    onClick?: MouseEventHandler
 }
 
-const Button: FC<ButtonProps> = ({ children, className }) => {
+const Button: FC<ButtonProps> = ({ children, className, onClick }) => {
     return (
-        <div className={`f-button rounded-full cursor-pointer transition-all hover:text-background ${className ?? ''}`}>
+        <div onClick={onClick}
+             className={twMerge("f-button rounded-full cursor-pointer transition-all hover:text-background", className)}>
             {children}
         </div>
     )

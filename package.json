@@ -13,6 +13,7 @@
     "@formatjs/intl-relativetimeformat": "^11.4.9",
     "@tailwindcss/postcss": "^4.0.3",
     "core-js": "^3.39.0",
+    "gsap": "^3.12.7",
     "next": "^15.0.2",
     "next-intl": "^3.26.3",
     "react": "19.0.0-rc-02c0e824-20241028",

@@ -44,9 +44,11 @@ const LoginPage: FC = () => {
 
     return (
         <>
-            <LandingNav hideOptions absolute />
+            <div className={"h-[40vh] sm:h-[60vh]"}>
+                <LandingNav hideOptions sticky/>
+            </div>
             <div className={"w-full"}>
-                <AccountBanner title={"ログイン"} />
+                <AccountBanner title={t("title")}/>
                 <AccountForm caption={t("caption")} side={side}>
                     <FormEntry caption={t("form.email.name")} placeholder={t("form.email.placeholder")}
                                type={"email"} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />

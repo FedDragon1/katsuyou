@@ -36,9 +36,11 @@ const SignupPage: FC = () => {
 
     return (
         <>
-            <LandingNav hideOptions absolute />
+            <div className={"h-[40vh] sm:h-[60vh]"}>
+                <LandingNav hideOptions sticky/>
+            </div>
             <div className={"w-full"}>
-                <AccountBanner title={t("title")} />
+                <AccountBanner title={t("title")}/>
                 <AccountForm caption={t("caption")} side={side}>
                     <div className={"flex flex-col gap-10 items-center lg:py-6"}>
                         <div className={"flex w-full justify-center items-center"}>

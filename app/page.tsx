@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
                 <div className={"self-start"}>
                     <Button className={"py-4 px-8 md:py-8 md:px-20 xl:py-10 xl:px-28"}>
-                        <Link href={"/register"} className={"text-2xl md:text-4xl"}>{t("join.button")}</Link>
+                        <Link href={"/signup"} className={"text-2xl md:text-4xl"}>{t("join.button")}</Link>
                     </Button>
                 </div>
                 <div className={"absolute right-0 -z-10 max-w-[20px] md:max-w-[40%] xl:max-w-[50%] h-2/3"}>

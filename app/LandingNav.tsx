@@ -21,10 +21,10 @@ const LanguageButton: FC<LanguageButtonProps> = ({ display, onClick }) => {
 
 interface LandingNavProps {
     hideOptions?: boolean
-    absolute?: boolean
+    sticky?: boolean
 }
 
-const LandingNav: FC<LandingNavProps> = ({ hideOptions, absolute }) => {
+const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
     const t = useTranslations("Landing")
 
     const linkSizes = "arrow-link text-[2rem] md:text-[3rem] 2xl:text-[4rem] m-0 ml-10"
@@ -47,7 +47,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, absolute }) => {
 
     return (
         <nav
-            className={`${absolute ? 'absolute': 'fixed'} h-[120px] sm:h-[180px] z-40 top-0 px-10 sm:px-20 flex justify-between w-full box-border items-center`}>
+            className={`${sticky ? 'sticky': 'fixed'} h-[120px] sm:h-[180px] z-40 top-0 px-10 sm:px-20 flex justify-between w-full box-border items-center`}>
             <div className={"flex flex-row gap-40 items-center"}>
                 <KatsuyouLink className={"text-5xl cursor-pointer select-none z-[100] text-foreground"}
                               redirect={homeRedirect}

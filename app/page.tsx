@@ -64,7 +64,7 @@ export default function Home() {
             </main>
             <div
                 className={"flex absolute w-full h-full top-0 -z-10 justify-center items-center sm:pt-[220px] sm:pb-[100px]"}>
-                <video src={"/landing_book.webm"} muted autoPlay loop playsInline preload="auto"
+                <video src={"/landing_book.mp4"} muted autoPlay loop playsInline preload="auto"
                        className={"w-full h-full sm:max-w-[70%] sm:max-h-[90%] object-cover brightness-50 saturate-50"}/>
             </div>
             <div className={"w-full min-h-screen flex flex-col md:flex-row px-10 sm:px-20 pt-32 gap-10"} id={"solution"}>

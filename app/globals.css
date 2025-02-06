@@ -131,7 +131,6 @@ body {
   transform: scaleX(0);
   border-bottom: 1px solid var(--foreground);
   position: absolute;
-  z-index: -1;
   transition: all ease-out 0.3s;
 }
 

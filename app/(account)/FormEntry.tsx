@@ -13,7 +13,7 @@ const FormEntry: FC<FormEntryProps> = ({ caption, placeholder, type, onChange })
             <span className={"text-xl sm:text-2xl"}>{caption}</span>
             <div className={"form-input border-b border-zinc-700"}>
                 <input type={type} placeholder={placeholder} name={caption} onChange={onChange}
-                       className={"outline-none text-xl sm:text-2xl bg-transparent leading-[3rem] placeholder:text-zinc-500"}/>
+                       className={"outline-none text-xl sm:text-2xl bg-transparent leading-[3rem] w-full placeholder:text-zinc-500"}/>
             </div>
         </div>
     )

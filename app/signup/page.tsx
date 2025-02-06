@@ -42,6 +42,7 @@ const SignupPage: FC = () => {
 
     const signup = () => {
         console.log(username, email, password, repeatPassword)
+        router.push("/signup/callback")
     }
 
     return (

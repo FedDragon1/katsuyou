@@ -44,6 +44,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, absolute }) => {
 
     const pathname = usePathname()
     const homeRedirect = pathname === "/" ? "#main" : "/"
+    const navTop = window.innerWidth < 640 ? "-top-[120%]": "-top-full"
 
     return (
         <nav
@@ -68,7 +69,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, absolute }) => {
                 <div
                     className={"w-7 h-[1px] border-0 border-b border-solid transition duration-300 group-hover:border-zinc-300 peer-checked:[transform:translate(0,-4px)_rotate(-135deg)]"}/>
                 <div
-                    className={"w-screen h-screen backdrop-brightness-50 backdrop-blur-lg fixed -z-10 transition-all duration-500 -top-full left-0 peer-checked:top-0"}>
+                    className={`w-screen h-screen backdrop-brightness-50 backdrop-blur-lg fixed -z-10 transition-all duration-500 ${navTop} left-0 peer-checked:top-0`}>
                     <div className={"px-10 sm:px-20 pt-[120px] sm:pt-[160px] h-full flex flex-col overflow-auto"}>
                         <hr className={"border-b border-[#ffffff22] mb-10"}/>
                         <div

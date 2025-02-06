@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, FC, useState } from "react";
+import { FC } from "react";
 import LandingNav from "@/app/LandingNav";
 import AccountBanner from "@/app/(account)/AccountBanner";
 import Footer from "@/app/Footer";

@@ -10,7 +10,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({ children, className, onClick }) => {
     return (
         <div onClick={onClick}
-             className={twMerge("f-button rounded-full cursor-pointer transition-all hover:text-background", className)}>
+             className={twMerge("f-button sm:rounded-full cursor-pointer transition-all hover:text-background", className)}>
             {children}
         </div>
     )

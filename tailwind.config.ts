@@ -11,7 +11,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        emphasis: "var(--emphasis)"
+        emphasis: "var(--emphasis)",
+        primary: "var(--primary)"
       },
     },
   },

@@ -104,5 +104,29 @@
       "link": "ログイン"
     },
     "callback": "登録用メールを送信しました。メール内のリンクをクリックし、アカウント登録を完了してください。"
+  },
+  "Practice": {
+    "activity": {
+      "allModern": "動詞・助動詞の活用と接続",
+      "teForm": "動詞テ形活用",
+      "taForm": "動詞と過去・完了・存続の助動詞「た」",
+      "naiForm": "動詞と打消しの助動詞「ない」",
+      "intentionForm": "動詞と意志・推量の助動詞「う・よう」"
+    },
+    "accuracy": "正解率",
+    "hint": "ヒント",
+    "skip": "スキップ",
+    "check": "チェック",
+    "correct": "正解です！",
+    "placeholder": "ここに入力してください",
+    "incorrect": {
+      "single": "もう一度考えてみましょう！<break></break>正解は「{answer}」です",
+      "double": "もう一度考えてみましょう！<break></break>正解は「{option1}」か「{option2}」です",
+      "multiple": "もう一度考えてみましょう！<break></break>正解は「{option1}」などです"
+    }
+  },
+  "Navigation": {
+    "settings": "アカウント設定の変更",
+    "logout": "ログアウト"
   }
 }

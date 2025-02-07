@@ -8,6 +8,7 @@
   --background: #000000;
   --foreground: #ffffff;
   --emphasis: #FF5252;
+  --primary: #8B2018;
 }
 
 body {
@@ -128,13 +129,13 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  transform: scaleX(0);
+  transform: scaleX(0) translateY(1px);
   border-bottom: 1px solid var(--foreground);
   position: absolute;
   transition: all ease-out 0.3s;
 }
 
 .form-input:has(input:focus)::before {
-  transform: scaleX(1);
+  transform: scaleX(1) translateY(1px);
   transform-origin: center;
 }

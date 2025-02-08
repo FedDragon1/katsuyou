@@ -228,11 +228,10 @@ export function kanaToGrade(kana: Hiragana, grade: Grade, wagyou?: boolean) {
         return undefined
     }
 
-    if (wagyou) {
+    if (wagyou && code[0] === "none") {
         code[0] = "w"
     }
 
-    debugger
     // @ts-expect-error stupid type system
     return hiraganaTable[code[0]][grade]
 }

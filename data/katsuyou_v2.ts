@@ -67,14 +67,16 @@ class KatsuyouDispatchInfo {
 
 class KatsuyouResult {
     options: string[]
+    kanji: boolean
     ruby: Record<number, string>
 
-    constructor(options: string[] | string, ruby: Record<number, string>) {
+    constructor(options: string[] | string, ruby: Record<number, string>, kanji: boolean) {
         if (!Array.isArray(options)) {
             options = [options]
         }
         this.options = options;
         this.ruby = ruby;
+        this.kanji = kanji
     }
 
     /**
@@ -94,7 +96,7 @@ class KatsuyouResult {
             }
         }
         // ruby only applies to kanji, shouldn't change over here
-        return new KatsuyouResult(newOptions, this.ruby)
+        return new KatsuyouResult(newOptions, this.ruby, this.kanji)
     }
 }
 
@@ -183,7 +185,7 @@ class FreeStandingToken extends KatsuyouToken {
     }
 
     conjugate(lookAhead: KatsuyouDispatchInfo): KatsuyouResult {
-        return new KatsuyouResult(lookAhead.conjugation as string | string[], this.ruby)
+        return new KatsuyouResult(lookAhead.conjugation as string | string[], this.ruby, this.display === this.baseForm)
     }
 }
 
@@ -202,7 +204,7 @@ class PentagradeToken extends FreeStandingToken {
 
         const stem = baseForm.slice(0, baseForm.length - 1),
             lastKana = baseForm[baseForm.length - 1] as Hiragana,
-            aGrade = `${stem}${kanaToGrade(lastKana, "a")}`,
+            aGrade = `${stem}${kanaToGrade(lastKana, "a", true)}`,
             iGrade = `${stem}${kanaToGrade(lastKana, "i")}`,
             eGrade = `${stem}${kanaToGrade(lastKana, "e")}`,
             oGrade = `${stem}${kanaToGrade(lastKana, "o")}`
@@ -280,8 +282,11 @@ class HonorificToken extends FreeStandingToken {
 
         this.addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, `${stem}ら`)
             .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, `${stem}い`)
-            .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, `${stem}い`)
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
+
+        if (this.baseForm !== "御座る" && this.baseForm !== "戴く") {
+            this.addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, `${stem}い`)
+        }
     }
 }
 
@@ -327,7 +332,7 @@ class KagyouToken extends FreeStandingToken {
         const hiragana = katsuyouResultHiragana.options[0]
         const ruby = { 0: hiragana[0] === "来" ? "く" : hiragana[0] }
         const updated = `来${hiragana.slice(1)}`
-        return new KatsuyouResult(updated, ruby)
+        return new KatsuyouResult(updated, ruby, true)
     }
 }
 
@@ -430,7 +435,7 @@ class BigradeToken extends FreeStandingToken {
         }
         const ruby = { 0: res[0] }
         const updated = `${this.baseForm}${res.slice(1)}`
-        return new KatsuyouResult(updated, ruby)
+        return new KatsuyouResult(updated, ruby, this.display === this.baseForm)
     }
 }
 

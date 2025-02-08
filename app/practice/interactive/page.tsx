@@ -23,8 +23,8 @@ export default function Practice() {
     const adjTern = useMemo(() => getAdjective(adjInput), [adjInput])
 
     const katsuyou = new Katsuyou()
-    katsuyou.toggleClassic(true)
-    katsuyou.toggleModern(false)
+    // katsuyou.toggleClassic(true)
+    // katsuyou.toggleModern(false)
     const verb = getRandomVerb()
     katsuyou.feed(verb)
 

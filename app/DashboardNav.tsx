@@ -37,7 +37,7 @@ const DashboardNav: FC<DashboardNavProps> = ({ subtitle }) => {
     const email = "fedelewu@gmail.com"
 
     return (
-        <nav className={"flex z-50 sm:px-20 px-10 sm:h-24 h-20 backdrop-blur-lg items-center fixed top-0 justify-between w-full border-b border-zinc-800"}>
+        <nav className={"sticky flex-shrink-0 flex z-50 sm:px-20 px-10 sm:h-24 h-20 items-center top-0 justify-between w-full border-b border-zinc-800 before:backdrop-blur-lg before:w-full before:h-full before:absolute before:-z-10"}>
             <div className={"flex gap-12 items-center"}>
                 <KatsuyouLink className={"text-4xl sm:text-5xl cursor-pointer select-none z-[100] text-foreground"}
                               redirect={"/dashboard"}

@@ -17,14 +17,16 @@ const KatsuyouModern: FC = () => {
 
     return (
         <>
-            <DashboardNav subtitle={t("activity.allModern")} />
-            <main className={"w-screen h-screen flex justify-center items-center sm:pt-24 pt-[70px] overflow-y-auto"}>
-                <KatsuyouInterface onClick={console.log} correct={0} trials={0} verbType={"ア行五段活用"}
-                                   status={"incorrect"}
-                                   message={message}>
-                    洗う＋べき＋だ＋ない
-                </KatsuyouInterface>
-            </main>
+            <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
+                <DashboardNav subtitle={t("activity.allModern")} />
+                <main className={"w-screen flex justify-center items-center flex-grow"}>
+                    <KatsuyouInterface onClick={console.log} correct={0} trials={0} verbType={"ア行五段活用"}
+                                       status={"incorrect"}
+                                       message={message}>
+                        洗う＋べき＋だ＋ない
+                    </KatsuyouInterface>
+                </main>
+            </div>
         </>
     )
 }

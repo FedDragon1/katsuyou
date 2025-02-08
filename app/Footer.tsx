@@ -5,7 +5,7 @@ const Footer: FC = () => {
     const titleSize = "2xl:text-[9rem] xl:text-[8rem] lg:text-[6rem] md:text-[4rem] text-[3rem] text-nowrap"
 
     return (
-        <footer className={"px-10 sm:px-20"}>
+        <footer className={"px-10 sm:px-20 bg-background"}>
             <hr className={"w-full border-b border-zinc-800"}/>
             <div className={"flex justify-between"}>
                 <span className={`${titleSize}`}>KATSUYŌ</span>

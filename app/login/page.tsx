@@ -44,7 +44,7 @@ const LoginPage: FC = () => {
 
     return (
         <>
-            <div className={"h-[40vh] sm:h-[60vh]"}>
+            <div className={"h-[40vh] sm:h-[60vh] sm:min-h-[400px]"}>
                 <LandingNav hideOptions sticky/>
             </div>
             <div className={"w-full"}>

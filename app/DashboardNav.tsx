@@ -37,17 +37,19 @@ const DashboardNav: FC<DashboardNavProps> = ({ subtitle }) => {
     const email = "fedelewu@gmail.com"
 
     return (
-        <nav className={"flex px-20 h-24 items-center fixed top-0 justify-between w-full border-b border-zinc-800"}>
+        <nav className={"flex z-50 sm:px-20 px-10 sm:h-24 h-20 backdrop-blur-lg items-center fixed top-0 justify-between w-full border-b border-zinc-800"}>
             <div className={"flex gap-12 items-center"}>
-                <KatsuyouLink className={"text-5xl cursor-pointer select-none z-[100] text-foreground"}
+                <KatsuyouLink className={"text-4xl sm:text-5xl cursor-pointer select-none z-[100] text-foreground"}
                               redirect={"/dashboard"}
                               display={"Katsuyō"}></KatsuyouLink>
-                {subtitle}
+                <div className={"hidden md:block"}>
+                    {subtitle}
+                </div>
             </div>
             <div className={"rounded-full relative h-full w-12 group flex items-center"}>
                 <Image src={avatar} alt={"avatar"} width={200} height={200}
                        className={"w-full object-cover border-zinc-500 border rounded-full"} />
-                <div className={"absolute p-4 w-[300px] bg-zinc-800 bg-opacity-50 transition origin-top-right duration-300 scale-0 group-hover:scale-100 rounded-lg right-0 top-full backdrop-blur-lg"}>
+                <div className={"absolute z-50 p-4 w-[300px] bg-zinc-800 bg-opacity-50 transition origin-top-right duration-300 scale-0 group-hover:scale-100 rounded-lg right-0 top-full backdrop-blur-lg"}>
                     <div className={"flex flex-col items-center py-6"}>
                         <Image src={avatar} alt={"avatar"} width={200} height={200}
                                className={"w-24 h-24 rounded-full border-zinc-500 border"} />

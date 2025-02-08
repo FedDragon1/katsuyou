@@ -8,7 +8,7 @@ interface AccountBannerProps {
 const AccountBanner: FC<AccountBannerProps> = ({ title }) => {
     return (
         <>
-            <div className={"w-full h-[40vh] sm:h-[60vh] flex items-end justify-between p-10 sm:p-20 fixed top-0 -z-10"}>
+            <div className={"w-full h-[40vh] sm:h-[60vh] sm:min-h-[400px] flex items-end justify-between p-10 sm:p-20 fixed top-0 -z-10"}>
                 <Image src={"/account_banner.png"} alt={"banner"} width={1440} height={498}
                        className={"absolute top-0 left-0 w-full h-full object-cover"}/>
                 <span

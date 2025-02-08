@@ -18,7 +18,7 @@ const KatsuyouModern: FC = () => {
     return (
         <>
             <DashboardNav subtitle={t("activity.allModern")} />
-            <main className={"w-screen h-screen flex justify-center items-center"}>
+            <main className={"w-screen h-screen flex justify-center items-center sm:pt-24 pt-[70px] overflow-y-auto"}>
                 <KatsuyouInterface onClick={console.log} correct={0} trials={0} verbType={"ア行五段活用"}
                                    status={"incorrect"}
                                    message={message}>

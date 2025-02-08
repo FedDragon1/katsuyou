@@ -49,7 +49,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
         <nav
             className={`${sticky ? 'sticky': 'fixed'} h-[120px] sm:h-[180px] z-40 top-0 px-10 sm:px-20 flex justify-between w-full box-border items-center`}>
             <div className={"flex flex-row gap-40 items-center"}>
-                <KatsuyouLink className={"text-5xl cursor-pointer select-none z-[100] text-foreground"}
+                <KatsuyouLink className={"text-4xl sm:text-5xl cursor-pointer select-none z-[100] text-foreground"}
                               redirect={homeRedirect}
                               display={"Katsuyō"}></KatsuyouLink>
                 {hideOptions ? <></> : <div className={"lg:flex flex-row gap-10 hidden"}>

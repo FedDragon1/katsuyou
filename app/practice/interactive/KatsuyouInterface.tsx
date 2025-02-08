@@ -15,7 +15,15 @@ interface KatsuyouInterfaceProps {
     onClick: MouseEventHandler<HTMLButtonElement>
 }
 
-const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({ children, status, message, onClick, verbType, correct, trials }) => {
+const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
+                                                           children,
+                                                           status,
+                                                           message,
+                                                           onClick,
+                                                           verbType,
+                                                           correct,
+                                                           trials
+                                                       }) => {
     const t = useTranslations("Practice")
     const percent = trials === 0 ? 0 : Math.round(trials / correct * 100)
 
@@ -31,49 +39,60 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({ children, status, messa
 
     const icon = status === "incorrect" ? wrong : right
     const formBorder = status === "incorrect" ? "before:border-emphasis" : ""
-    const formText = status === "incorrect" ? "focus:placeholder:text-emphasis text-emphasis text-center" : "text-center"
+    const formText = status === "incorrect" ? "focus:placeholder:text-emphasis text-emphasis" : ""
+    const lgText = "text-md 2xl:text-lg"
 
     return (
-        <div className={"flex gap-10"}>
-            <div className={"flex flex-col gap-10 items-end"}>
-                <div className={"rounded-lg bg-zinc-900 w-[240px] overflow-hidden"}>
-                    <div className={"h-[100px] bg-zinc-800 flex gap-2 items-center justify-center"}>
-                        <Image src={"/sand.png"} alt={"sand"} width={40} height={40} className={"invert w-8 h-8"}/>
-                        <span className={"text-3xl"}>25:30</span>
+        <div className={"flex xl:gap-10 gap-4 sm:px-20 h-full justify-center sm:h-auto flex-col xl:flex-row pb-10"}>
+            <div className={"flex px-10 sm:px-0 flex-row xl:flex-col xl:gap-10 gap-4 items-end justify-between absolute top-[90px] w-full sm:w-auto sm:static sm:justify-start"}>
+                <div className={"rounded-lg sm:bg-zinc-900 2xl:w-[240px] xl:w-[200px] overflow-hidden flex xl:flex-col"}>
+                    <div className={"xl:h-[100px] sm:bg-zinc-800 flex gap-2 items-center justify-center sm:px-6 py-2"}>
+                        <Image src={"/sand.png"} alt={"sand"} width={40} height={40} className={"invert w-6 h-6 sm:w-8 sm:h-8"}/>
+                        <span className={"2xl:text-3xl sm:text-2xl text-xl"}>25:30</span>
                     </div>
-                    <div className={"flex flex-col gap-10 p-6"}>
+                    <div className={"flex xl:flex-col gap-6 sm:gap-10 xl:p-6 px-6 py-2"}>
                         <div>
-                            <p>{t("accuracy")}</p>
-                            <span className={"text-4xl font-semibold"}>{percent}%</span>
+                            <p className={"hidden xl:block"}>{t("accuracy")}</p>
+                            <span className={"text-xl sm:text-2xl 2xl:text-4xl font-semibold"}>{percent}%</span>
                         </div>
-                        <span className={"text-4xl font-semibold"}>{trials}/{correct}</span>
+                        <span className={"text-xl sm:text-2xl 2xl:text-4xl font-semibold"}>{trials}/{correct}</span>
                     </div>
                 </div>
                 <div
-                    className={"flex p-4 items-center justify-cente bg-zinc-900 rounded-lg hover:bg-zinc-800 transition"}>
-                    <Image src={"/gear.png"} alt={"settings"} width={30} height={30}/>
+                    className={"flex xl:p-2 h-12 flex-shrink-0 w-12 box-content items-center justify-center sm:bg-zinc-900 rounded-lg hover:bg-zinc-800 transition"}>
+                    <Image src={"/gear.png"} alt={"settings"} width={30} height={30}
+                           className={"xl:w-[30px] xl:h-[30px] w-[20px] h-[20px]"} />
                 </div>
             </div>
-            <div className={"flex flex-col bg-zinc-900 rounded-lg overflow-hidden"}>
-                <div className={"bg-zinc-800 h-[200px] flex flex-col items-center justify-center gap-8"}>
-                    <p className={"bg-primary py-4 px-6 rounded-lg text-xl flex-shrink-0"}>{verbType}</p>
-                    <div className={"text-4xl"}>{children}</div>
+            <div className={"flex flex-col sm:bg-zinc-900 rounded-lg"}>
+                <div
+                    className={"sm:bg-zinc-800 rounded-lg xl:h-[200px] lg:h-[160px] py-6 box-border flex flex-col items-center justify-center xl:gap-8 gap-4"}>
+                    <p className={"bg-primary xl:py-4 xl:px-6 py-3 px-4 rounded-lg text-sm lg:text-lg 2xl:text-xl flex-shrink-0"}>{verbType}</p>
+                    <div className={"text-2xl lg:text-3xl xl:text-4xl"}>{children}</div>
                 </div>
-                <div className={"px-32 py-20 w-[1000px] gap-20 flex flex-col"}>
+                <div
+                    className={"2xl:px-32 sm:px-20 px-10 xl:py-20 sm:py-12 py-6 xl:w-[800px] 2xl:w-[1000px] xl:gap-20 gap-12 flex flex-col"}>
                     <div className={"flex flex-col gap-4 pt-4"}>
-                        <FormEntry placeholder={t("placeholder")} borderClass={formBorder} type={"text"} className={formText}/>
-                        <div className={"flex gap-4 h-6 items-center"}>
-                            <span
-                                className={"text-zinc-500 text-lg cursor-pointer hover:text-foreground transition"}>{t("hint")}</span>
-                            <div className={"w-[1px] h-full border-l border-zinc-500"}></div>
-                            <span
-                                className={"text-zinc-500 text-lg cursor-pointer hover:text-foreground transition"}>{t("skip")}</span>
+                        <FormEntry placeholder={t("placeholder")} borderClass={formBorder} type={"text"}
+                                   className={`${formText} text-center text-xl sm:text-xl md:text-2xl`}/>
+                        <div className={"flex justify-between items-center"}>
+                            <div className={"flex gap-4 h-6 items-center"}>
+                                <span
+                                    className={`${lgText} hidden sm:block text-zinc-500 cursor-pointer hover:text-foreground transition`}>{t("hint")}</span>
+                                <div className={"hidden sm:block w-[1px] h-full border-l border-zinc-500"}></div>
+                                <span
+                                    className={`${lgText} text-zinc-500 cursor-pointer hover:text-foreground transition`}>{t("skip")}</span>
+                            </div>
+                            <button
+                                className={`${lgText} md:hidden flex-shrink-0 border-b hover:text-emphasis hover:border-emphasis transition`}
+                                onClick={onClick}>{t("check")}</button>
                         </div>
                     </div>
-                    <div className={"flex flex-row-reverse justify-between"}>
-                        <button className={"py-4 px-6 rounded-lg border-primary border text-lg hover:bg-primary transition"}
-                                onClick={onClick}>{t("check")}</button>
-                        {status === "empty" ? <></> : <div className={"flex items-center gap-4 text-lg"}>
+                    <div className={"flex flex-row-reverse justify-between gap-10 items-center"}>
+                        <button
+                            className={`${lgText} hidden md:block py-4 px-6 rounded-lg flex-shrink-0 border-primary border hover:bg-primary transition`}
+                            onClick={onClick}>{t("check")}</button>
+                        {status === "empty" ? <></> : <div className={`${lgText} flex items-center gap-4`}>
                             {icon}
                             <span>{message}</span>
                         </div>}

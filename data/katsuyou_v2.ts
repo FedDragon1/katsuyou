@@ -202,6 +202,7 @@ class PentagradeToken extends FreeStandingToken {
     constructor(baseForm: string, display: string, ruby: Record<number, string>, iku: boolean = false) {
         super(baseForm, display, true, false, ruby);
 
+        debugger
         const stem = baseForm.slice(0, baseForm.length - 1),
             lastKana = baseForm[baseForm.length - 1] as Hiragana,
             aGrade = `${stem}${kanaToGrade(lastKana, "a", true)}`,

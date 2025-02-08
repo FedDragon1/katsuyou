@@ -221,7 +221,7 @@ function nullOf<T>(length: number): T[] {
  * @param wagyou
  */
 export function kanaToGrade(kana: Hiragana, grade: Grade, wagyou?: boolean) {
-    const code = hiraganaCodes[kana]
+    const code = [...hiraganaCodes[kana]]
 
     // technically we can change ぎゃ　to ぎょ, but we'll leave it for now
     if (code.length !== 2) {

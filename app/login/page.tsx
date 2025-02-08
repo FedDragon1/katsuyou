@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 import LandingNav from "@/app/LandingNav";
 import AccountBanner from "@/app/(account)/AccountBanner";
 import Footer from "@/app/Footer";
@@ -51,9 +51,9 @@ const LoginPage: FC = () => {
                 <AccountBanner title={t("title")}/>
                 <AccountForm caption={t("caption")} side={side}>
                     <FormEntry caption={t("form.email.name")} placeholder={t("form.email.placeholder")}
-                               type={"email"} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
+                               type={"email"} value={email} onChange={(e) => setEmail(e.target.value)} />
                     <FormEntry caption={t("form.password.name")} placeholder={t("form.password.placeholder")}
-                               type={"password"} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
+                               type={"password"} value={password} onChange={(e) => setPassword(e.target.value)} />
                     <Button className={"px-20 py-4 inline-flex items-center gap-2 group self-start"} onClick={login}>
                         <span className={"text-xl sm:text-2xl"}>{t("form.button")}</span>
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"

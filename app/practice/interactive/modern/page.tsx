@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 import { useTranslations } from "next-intl";
 import DashboardNav from "@/app/DashboardNav";
@@ -22,7 +22,7 @@ const KatsuyouModern: FC = () => {
     const [katsuyou,] = useState(new Katsuyou())
 
     const pollVerb = () => {
-        const verb = getRandomVerb((v) => (v.modern))
+        const verb = getRandomVerb((v) => (v.modern && v.baseForm === "言う"))
         const type = getVerbKatsuyouType(verb.row, verb.type)
         setVerbType(type)
         katsuyou.feed(verb)
@@ -48,7 +48,6 @@ const KatsuyouModern: FC = () => {
 
         setChildren(v)
     }
-
     const checkAnswer = () => {
         const answer = userAnswer.trim()
         if (!katsuyou.solution) {
@@ -104,6 +103,9 @@ const KatsuyouModern: FC = () => {
             }))
         }
     }
+    const initialize = useCallback(() => {
+        pollVerb()
+    }, [])
 
     const skip = () => {
         setTrials(trials + 1)
@@ -115,8 +117,8 @@ const KatsuyouModern: FC = () => {
     }
 
     useEffect(() => {
-        pollVerb()
-    }, []);
+        initialize()
+    }, [initialize]);
 
     return (
         <>

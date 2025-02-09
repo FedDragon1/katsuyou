@@ -92,9 +92,9 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
             </div>
             <div className={"flex flex-col sm:bg-zinc-900 rounded-lg"}>
                 <div
-                    className={"sm:bg-zinc-800 rounded-lg xl:h-[200px] lg:h-[160px] py-6 box-border flex flex-col items-center justify-center sm:gap-4 gap-2"}>
+                    className={"sm:bg-zinc-800 rounded-lg xl:h-[200px] py-6 box-border flex flex-col items-center justify-center sm:gap-4 gap-2"}>
                     <p className={"bg-primary xl:py-4 xl:px-6 py-3 px-4 rounded-lg text-sm lg:text-lg 2xl:text-xl flex-shrink-0"}>{verbType}</p>
-                    <div className={"text-2xl h-12 lg:text-3xl xl:text-4xl flex flex-wrap px-10 items-baseline justify-center"}>{children}</div>
+                    <div className={"text-2xl xl:h-16 x-12 xl:text-4xl flex flex-wrap px-10 items-end justify-center"}>{children}</div>
                 </div>
                 <div
                     className={"2xl:px-32 sm:px-20 px-10 xl:py-20 sm:py-12 py-6 xl:w-[800px] 2xl:w-[1000px] xl:gap-20 gap-12 flex flex-col"}>
@@ -108,8 +108,8 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
                         <div className={"flex justify-between items-center"}>
                             <div className={"flex gap-4 h-6 items-center"}>
                                 <span onClick={onHint}
-                                      className={`${lgText} select-none hidden sm:block text-zinc-500 cursor-pointer hover:text-foreground transition`}>{t("hint")}</span>
-                                <div className={"hidden sm:block w-[1px] h-full border-l border-zinc-500"}></div>
+                                      className={`${lgText} select-none text-zinc-500 cursor-pointer hover:text-foreground transition`}>{t("hint")}</span>
+                                <div className={"w-[1px] h-full border-l border-zinc-500"}></div>
                                 <span onClick={onSkip}
                                       className={`${lgText} select-none text-zinc-500 cursor-pointer hover:text-foreground transition`}>{t("skip")}</span>
                             </div>

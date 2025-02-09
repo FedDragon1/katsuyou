@@ -203,7 +203,6 @@ class PentagradeToken extends FreeStandingToken {
     constructor(baseForm: string, display: string, ruby: Record<number, string>, iku: boolean = false) {
         super(baseForm, display, true, false, ruby);
 
-        debugger
         const stem = baseForm.slice(0, baseForm.length - 1),
             lastKana = baseForm[baseForm.length - 1] as Hiragana,
             aGrade = `${stem}${kanaToGrade(lastKana, "a", true)}`,
@@ -227,8 +226,8 @@ class PentagradeToken extends FreeStandingToken {
             .addDispatch(KatsuyouConstants.た_TOKEN, 2, true, `${soundChanged}${dispatchTa}`)
             .addDispatch(KatsuyouConstants.て_TOKEN, 1, true, `${soundChanged}${dispatchTe}`)
             .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, `${soundChanged}${dispatchTe}`)
-            .addDispatch(KatsuyouConstants.ておく_TOKEN, 1, true, [`${soundChanged}${dispatchTo}`, `${soundChanged}${dispatchTe}お`])
-            .addDispatch(KatsuyouConstants.てしまう_TOKEN, 1, true, [`${soundChanged}${dispatchCha}`, `${soundChanged}${dispatchTe}しま`])
+            .addDispatch(KatsuyouConstants.ておく_TOKEN, 1, true, [`${soundChanged}${dispatchTe}お`, `${soundChanged}${dispatchTo}`])
+            .addDispatch(KatsuyouConstants.てしまう_TOKEN, 1, true, [`${soundChanged}${dispatchTe}しま`, `${soundChanged}${dispatchCha}`])
             .addDispatch(KatsuyouConstants.まい_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, baseForm)
@@ -337,12 +336,9 @@ class KagyouToken extends FreeStandingToken {
 
     conjugate(lookAhead: KatsuyouDispatchInfo): KatsuyouResult {
         const katsuyouResultHiragana = super.conjugate(lookAhead);
-        if (katsuyouResultHiragana.options.length !== 1) {
-            throw new Error(`来る conjugation should only contains one result, found ${JSON.stringify(katsuyouResultHiragana)}`)
-        }
         const hiragana = katsuyouResultHiragana.options[0]
         const ruby = { 0: hiragana[0] === "来" ? "く" : hiragana[0] }
-        const updated = `来${hiragana.slice(1)}`
+        const updated = katsuyouResultHiragana.options.map((o) => `来${o.slice(1)}`)
         return new KatsuyouResult(updated, ruby, true)
     }
 }
@@ -439,16 +435,12 @@ class BigradeToken extends FreeStandingToken {
             return katsuyouResultHiragana
         }
 
-        if (katsuyouResultHiragana.options.length !== 1) {
-            throw new Error(`${this.baseForm} conjugation should only contains one result, found ${JSON.stringify(katsuyouResultHiragana)}`)
-        }
-
         const res = katsuyouResultHiragana.options[0]
         if (res === this.baseForm) {
             return katsuyouResultHiragana
         }
         const ruby = { 0: res[0] }
-        const updated = `${this.baseForm}${res.slice(1)}`
+        const updated = katsuyouResultHiragana.options.map((o) => `${this.baseForm}${o.slice(1)}`)
         return new KatsuyouResult(updated, ruby, this.display === this.baseForm)
     }
 }
@@ -570,6 +562,33 @@ export class Katsuyou {
         this.solution = result
     }
 
+    conjugateFirstN(n: number) {
+        if (!this.initialToken) {
+            throw Error("Feed in a term before calling question")
+        }
+        let result = this.initialToken.conjugate(this.sequence[0])
+
+        let dispatchTo = this.sequence[0].to as KatsuyouAuxiliary
+        for (let i = 1; i < n + 1 && i < this.sequence.length; i++) {
+            const dispatch = this.sequence[i];
+            result = (dispatch.from as KatsuyouAuxiliary).conjugate(result, dispatch)
+            dispatchTo = dispatch.to as KatsuyouAuxiliary
+        }
+
+        if ([KatsuyouConstants.ば_TOKEN,
+            KatsuyouConstants.て_TOKEN,
+            KatsuyouConstants.ている_TOKEN,
+            KatsuyouConstants.た_TOKEN].includes(dispatchTo)) {
+            result.options = result.options.map((op) => op.slice(0, -1))
+        } else if (KatsuyouConstants.ておく_TOKEN === dispatchTo) {
+            result.options = result.options.map((op) => op.slice(0, -2))
+        } else if (KatsuyouConstants.てしまう_TOKEN === dispatchTo) {
+            result.options = result.options.map((op) => op.slice(0, -3))
+        }
+
+        return [result, ...this.sequence.slice(n + 1)] as const
+    }
+
     get question() {
         if (!this.initialToken) {
             throw Error("Feed in a term before calling question")
@@ -619,8 +638,8 @@ const tokens = [
     { name: "ら_TOKEN", baseForm: "ら", display: "（ば）", modern: true, classic: false },
     { name: "べき_TOKEN", baseForm: "べき", display: "べき", modern: true, classic: false },
     { name: "ておく_TOKEN", baseForm: "く", display: "ておく", modern: true, classic: false },
-    { name: "て_TOKEN", baseForm: "う", display: "て", modern: true, classic: false },   //maybe yes
-    { name: "てしまう_TOKEN", baseForm: "", display: "てしまう", modern: true, classic: false},
+    { name: "て_TOKEN", baseForm: "", display: "て", modern: true, classic: false },   //maybe yes
+    { name: "てしまう_TOKEN", baseForm: "", display: "てしまう", modern: true, classic: false },
 
     // more to support
     { name: "ず_TOKEN", baseForm: "ず", display: "ず", modern: false, classic: true },
@@ -723,7 +742,7 @@ for (const d of そうだ_dispatch) {
 KatsuyouConstants.ている_TOKEN
     .addDispatch(KatsuyouConstants.ます_TOKEN, 2, true, ["い", ""])
     .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, ["い", ""])
-    .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, ["い", "た"])
+    .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, ["いた", "た"])
     .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, ["いれば", "れば"])
     .addDispatch(KatsuyouConstants.て_TOKEN, 1, true, ["いて", "て"])
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, ["いる", "る"])

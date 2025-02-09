@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, JSX, ReactNode, useEffect, useState } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 import { useTranslations } from "next-intl";
 import DashboardNav from "@/app/DashboardNav";
@@ -22,6 +22,7 @@ const KatsuyouModern: FC = () => {
     const [katsuyou,] = useState(new Katsuyou())
     const [startTime,] = useState(Date.now())
     const [timeDisplay, setTimeDisplay] = useState("00:00")
+    const [hintIndex, setHintIndex] = useState(0)
 
     const pollVerb = () => {
         const verb = getRandomVerb((v) => v.modern)
@@ -29,17 +30,11 @@ const KatsuyouModern: FC = () => {
         setVerbType(type)
         katsuyou.feed(verb)
 
-        let v = <>{verb.display}</>;
-        if (!verb.display) {
-            const ruby = []
-            for (let i = 0; i < verb.baseForm.length; i++) {
-                if (verb.ruby && verb.ruby[i]) {
-                    ruby[i] = verb.ruby[i]
-                } else {
-                    ruby[i] = null
-                }
-            }
-            v = (<Ruby text={verb.baseForm} ruby={ruby} />)
+        let v;
+        if (!verb.display && verb.ruby) {
+            v = <Ruby text={verb.baseForm} ruby={verb.ruby} />
+        } else {
+            v = <Ruby text={verb.display ?? verb.baseForm} />
         }
 
         for (const dispatch of katsuyou.sequence.slice(1)) {
@@ -50,7 +45,42 @@ const KatsuyouModern: FC = () => {
 
         setChildren(v)
     }
-    const checkAnswer = () => {
+    const handleIncorrect = (options: string[]) => {
+        if (!katsuyou.solution) {
+            return
+        }
+
+        setTrials(trials + 1)
+        setStatus("incorrect")
+        if (options.length === 1) {
+            setMessage(t.rich("incorrect.single", {
+                answer: options[0],
+                break: () => <br />
+            }))
+        } else if (options.length === 2) {
+            setMessage(t.rich("incorrect.double", {
+                option1: options[0],
+                option2: options[1],
+                break: () => <br />
+            }))
+        } else {
+            setMessage(t.rich("incorrect.multiple", {
+                option1: options[0],
+                break: () => <br />
+            }))
+        }
+    }
+    const handleCorrect = () => {
+        setStatus("correct")
+        setMessage(t("correct"))
+        setCorrect(correct + 1)
+        setTrials(trials + 1)
+        setUserAnswer("")
+        setHintIndex(0)
+        pollVerb()
+    }
+    const checkAnswer = (fail?: boolean) => {
+        fail = fail ?? false
         if (!katsuyou.solution) {
             return
         }
@@ -68,13 +98,10 @@ const KatsuyouModern: FC = () => {
             }
             const alt = words.join('')
 
-            if (ans === answer || answer === alt) {
-                setStatus("correct")
-                setMessage(t("correct"))
-                setCorrect(correct + 1)
-                setTrials(trials + 1)
-                setUserAnswer("")
-                pollVerb()
+            console.log(alt, answer, ans)
+
+            if ((ans === answer || answer === alt) && !fail) {
+                handleCorrect()
                 return
             }
 
@@ -86,34 +113,46 @@ const KatsuyouModern: FC = () => {
             return
         }
 
-        const displayedOptions = katsuyou.solution.kanji ? katsuyou.solution.options : hiraganaOptions
-
-        setTrials(trials + 1)
-        setStatus("incorrect")
-        if (displayedOptions.length === 1) {
-            setMessage(t.rich("incorrect.single", {
-                answer: displayedOptions[0],
-                break: () => <br />
-            }))
-        } else if (displayedOptions.length === 2) {
-            setMessage(t.rich("incorrect.double", {
-                option1: displayedOptions[0],
-                option2: displayedOptions[1],
-                break: () => <br />
-            }))
-        } else {
-            setMessage(t.rich("incorrect.multiple", {
-                option1: displayedOptions[0],
-                break: () => <br />
-            }))
-        }
+        handleIncorrect(katsuyou.solution.kanji ? katsuyou.solution.options : hiraganaOptions)
     }
     const skip = () => {
         setTrials(trials + 1)
+        setStatus("empty")
+        setUserAnswer("")
+        setHintIndex(0)
         pollVerb()
     }
     const hint = () => {
-        console.log("hint")
+        if (hintIndex >= katsuyou.sequence.length) {
+            return
+        }
+        setHintIndex(hintIndex + 1)
+        const [hinted, ...rest] = katsuyou.conjugateFirstN(hintIndex)
+
+        let v: JSX.Element
+        const target = hinted.options[0];
+        if (hinted.kanji) {
+            v = <Ruby text={target} ruby={hinted.ruby} className={"text-emphasis"} />
+        } else {
+            const hiragana = []
+            for (let i = 0; i < target.length; i++) {
+                hiragana.push(hinted.ruby[i] ?? target[i])
+            }
+            v = <Ruby text={hiragana.join("")} className={"text-emphasis"} />
+        }
+
+        for (const dispatch of rest) {
+            v = <>{v}
+                <span className={"px-2"}>+</span>
+                {dispatch.from.display}</>
+        }
+
+        if (!rest.length) {
+            // force incorrect
+            checkAnswer(true)
+        }
+
+        setChildren(v)
     }
 
     const tick = () => {

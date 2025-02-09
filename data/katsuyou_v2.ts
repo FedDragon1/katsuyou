@@ -234,7 +234,7 @@ class PentagradeToken extends FreeStandingToken {
             .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, baseForm)
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, eGrade)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, `${eGrade}ば`)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 2, true, eGrade)
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
     }
@@ -273,7 +273,7 @@ class MonogradeToken extends FreeStandingToken {
             .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, baseForm)
             .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, baseForm)
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 2, true, `${stem}れ`)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 2, true, `${stem}れば`)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 2, true, [`${stem}ろ`, `${stem}よ`])
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, baseForm)
             // 古文
@@ -322,13 +322,13 @@ class KagyouToken extends FreeStandingToken {
                 .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "くる")
                 .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "くる")
                 .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "くる")
-                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれ")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "くれば")
                 .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, "こい")
                 .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, true, "くる")
         } else {
             this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, "こ")
                 .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, "き")
-                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, "くれ")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, "くれば")
                 .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, "くる")
                 .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, "こよ")
         }
@@ -370,7 +370,7 @@ class SagyouToken extends FreeStandingToken {
                 .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "する")
                 .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "する")
                 .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "する")
-                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "すれ")
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "すれば")
                 .addDispatch(KatsuyouConstants.命令_TOKEN, 1, true, ["しろ", "せよ"])
         } else {
             const stem = baseForm.slice(0, -1),
@@ -380,7 +380,7 @@ class SagyouToken extends FreeStandingToken {
                 izen = `${stem}すれ`,
                 meirei = `${stem}せよ`
             this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
-                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+                .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${izen}ば`)
                 .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, renyou)
                 .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, rentai)
                 .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
@@ -427,7 +427,7 @@ class BigradeToken extends FreeStandingToken {
 
         this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, changed)
             .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, changed)
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${base}れ`)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${base}れば`)
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, `${base}る`)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, `${changed}よ`)
     }
@@ -467,7 +467,7 @@ class NagyouToken extends FreeStandingToken {
 
         this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
             .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, renyou)
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${izen}ば`)
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, rentai)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
     }
@@ -486,7 +486,7 @@ class RagyouToken extends FreeStandingToken {
 
         this.addDispatch(KatsuyouConstants.ず_TOKEN, 1, false, mizen)
             .addDispatch(KatsuyouConstants.けり_TOKEN, 1, false, baseForm)
-            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, izen)
+            .addDispatch(KatsuyouConstants.ば_TOKEN, 1, false, `${izen}ば`)
             .addDispatch(KatsuyouConstants.NOUN_TOKEN, 1, false, reitai)
             .addDispatch(KatsuyouConstants.命令_TOKEN, 1, false, meirei)
     }
@@ -612,8 +612,8 @@ const tokens = [
     { name: "だ_TOKEN", baseForm: "だ", display: "だ", modern: true, classic: false },
     { name: "です_TOKEN", baseForm: "です", display: "です", modern: true, classic: false },
     { name: "です_SHORT_TOKEN", baseForm: "です", display: "です", modern: true, classic: false },
-    { name: "ている_TOKEN", baseForm: "ている", display: "ている", modern: true, classic: false },
-    { name: "ば_TOKEN", baseForm: "ば", display: "ば", modern: true, classic: true },
+    { name: "ている_TOKEN", baseForm: "いる", display: "ている", modern: true, classic: false },
+    { name: "ば_TOKEN", baseForm: "", display: "ば", modern: true, classic: true },
     { name: "ん_TOKEN", baseForm: "ん", display: "ない", modern: true, classic: false },
     { name: "命令_TOKEN", baseForm: "", display: "（命令）", modern: true, classic: true },
     { name: "ら_TOKEN", baseForm: "ら", display: "（ば）", modern: true, classic: false },
@@ -667,7 +667,7 @@ const せる_dispatch = [
     { next: KatsuyouConstants.ている_TOKEN, weight: 1, modern: true, conjugation: "せて" },
     { next: KatsuyouConstants.ておく_TOKEN, weight: 1, modern: true, conjugation: ["せてお", "せと"] },
     { next: KatsuyouConstants.てしまう_TOKEN, weight: 1, modern: true, conjugation: ["せてしま", "せちゃ"] },
-    { next: KatsuyouConstants.ば_TOKEN, weight: 2, modern: true, conjugation: "せれ" },
+    { next: KatsuyouConstants.ば_TOKEN, weight: 2, modern: true, conjugation: "せれば" },
     { next: KatsuyouConstants.命令_TOKEN, weight: 1, modern: true, conjugation: ["せろ", "せよ"] },
     { next: KatsuyouConstants.END_TOKEN, weight: 2, modern: true, conjugation: "せる" },
 ] as const
@@ -684,7 +684,7 @@ const れる_dispatch = [
     { next: KatsuyouConstants.ている_TOKEN, weight: 1, modern: true, conjugation: "れて" },
     { next: KatsuyouConstants.ておく_TOKEN, weight: 1, modern: true, conjugation: ["れてお", "れと"] },
     { next: KatsuyouConstants.てしまう_TOKEN, weight: 1, modern: true, conjugation: ["れてしま", "れちゃ"] },
-    { next: KatsuyouConstants.ば_TOKEN, weight: 2, modern: true, conjugation: "れれ" },
+    { next: KatsuyouConstants.ば_TOKEN, weight: 2, modern: true, conjugation: "れれば" },
     { next: KatsuyouConstants.命令_TOKEN, weight: 1, modern: false, conjugation: ["れろ", "れよ"] },
     { next: KatsuyouConstants.END_TOKEN, weight: 2, modern: true, conjugation: "れる" },
 ] as const
@@ -721,12 +721,12 @@ for (const d of そうだ_dispatch) {
 
 
 KatsuyouConstants.ている_TOKEN
-    .addDispatch(KatsuyouConstants.ます_TOKEN, 2, true, `い`)
-    .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "い")
-    .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "い")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "いれ")
-    .addDispatch(KatsuyouConstants.て_TOKEN, 1, true, "いて")
-    .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "いる")
+    .addDispatch(KatsuyouConstants.ます_TOKEN, 2, true, ["い", ""])
+    .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, ["い", ""])
+    .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, ["い", "た"])
+    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, ["いれば", "れば"])
+    .addDispatch(KatsuyouConstants.て_TOKEN, 1, true, ["いて", "て"])
+    .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, ["いる", "る"])
 
 KatsuyouConstants.ておく_TOKEN
     .addDispatch(KatsuyouConstants.ます_TOKEN, 2, true, `き`)
@@ -739,7 +739,7 @@ KatsuyouConstants.ておく_TOKEN
 KatsuyouConstants.てしまう_TOKEN
     .addDispatch(KatsuyouConstants.ます_TOKEN, 2, true, `い`)
     .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "った")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "え")
+    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "えば")
     .addDispatch(KatsuyouConstants.て_TOKEN, 1, true, "って")
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "う")
 
@@ -761,12 +761,12 @@ KatsuyouConstants.ない_TOKEN
     .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "ない")
     .addDispatch(KatsuyouConstants.らしい_TOKEN, 1, true, "ない")
     .addDispatch(KatsuyouConstants.です_TOKEN, 2, true, "ない")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "なけれ")
+    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, ["なければ", "なきゃ"])
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "ない")
 
 KatsuyouConstants.ない_SHORT_TOKEN
     .addDispatch(KatsuyouConstants.です_TOKEN, 2, true, "ない")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "なけれ")
+    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, ["なければ", "なきゃ"])
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "ない")
 
 KatsuyouConstants.た_TOKEN
@@ -810,7 +810,7 @@ KatsuyouConstants.べき_TOKEN
 KatsuyouConstants.ある_TOKEN
     .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "")
     .addDispatch(KatsuyouConstants.た_TOKEN, 1, true, "あった")
-    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "あれ")
+    .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "あれば")
     .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "あり")
     .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "ある")
 

@@ -21,7 +21,8 @@ interface KatsuyouInterfaceProps {
     onSkip: () => void
     onHint: () => void
     onChange: ChangeEventHandler<HTMLInputElement>
-    onClick: () => void
+    onClick: () => void,
+    time: string
 }
 
 const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
@@ -35,7 +36,8 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
                                                            correct,
                                                            trials,
                                                            onSkip,
-                                                           onHint
+                                                           onHint,
+                                                           time
                                                        }) => {
     const t = useTranslations("Practice")
     const percent = trials === 0 ? 0 : Math.round(correct / trials * 100)
@@ -72,7 +74,7 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
                     <div className={"xl:h-[100px] sm:bg-zinc-800 flex gap-2 items-center justify-center sm:px-6 py-2"}>
                         <Image src={"/sand.png"} alt={"sand"} width={40} height={40}
                                className={"invert w-6 h-6 sm:w-8 sm:h-8"}/>
-                        <span className={"2xl:text-3xl sm:text-2xl text-xl"}>25:30</span>
+                        <span className={"2xl:text-3xl sm:text-2xl text-xl"}>{time}</span>
                     </div>
                     <div className={"flex xl:flex-col gap-6 sm:gap-10 xl:p-6 px-6 py-2"}>
                         <div>

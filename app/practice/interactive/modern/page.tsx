@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 import { useTranslations } from "next-intl";
 import DashboardNav from "@/app/DashboardNav";
@@ -20,9 +20,11 @@ const KatsuyouModern: FC = () => {
     const [message, setMessage] = useState<ReactNode>()
     const [children, setChildren] = useState(<>〇〇〇</>)
     const [katsuyou,] = useState(new Katsuyou())
+    const [startTime,] = useState(Date.now())
+    const [timeDisplay, setTimeDisplay] = useState("00:00")
 
     const pollVerb = () => {
-        const verb = getRandomVerb((v) => (v.modern && v.baseForm === "言う"))
+        const verb = getRandomVerb((v) => v.modern)
         const type = getVerbKatsuyouType(verb.row, verb.type)
         setVerbType(type)
         katsuyou.feed(verb)
@@ -49,9 +51,13 @@ const KatsuyouModern: FC = () => {
         setChildren(v)
     }
     const checkAnswer = () => {
-        const answer = userAnswer.trim()
         if (!katsuyou.solution) {
             return
+        }
+
+        let answer = userAnswer.trim()
+        if (answer.endsWith("時")) {
+            answer = answer.slice(0, -1) + "とき"
         }
 
         const hiraganaOptions = []
@@ -61,7 +67,6 @@ const KatsuyouModern: FC = () => {
                 words[Number(i)] = kana
             }
             const alt = words.join('')
-            console.log(alt, answer, ans)
 
             if (ans === answer || answer === alt) {
                 setStatus("correct")
@@ -103,22 +108,28 @@ const KatsuyouModern: FC = () => {
             }))
         }
     }
-    const initialize = useCallback(() => {
-        pollVerb()
-    }, [])
-
     const skip = () => {
         setTrials(trials + 1)
         pollVerb()
     }
-
     const hint = () => {
         console.log("hint")
     }
 
+    const tick = () => {
+        const now = Date.now()
+        const duration = Math.round((now - startTime) / 1000)
+        const min = Math.floor(duration / 60).toString().padStart(2, '0')
+        const sec = (duration % 60).toString().padStart(2, '0')
+        setTimeDisplay(`${min}:${sec}`)
+    }
+
     useEffect(() => {
-        initialize()
-    }, [initialize]);
+        pollVerb()
+        const handle = setInterval(tick, 1000)
+        return () => clearInterval(handle)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
@@ -127,7 +138,7 @@ const KatsuyouModern: FC = () => {
                 <main className={"w-screen flex justify-center items-center flex-grow"}>
                     <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
                                        correct={correct} trials={trials} verbType={verbType} value={userAnswer}
-                                       status={status} message={message} onHint={hint} onSkip={skip}>
+                                       status={status} message={message} onHint={hint} onSkip={skip} time={timeDisplay}>
                         {children}
                     </KatsuyouInterface>
                 </main>

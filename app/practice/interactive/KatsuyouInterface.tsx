@@ -118,7 +118,7 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
                                 onClick={onClick}>{t("check")}</button>
                         </div>
                     </div>
-                    <div className={"flex flex-row-reverse justify-between gap-10 items-center"}>
+                    <div className={"flex md:flex-row-reverse justify-between gap-10 items-center"}>
                         <button
                             className={`${lgText} hidden md:block py-4 px-6 rounded-lg flex-shrink-0 border-primary border hover:bg-primary transition`}
                             onClick={onClick}>{t("check")}</button>

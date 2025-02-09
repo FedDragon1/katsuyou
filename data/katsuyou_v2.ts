@@ -749,7 +749,7 @@ KatsuyouConstants.たい_TOKEN
     .addDispatch(KatsuyouConstants.END_TOKEN, 1, true, "たい")
 
 KatsuyouConstants.たがる_TOKEN
-    .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "たがっ")
+    .addDispatch(KatsuyouConstants.ている_TOKEN, 1, true, "たがって")
     .addDispatch(KatsuyouConstants.ない_TOKEN, 1, true, "たがら")
     .addDispatch(KatsuyouConstants.ます_SHORT_TOKEN, 1, true, "たがり")
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "たがる")

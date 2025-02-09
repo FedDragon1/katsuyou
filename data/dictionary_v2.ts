@@ -2189,7 +2189,7 @@ const verbs: KatsuyouVerb[] = [
     {
         "type": "upper_bigrade",
         "baseForm": "過ぐ",
-        "modern": true,
+        "modern": false,
         "classic": true,
         "ruby": {
             "0": "す"

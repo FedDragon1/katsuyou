@@ -2,7 +2,7 @@
 
 import { kanaToGrade, voiceChange, voiceChangeToDakuon } from "@/data/kana";
 
-class KatsuyouConstants {
+export class KatsuyouConstants {
     static END_TOKEN: KatsuyouToken
     static NOUN_TOKEN: KatsuyouToken
     // 現代助動詞 / 助詞
@@ -42,12 +42,6 @@ class KatsuyouConstants {
     // 古文
     static ず_TOKEN: KatsuyouAuxiliary
     static けり_TOKEN: KatsuyouAuxiliary
-}
-
-class KatsuyouConfig {
-    static showModern: boolean = true;
-    static showClassic: boolean = false;
-    static allowedTokens: KatsuyouToken[] = [];
 }
 
 class KatsuyouDispatchInfo {
@@ -123,11 +117,11 @@ class KatsuyouToken {
         return this
     }
 
-    dispatch(): KatsuyouDispatchInfo | undefined {
+    dispatch(showModern: boolean, showClassic: boolean, allowedTokens: KatsuyouToken[]): KatsuyouDispatchInfo | undefined {
         const candidates = this.dispatchables.filter(
             (candidate) =>
-                ((KatsuyouConfig.showModern && KatsuyouConfig.showClassic) || candidate.modern === KatsuyouConfig.showModern)
-                && KatsuyouConfig.allowedTokens.includes(candidate.to)
+                ((showModern && showClassic) || candidate.modern === showModern)
+                && allowedTokens.includes(candidate.to)
         )
         const totalWeight = candidates.map((c) => c.weight).reduce((a, b) => a + b, 0)
         if (!totalWeight) {
@@ -488,11 +482,53 @@ export class Katsuyou {
     sequence: KatsuyouDispatchInfo[]
     initialToken: FreeStandingToken | null
     solution: KatsuyouResult | null
+    showModern: boolean;
+    showClassic: boolean;
+    allowedTokens: KatsuyouToken[] = [];
 
-    constructor() {
+    constructor(showModern?: boolean, showClassic?: boolean) {
         this.sequence = []
         this.initialToken = null
         this.solution = null
+        this.showModern = showModern ?? true
+        this.showClassic = showClassic ?? false
+        this.allowedTokens = [
+            KatsuyouConstants.END_TOKEN,
+            KatsuyouConstants.NOUN_TOKEN,
+            KatsuyouConstants.せる_TOKEN,
+            KatsuyouConstants.させる_TOKEN,
+            KatsuyouConstants.れる_TOKEN,
+            KatsuyouConstants.られる_TOKEN,
+            KatsuyouConstants.たい_TOKEN,
+            KatsuyouConstants.たがる_TOKEN,
+            KatsuyouConstants.ない_TOKEN,
+            KatsuyouConstants.ない_SHORT_TOKEN,
+            KatsuyouConstants.う_TOKEN,
+            KatsuyouConstants.よう_TOKEN,
+            KatsuyouConstants.まい_TOKEN,
+            KatsuyouConstants.た_TOKEN,
+            KatsuyouConstants.た_SHORT_TOKEN,
+            KatsuyouConstants.そうだ様態_TOKEN,
+            KatsuyouConstants.そうだ伝聞_TOKEN,
+            KatsuyouConstants.ようだ_TOKEN,
+            KatsuyouConstants.らしい_TOKEN,
+            KatsuyouConstants.ます_TOKEN,
+            KatsuyouConstants.ます_SHORT_TOKEN,
+            KatsuyouConstants.だ_TOKEN,
+            KatsuyouConstants.です_TOKEN,
+            KatsuyouConstants.です_SHORT_TOKEN,
+            KatsuyouConstants.て_TOKEN,
+            KatsuyouConstants.ている_TOKEN,
+            KatsuyouConstants.ておく_TOKEN,
+            KatsuyouConstants.てしまう_TOKEN,
+            KatsuyouConstants.ば_TOKEN,
+            KatsuyouConstants.ん_TOKEN,
+            KatsuyouConstants.命令_TOKEN,
+            KatsuyouConstants.ら_TOKEN,
+            KatsuyouConstants.べき_TOKEN,
+            KatsuyouConstants.ず_TOKEN,
+            KatsuyouConstants.けり_TOKEN
+        ]
     }
 
     reset() {
@@ -547,7 +583,7 @@ export class Katsuyou {
         let dispatched: KatsuyouDispatchInfo | undefined
         let currentToken: KatsuyouToken = token
         while (true) {
-            dispatched = currentToken.dispatch()
+            dispatched = currentToken.dispatch(this.showModern, this.showClassic, this.allowedTokens)
             if (!dispatched) {
                 break
             }
@@ -598,13 +634,13 @@ export class Katsuyou {
     }
 
     toggleClassic(to?: boolean): boolean {
-        KatsuyouConfig.showClassic = to ?? !KatsuyouConfig.showClassic
-        return KatsuyouConfig.showClassic
+        this.showClassic = to ?? !this.showClassic
+        return this.showClassic
     }
 
     toggleModern(to?: boolean): boolean {
-        KatsuyouConfig.showModern = to ?? !KatsuyouConfig.showModern
-        return KatsuyouConfig.showModern
+        this.showModern = to ?? !this.showModern
+        return this.showModern
     }
 }
 
@@ -774,7 +810,7 @@ KatsuyouConstants.たがる_TOKEN
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "たがる")
 
 KatsuyouConstants.ない_TOKEN
-    .addDispatch(KatsuyouConstants.う_TOKEN, 1, false, "なろ")
+    .addDispatch(KatsuyouConstants.う_TOKEN, 1, true, "なかろ")
     .addDispatch(KatsuyouConstants.そうだ様態_TOKEN, 1, true, "なさ")
     .addDispatch(KatsuyouConstants.そうだ伝聞_TOKEN, 1, true, "ない")
     .addDispatch(KatsuyouConstants.ようだ_TOKEN, 1, true, "ない")
@@ -832,39 +868,3 @@ KatsuyouConstants.ある_TOKEN
     .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, "あれば")
     .addDispatch(KatsuyouConstants.ます_TOKEN, 1, true, "あり")
     .addDispatch(KatsuyouConstants.べき_TOKEN, 1, true, "ある")
-
-KatsuyouConfig.allowedTokens = [
-    KatsuyouConstants.END_TOKEN,
-    KatsuyouConstants.NOUN_TOKEN,
-    KatsuyouConstants.せる_TOKEN,
-    KatsuyouConstants.させる_TOKEN,
-    KatsuyouConstants.れる_TOKEN,
-    KatsuyouConstants.られる_TOKEN,
-    KatsuyouConstants.たい_TOKEN,
-    KatsuyouConstants.たがる_TOKEN,
-    KatsuyouConstants.ない_TOKEN,
-    KatsuyouConstants.ない_SHORT_TOKEN,
-    KatsuyouConstants.う_TOKEN,
-    KatsuyouConstants.よう_TOKEN,
-    KatsuyouConstants.まい_TOKEN,
-    KatsuyouConstants.た_TOKEN,
-    KatsuyouConstants.そうだ様態_TOKEN,
-    KatsuyouConstants.そうだ伝聞_TOKEN,
-    KatsuyouConstants.ようだ_TOKEN,
-    KatsuyouConstants.らしい_TOKEN,
-    KatsuyouConstants.ます_TOKEN,
-    KatsuyouConstants.だ_TOKEN,
-    KatsuyouConstants.です_TOKEN,
-    KatsuyouConstants.です_SHORT_TOKEN,
-    KatsuyouConstants.て_TOKEN,
-    KatsuyouConstants.ている_TOKEN,
-    KatsuyouConstants.ておく_TOKEN,
-    KatsuyouConstants.てしまう_TOKEN,
-    KatsuyouConstants.ば_TOKEN,
-    KatsuyouConstants.ん_TOKEN,
-    KatsuyouConstants.命令_TOKEN,
-    KatsuyouConstants.ら_TOKEN,
-    KatsuyouConstants.べき_TOKEN,
-    KatsuyouConstants.ず_TOKEN,
-    KatsuyouConstants.けり_TOKEN
-]

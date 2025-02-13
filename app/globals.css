@@ -139,3 +139,7 @@ body {
   transform: scaleX(1) translateY(1px);
   transform-origin: center;
 }
+
+.triangle {
+  clip-path: polygon(0% 0%, 0% 100%, 100% 50%)
+}

@@ -14,7 +14,7 @@ const Rb: FC<RbProps> = ({ children }) => <rb>{children}</rb>
 
 const Ruby: FC<RubyProps> = ({ text, ruby, ...props }) => {
     return (
-        <ruby className="hover:bg-red-900 pr-1 pl-0.5 py-0.5 rounded-md transition" {...props}>
+        <ruby {...props}>
             {
                 Array(text.length).fill(0).map((_, i) => {
                     const cap = (ruby ?? [])[i]

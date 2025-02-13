@@ -123,6 +123,15 @@
       "single": "もう一度考えてみましょう！<break></break>正解は「{answer}」です",
       "double": "もう一度考えてみましょう！<break></break>正解は「{option1}」か「{option2}」です",
       "multiple": "もう一度考えてみましょう！<break></break>正解は「{option1}」などです"
+    },
+    "settings": {
+      "title": "カツヨウ設定",
+      "maxLength": "最大要素数",
+      "allowedVerbs": "動詞種類",
+      "allowedAuxiliary": "助動詞種類",
+      "allowedParticle": "助詞種類",
+      "allowedSubsidiary": "補助動詞",
+      "useNoun": "使用名詞"
     }
   },
   "Navigation": {

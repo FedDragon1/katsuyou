@@ -72,16 +72,16 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
         <>
             <div className={"fixed h-[calc(100vh-80px)] sm:h-[calc(100vh-96px)] w-full sm:top-24 top-20 backdrop-blur-lg transition-all duration-500"}
                  style={{ opacity: isSettingOpen ? 1 : 0, zIndex: isSettingOpen ? 10 : -1 }}>
-                <div className={"w-full h-full px-20 py-10 flex flex-col gap-10 overflow-y-auto"}>
+                <div className={"w-full h-full sm:px-20 px-10 py-10 flex flex-col gap-10 overflow-y-auto"}>
                     <div className={"flex justify-between flex-row-reverse items-center"}>
                         <div onClick={() => setIsSettingOpen(false)}
-                             className={"w-14 h-14 border-foreground transition hover:border-zinc-300 border rounded-full flex justify-center relative group"}>
+                             className={"size-12 sm:size-14 border-foreground transition hover:border-zinc-300 border rounded-full flex justify-center relative group"}>
                             <div
                                 className={"h-[1px] w-8 border-b border-foreground transition group-hover:border-zinc-300 absolute top-1/2 rotate-45"}></div>
                             <div
                                 className={"h-[1px] w-8 border-b border-foreground transition group-hover:border-zinc-300 absolute top-1/2 -rotate-45"}></div>
                         </div>
-                        <h1 className={"text-4xl"}>{t("settings.title")}</h1>
+                        <h1 className={"text-3xl sm:text-4xl"}>{t("settings.title")}</h1>
                     </div>
                     <div className={"flex flex-col gap-16"}>
                         {menu}

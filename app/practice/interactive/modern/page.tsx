@@ -2,7 +2,7 @@
 
 "use client"
 
-import { Dispatch, FC, JSX, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, FC, JSX, ReactNode, SetStateAction, useEffect, useMemo, useState } from "react";
 import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
 import { useTranslations } from "next-intl";
 import DashboardNav from "@/app/DashboardNav";
@@ -14,14 +14,18 @@ import KatsuyouCheckBox from "@/app/CheckBox";
 interface OptionMenuProps {
     title: string
     children: ReactNode
+    titleButton?: ReactNode
 }
 
-const OptionMenu: FC<OptionMenuProps> = ({ children, title }) => {
+const OptionMenu: FC<OptionMenuProps> = ({ children, title, titleButton }) => {
     const gridCols = "min-[1600px]:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2"
 
     return (
         <div className={"w-full flex flex-col gap-12"}>
-            <h2 className={"text-3xl self-start emphasis relative before:-bottom-1"}>{title}</h2>
+            <div className={"flex items-center gap-4"}>
+                <h2 className={"text-2xl sm:text-3xl self-start emphasis relative before:-bottom-1"}>{title}</h2>
+                {titleButton}
+            </div>
             <div className={`grid ${gridCols} gap-12 items-center justify-between flex-wrap`}>
                 {children}
             </div>
@@ -51,24 +55,63 @@ const ValueChooser: FC<ValueChooserProps> = ({ min, max, value, title, onChange 
         }
     }
 
+    const display = [
+        "聞く",
+        "聞かせる",
+        "聞かせている",
+        "聞かせていない",
+        "聞かせていないようだ",
+        "聞かせていないようだった"
+    ]
+
     return (
         <div className={"w-full flex flex-col gap-12"}>
-            <h2 className={"text-3xl self-start emphasis relative before:-bottom-1"}>{title}</h2>
-            <div className={"flex gap-4 items-center"}>
-                <div onClick={() => handleChange(-1)}
-                    className={"w-6 h-6 transition bg-foreground triangle rotate-180 hover:bg-zinc-300"}></div>
-                <div className={"relative overflow-hidden h-[50px]"}>
-                    <div className={"flex flex-col transition-all relative"} style={{ top: `-${(currentIndex) * 100}%` }}>
-                        {Array(max - min + 2).fill(0).map((_, i) => i + min).map((i) => {
-                            const d = i > max ? "∞" : i.toString().padStart(2, "0")
+            <h2 className={"text-2xl sm:text-3xl self-start emphasis relative before:-bottom-1"}>{title}</h2>
+            <div className={"flex justify-between items-center"}>
+                <div className={"flex gap-4 items-center"}>
+                    <div onClick={() => handleChange(-1)}
+                         className={"w-6 h-6 transition bg-foreground triangle rotate-180 hover:bg-zinc-300"}></div>
+                    <div className={"relative overflow-hidden h-[50px]"}>
+                        <div className={"flex flex-col transition-all relative"}
+                             style={{ top: `-${(currentIndex) * 100}%` }}>
+                            {Array(max - min + 2).fill(0).map((_, i) => i + min).map((i) => {
+                                const d = i > max ? "∞" : i.toString().padStart(2, "0")
+                                return (
+                                    <span key={i}
+                                          className={"text-5xl h-[50px] w-[200px] sm:w-[300px] text-center font-bold"}>{d}</span>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div onClick={() => handleChange(1)}
+                         className={"w-6 h-6 transition bg-foreground triangle hover:bg-zinc-300"}></div>
+                </div>
+                <div className={"relative overflow-hidden h-[50px] hidden xl:block"}>
+                    <div className={"flex flex-col transition-all relative"}
+                         style={{ top: `-${(currentIndex) * 100}%` }}>
+                        {display.map((d) => {
                             return (
-                                <span key={i} className={"text-5xl h-[50px] w-[300px] text-center font-bold"}>{d}</span>
+                                <span key={d} className={"text-5xl h-[50px] text-right font-bold"}>{d}</span>
                             )
                         })}
                     </div>
                 </div>
-                <div onClick={() => handleChange(1)}
-                     className={"w-6 h-6 transition bg-foreground triangle hover:bg-zinc-300"}></div>
+            </div>
+        </div>
+    )
+}
+
+interface FlipperProps {
+    onClick: () => void
+}
+
+const Flipper: FC<FlipperProps> = ({ onClick }) => {
+    return (
+        <div onClick={onClick} className={"h-full flex items-center group px-2"}>
+            <div
+                className={"w-6 h-6 flex rounded-full border-foreground border overflow-hidden group-hover:rotate-180 transition duration-300"}>
+                <div className={"flex-1 bg-foreground"}/>
+                <div className={"flex-1"}/>
             </div>
         </div>
     )
@@ -78,14 +121,14 @@ const KatsuyouModern: FC = () => {
     const t = useTranslations("Practice")
     const updateEntry = <T extends {
         [p: string]: unknown
-    }, >(obj: T, action: Dispatch<SetStateAction<T>>, key: keyof T, to: boolean) => {
+    }, >(obj: T, action: Dispatch<SetStateAction<T>>, key: keyof T, to: boolean, guard?: boolean) => {
         let i = 0
         for (const t of Object.values(obj)) {
             if (t) {
                 i++;
             }
         }
-        if (!to && i <= 1) {
+        if (!to && i <= 1 && guard) {
             return
         }
 
@@ -112,8 +155,7 @@ const KatsuyouModern: FC = () => {
         kagyou: true,
         sagyou: true
     })
-    const [allowedTokens, setAllowedTokens] = useState({
-        "NOUN": true,
+    const [allowedAuxiliary, setAllowedAuxiliary] = useState({
         "させる": true,
         "られる": true,
         "たい": true,
@@ -129,18 +171,25 @@ const KatsuyouModern: FC = () => {
         "ます": true,
         "だ": true,
         "です": true,
+        "べき": true,
+    })
+    const [allowedParticles, setAllowedParticles] = useState({
         "て": true,
+        "ば": true,
+        "命令": true,
+    })
+    const [allowedSubsidiary, setAllowedSubsidiary] = useState({
         "ている": true,
         "ておく": true,
         "てしまう": true,
-        "ば": true,
-        "命令": true,
-        "べき": true,
+    })
+    const [allowedNoun, setAllowedNoun] = useState({
+        "NOUN": true
     })
     const [tokenTriggers,] = useState<Record<keyof typeof allowedTokens, typeof KatsuyouConstants.END_TOKEN[]>>({
         "NOUN": [KatsuyouConstants.NOUN_TOKEN],
         "させる": [KatsuyouConstants.させる_TOKEN, KatsuyouConstants.せる_TOKEN],
-        "られる": [KatsuyouConstants.られる_TOKEN, KatsuyouConstants.れる_TOKEN],
+        "られる": [KatsuyouConstants.られる_TOKEN, KatsuyouConstants.れる_TOKEN, KatsuyouConstants.せられる_TOKEN],
         "たい": [KatsuyouConstants.たい_TOKEN],
         "たがる": [KatsuyouConstants.たがる_TOKEN],
         "ない": [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN],
@@ -163,29 +212,65 @@ const KatsuyouModern: FC = () => {
         "命令": [KatsuyouConstants.命令_TOKEN],
     })
     const [maxLength, setMaxLength] = useState(Infinity)
+    const allowedTokens = useMemo(() => {
+        return {
+            ...allowedAuxiliary,
+            ...allowedParticles,
+            ...allowedSubsidiary,
+            ...allowedNoun
+        }
+    }, [allowedAuxiliary, allowedParticles, allowedSubsidiary, allowedNoun]);
 
     const verbsMap = [
         { key: "pentagrade", display: "五段活用「洗う・書く」" },
-        { key: "monograde", display: "一段活用「寝る、起きる」" },
+        { key: "monograde", display: "一段活用「寝る・起きる」" },
         { key: "sagyou", display: "サ行変格活用「する」" },
         { key: "kagyou", display: "カ行変格活用「来る」" },
     ] as const
     const auxiliaryMap = [
-        { name: "させる", display: "使役「させる」", trigger: [KatsuyouConstants.させる_TOKEN, KatsuyouConstants.せる_TOKEN] },
-        { name: "られる", display: "受身・可能・自発・尊敬「られる」", trigger: [KatsuyouConstants.られる_TOKEN, KatsuyouConstants.れる_TOKEN] },
+        {
+            name: "させる",
+            display: "使役「させる」",
+            trigger: [KatsuyouConstants.させる_TOKEN, KatsuyouConstants.せる_TOKEN]
+        },
+        {
+            name: "られる",
+            display: "受身・可能・自発・尊敬「られる」",
+            trigger: [KatsuyouConstants.られる_TOKEN, KatsuyouConstants.れる_TOKEN, KatsuyouConstants.せられる_TOKEN]
+        },
         { name: "たい", display: "希望「たい」", trigger: [KatsuyouConstants.たい_TOKEN] },
         { name: "たがる", display: "希望「たがる」", trigger: [KatsuyouConstants.たがる_TOKEN] },
-        { name: "ない", display: "打消し「ない」", trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN] },
-        { name: "よう", display: "推量・意志「う・よう」", trigger: [KatsuyouConstants.う_TOKEN, KatsuyouConstants.よう_TOKEN] },
+        {
+            name: "ない",
+            display: "打消し「ない」",
+            trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN]
+        },
+        {
+            name: "よう",
+            display: "推量・意志「う・よう」",
+            trigger: [KatsuyouConstants.う_TOKEN, KatsuyouConstants.よう_TOKEN]
+        },
         { name: "まい", display: "打消しの推量・意志「まい」", trigger: [KatsuyouConstants.まい_TOKEN] },
-        { name: "た", display: "過去・完了・存続「た」", trigger: [KatsuyouConstants.た_TOKEN, KatsuyouConstants.た_SHORT_TOKEN] },
+        {
+            name: "た",
+            display: "過去・完了・存続「た」",
+            trigger: [KatsuyouConstants.た_TOKEN, KatsuyouConstants.た_SHORT_TOKEN]
+        },
         { name: "そうだ様態", display: "様態「そうだ」", trigger: [KatsuyouConstants.そうだ様態_TOKEN] },
         { name: "そうだ伝聞", display: "伝聞「そうだ」", trigger: [KatsuyouConstants.そうだ伝聞_TOKEN] },
         { name: "ようだ", display: "推定・比況・例示「ようだ」", trigger: [KatsuyouConstants.ようだ_TOKEN] },
         { name: "らしい", display: "推定「らしい」", trigger: [KatsuyouConstants.らしい_TOKEN] },
-        { name: "ます", display: "丁寧「ます」", trigger: [KatsuyouConstants.ます_TOKEN, KatsuyouConstants.ます_SHORT_TOKEN] },
+        {
+            name: "ます",
+            display: "丁寧「ます」",
+            trigger: [KatsuyouConstants.ます_TOKEN, KatsuyouConstants.ます_SHORT_TOKEN]
+        },
         { name: "だ", display: "断定「だ」", trigger: [KatsuyouConstants.だ_TOKEN] },
-        { name: "です", display: "丁寧な断定「です」", trigger: [KatsuyouConstants.です_TOKEN, KatsuyouConstants.です_SHORT_TOKEN] },
+        {
+            name: "です",
+            display: "丁寧な断定「です」",
+            trigger: [KatsuyouConstants.です_TOKEN, KatsuyouConstants.です_SHORT_TOKEN]
+        },
         { name: "べき", display: "義務「べき」", trigger: [KatsuyouConstants.べき_TOKEN] },
     ] as const
     const subsidiaryMap = [
@@ -199,35 +284,41 @@ const KatsuyouModern: FC = () => {
         { name: "て", display: "て" },
     ] as const
 
+    const reverse = <T extends Record<string, boolean>>(obj: T, setter: Dispatch<SetStateAction<T>>) => {
+        const reversed = Object.entries(obj).map(([k, v]) => [k, !v])
+        const nobj = Object.fromEntries(reversed) as T
+        setter(nobj)
+    }
+
     const menu = <>
-        <ValueChooser min={1} max={5} title={t("settings.maxLength")} value={maxLength} onChange={setMaxLength} />
+        <ValueChooser min={1} max={5} title={t("settings.maxLength")} value={maxLength} onChange={setMaxLength}/>
         <OptionMenu title={t("settings.allowedVerbs")}>
             {verbsMap.map(({ key, display }) => (
                 <KatsuyouCheckBox value={allowedVerbs[key]} display={display} key={key}
-                                  onChange={(e) => updateEntry(allowedVerbs, setAllowedVerbs, key, e.target.checked)}/>
+                                  onChange={(e) => updateEntry(allowedVerbs, setAllowedVerbs, key, e.target.checked, true)}/>
             ))}
         </OptionMenu>
-        <OptionMenu title={t("settings.allowedAuxiliary")}>
+        <OptionMenu title={t("settings.allowedAuxiliary")} titleButton={<Flipper onClick={() => reverse(allowedAuxiliary, setAllowedAuxiliary)}/>}>
             {auxiliaryMap.map(({ name, display }) => (
                 <KatsuyouCheckBox value={allowedTokens[name]} display={display} key={name}
-                                  onChange={(e) => updateEntry(allowedTokens, setAllowedTokens, name, e.target.checked)}/>
+                                  onChange={(e) => updateEntry(allowedAuxiliary, setAllowedAuxiliary, name, e.target.checked)}/>
             ))}
         </OptionMenu>
-        <OptionMenu title={t("settings.allowedAuxiliary")}>
+        <OptionMenu title={t("settings.allowedSubsidiary")} titleButton={<Flipper onClick={() => reverse(allowedSubsidiary, setAllowedSubsidiary)}/>}>
             {subsidiaryMap.map(({ name, display }) => (
                 <KatsuyouCheckBox value={allowedTokens[name]} display={display} key={name}
-                                  onChange={(e) => updateEntry(allowedTokens, setAllowedTokens, name, e.target.checked)}/>
+                                  onChange={(e) => updateEntry(allowedSubsidiary, setAllowedSubsidiary, name, e.target.checked)}/>
             ))}
         </OptionMenu>
-        <OptionMenu title={t("settings.allowedParticle")}>
+        <OptionMenu title={t("settings.allowedParticle")} titleButton={<Flipper onClick={() => reverse(allowedParticles, setAllowedParticles)}/>}>
             {particleMap.map(({ name, display }) => (
                 <KatsuyouCheckBox value={allowedTokens[name]} display={display} key={name}
-                                  onChange={(e) => updateEntry(allowedTokens, setAllowedTokens, name, e.target.checked)}/>
+                                  onChange={(e) => updateEntry(allowedParticles, setAllowedParticles, name, e.target.checked)}/>
             ))}
         </OptionMenu>
-        <OptionMenu title={t("settings.useNoun")}>
+        <OptionMenu title={t("settings.useNoun")} titleButton={<Flipper onClick={() => reverse(allowedNoun, setAllowedNoun)}/>}>
             <KatsuyouCheckBox value={allowedTokens.NOUN} display={"とき"}
-                              onChange={(e) => updateEntry(allowedTokens, setAllowedTokens, "NOUN", e.target.checked)}/>
+                              onChange={(e) => updateEntry(allowedNoun, setAllowedNoun, "NOUN", e.target.checked)}/>
         </OptionMenu>
     </>
 
@@ -396,6 +487,10 @@ const KatsuyouModern: FC = () => {
         }
         katsuyou.allowedTokens = tok
     }, [allowedTokens, katsuyou, tokenTriggers]);
+
+    useEffect(() => {
+        katsuyou.maxLength = maxLength
+    }, [maxLength, katsuyou]);
 
     // max length, verb type, allowed auxiliary verb, allowed particle, noun
 

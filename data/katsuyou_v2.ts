@@ -10,6 +10,7 @@ export class KatsuyouConstants {
     static させる_TOKEN: KatsuyouAuxiliary
     static れる_TOKEN: KatsuyouAuxiliary
     static られる_TOKEN: KatsuyouAuxiliary
+    static せられる_TOKEN: KatsuyouAuxiliary
     static たい_TOKEN: KatsuyouAuxiliary
     static たがる_TOKEN: KatsuyouAuxiliary
     static ない_TOKEN: KatsuyouAuxiliary
@@ -118,6 +119,7 @@ class KatsuyouToken {
     }
 
     dispatch(showModern: boolean, showClassic: boolean, allowedTokens: KatsuyouToken[]): KatsuyouDispatchInfo | undefined {
+        debugger
         const candidates = this.dispatchables.filter(
             (candidate) =>
                 ((showModern && showClassic) || candidate.modern === showModern)
@@ -211,6 +213,7 @@ class PentagradeToken extends FreeStandingToken {
 
         this.addDispatch(KatsuyouConstants.せる_TOKEN, 1, true, aGrade)
             .addDispatch(KatsuyouConstants.れる_TOKEN, 1, true, aGrade)
+            // .addDispatch(KatsuyouConstants.せられる_TOKEN, 1, true, [`${aGrade}せら`, `${aGrade}さ`])
             .addDispatch(KatsuyouConstants.ない_TOKEN, 2, true, aGrade)
             .addDispatch(KatsuyouConstants.う_TOKEN, 2, true, oGrade)
             .addDispatch(KatsuyouConstants.たい_TOKEN, 1, true, iGrade)
@@ -484,9 +487,10 @@ export class Katsuyou {
     solution: KatsuyouResult | null
     showModern: boolean;
     showClassic: boolean;
+    maxLength: number
     allowedTokens: KatsuyouToken[] = [];
 
-    constructor(showModern?: boolean, showClassic?: boolean) {
+    constructor(showModern?: boolean, showClassic?: boolean, maxLength?: number) {
         this.sequence = []
         this.initialToken = null
         this.solution = null
@@ -499,6 +503,7 @@ export class Katsuyou {
             KatsuyouConstants.させる_TOKEN,
             KatsuyouConstants.れる_TOKEN,
             KatsuyouConstants.られる_TOKEN,
+            KatsuyouConstants.せられる_TOKEN,
             KatsuyouConstants.たい_TOKEN,
             KatsuyouConstants.たがる_TOKEN,
             KatsuyouConstants.ない_TOKEN,
@@ -529,6 +534,7 @@ export class Katsuyou {
             KatsuyouConstants.ず_TOKEN,
             KatsuyouConstants.けり_TOKEN
         ]
+        this.maxLength = maxLength ?? Infinity
     }
 
     reset() {
@@ -582,7 +588,12 @@ export class Katsuyou {
 
         let dispatched: KatsuyouDispatchInfo | undefined
         let currentToken: KatsuyouToken = token
-        while (true) {
+        for (let i = 1; ; i++) {
+            if (i >= this.maxLength && currentToken !== KatsuyouConstants.END_TOKEN) {
+                this.sequence.push(new KatsuyouDispatchInfo(currentToken, KatsuyouConstants.END_TOKEN, 1, true, currentToken.baseForm))
+                break
+            }
+
             dispatched = currentToken.dispatch(this.showModern, this.showClassic, this.allowedTokens)
             if (!dispatched) {
                 break
@@ -649,6 +660,7 @@ const tokens = [
     { name: "させる_TOKEN", baseForm: "させる", display: "させる", modern: true, classic: false },
     { name: "れる_TOKEN", baseForm: "れる", display: "れる", modern: true, classic: false },
     { name: "られる_TOKEN", baseForm: "られる", display: "られる", modern: true, classic: false },
+    { name: "せられる_TOKEN", baseForm: "れる", display: "られる", modern: true, classic: false },
     { name: "たい_TOKEN", baseForm: "たい", display: "たい", modern: true, classic: false },
     { name: "たがる_TOKEN", baseForm: "たがる", display: "たがる", modern: true, classic: false },
     { name: "ない_TOKEN", baseForm: "ない", display: "ない", modern: true, classic: false },
@@ -708,7 +720,6 @@ KatsuyouConstants.NOUN_TOKEN = new KatsuyouAuxiliary("とき", "とき", true, t
 KatsuyouConstants.END_TOKEN = new KatsuyouEndToken()
 
 const せる_dispatch = [
-    { next: KatsuyouConstants.られる_TOKEN, weight: 2, modern: true, conjugation: "せ" },
     { next: KatsuyouConstants.たい_TOKEN, weight: 2, modern: true, conjugation: "せ" },
     { next: KatsuyouConstants.たがる_TOKEN, weight: 1, modern: true, conjugation: "せ" },
     { next: KatsuyouConstants.ない_TOKEN, weight: 2, modern: true, conjugation: "せ" },
@@ -759,8 +770,12 @@ for (const d of せる_dispatch) {
     }
 }
 
+KatsuyouConstants.せる_TOKEN.addDispatch(KatsuyouConstants.せられる_TOKEN, 2, true, ["せら", "さ"])
+KatsuyouConstants.させる_TOKEN.addDispatch(KatsuyouConstants.られる_TOKEN, 2, true, "せ")
+
 for (const d of れる_dispatch) {
     KatsuyouConstants.れる_TOKEN.addDispatch(d.next, d.weight, d.modern, d.conjugation)
+    KatsuyouConstants.せられる_TOKEN.addDispatch(d.next, d.weight, d.modern, d.conjugation)
     if (Array.isArray(d.conjugation)) {
         const c = d.conjugation.map(e => `ら${e}`)
         KatsuyouConstants.られる_TOKEN.addDispatch(d.next, d.weight, d.modern, c)
@@ -820,7 +835,6 @@ KatsuyouConstants.ない_TOKEN
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "ない")
 
 KatsuyouConstants.ない_SHORT_TOKEN
-    .addDispatch(KatsuyouConstants.です_TOKEN, 2, true, "ない")
     .addDispatch(KatsuyouConstants.ば_TOKEN, 1, true, ["なければ", "なきゃ"])
     .addDispatch(KatsuyouConstants.END_TOKEN, 2, true, "ない")
 

@@ -140,3 +140,32 @@ interface KatsuyouModernAdjectivalNoun {
     },
     ruby?: Record<number, string>
 }
+
+interface SettingDesc {
+    predicate: SettingPredicateSection
+    token: SettingTokenSection[]
+}
+
+interface SettingTokenSection {
+    name: string,
+    reverse?: boolean
+    children: SettingTokenOption[]
+}
+
+interface SettingPredicateSection {
+    name: string,
+    poller: (predicateData: Record<string, boolean>) => any,
+    describeType: (term: any) => string
+    children: SettingPredicateOption[]
+}
+
+interface SettingPredicateOption {
+    key: string,
+    display: string,
+}
+
+interface SettingTokenOption {
+    key: string
+    display: string
+    trigger: any[]
+}

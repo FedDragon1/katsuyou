@@ -1,5 +1,5 @@
 import { FC } from "react";
-import KatsuyouLink from "@/app/Link";
+import KatsuyouLink from "@/components/Link";
 
 const Footer: FC = () => {
     const titleSize = "2xl:text-[9rem] xl:text-[8rem] lg:text-[6rem] md:text-[4rem] text-[3rem] text-nowrap"

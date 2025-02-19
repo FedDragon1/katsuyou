@@ -1,10 +1,10 @@
-import LandingNav from "@/app/LandingNav";
+import LandingNav from "@/components/LandingNav";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Button from "@/app/Button";
-import Footer from "@/app/Footer";
+import Button from "@/components/Button";
+import Footer from "@/components/Footer";
 
 interface ListProps {
     order: string,

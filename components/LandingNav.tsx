@@ -2,7 +2,7 @@
 
 import { FC, MouseEventHandler, useRef } from "react";
 import { useTranslations } from "next-intl";
-import KatsuyouLink from "@/app/Link";
+import KatsuyouLink from "@/components/Link";
 import { usePathname } from "next/navigation";
 
 interface LanguageButtonProps {

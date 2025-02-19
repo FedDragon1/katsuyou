@@ -1,13 +1,13 @@
 "use client"
 
 import { FC } from "react";
-import LandingNav from "@/app/LandingNav";
-import AccountBanner from "@/app/(account)/AccountBanner";
-import Footer from "@/app/Footer";
-import AccountForm from "@/app/(account)/AccountForm";
+import LandingNav from "@/components/LandingNav";
+import AccountBanner from "@/components/AccountBanner";
+import Footer from "@/components/Footer";
+import AccountForm from "@/components/AccountForm";
 import { useTranslations } from "next-intl";
-import SideLink from "@/app/(account)/SideLink";
-import SideEntry from "@/app/(account)/SideEntry";
+import SideLink from "@/components/SideLink";
+import SideEntry from "@/components/SideEntry";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 

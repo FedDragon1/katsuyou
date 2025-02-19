@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import KatsuyouLink from "@/app/Link";
+import KatsuyouLink from "@/components/Link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";

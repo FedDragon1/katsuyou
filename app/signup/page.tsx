@@ -1,15 +1,15 @@
 "use client"
 
-import {  FC, useState } from "react";
-import LandingNav from "@/app/LandingNav";
-import AccountBanner from "@/app/(account)/AccountBanner";
-import Footer from "@/app/Footer";
-import AccountForm from "@/app/(account)/AccountForm";
+import { FC, useState } from "react";
+import LandingNav from "@/components/LandingNav";
+import AccountBanner from "@/components/AccountBanner";
+import Footer from "@/components/Footer";
+import AccountForm from "@/components/AccountForm";
 import { useTranslations } from "next-intl";
-import SideLink from "@/app/(account)/SideLink";
-import SideEntry from "@/app/(account)/SideEntry";
-import Button from "@/app/Button";
-import FormEntry from "@/app/(account)/FormEntry";
+import SideLink from "@/components/SideLink";
+import SideEntry from "@/components/SideEntry";
+import Button from "@/components/Button";
+import FormEntry from "@/components/FormEntry";
 import { useRouter } from "next/navigation";
 
 const SignupPage: FC = () => {

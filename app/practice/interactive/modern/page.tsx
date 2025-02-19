@@ -6,7 +6,7 @@ import { FC } from "react";
 import { useTranslations } from "next-intl";
 import { KatsuyouConstants } from "@/data/katsuyou_v2";
 import { getRandomVerb, getVerbKatsuyouType } from "@/data/dictionary_v2";
-import KatsuyouPractice from "@/app/practice/interactive/KatsuyouPractice";
+import KatsuyouPractice from "@/components/KatsuyouPractice";
 
 const KatsuyouModern: FC = () => {
     const t = useTranslations("Practice")

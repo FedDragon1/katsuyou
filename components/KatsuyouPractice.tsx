@@ -1,13 +1,13 @@
 import { Dispatch, FC, JSX, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Katsuyou, KatsuyouConstants } from "@/data/katsuyou_v2";
-import ValueChooser from "@/app/practice/interactive/ValueChooser";
-import OptionMenu from "@/app/practice/interactive/OptionMenu";
-import KatsuyouCheckBox from "@/app/CheckBox";
-import Flipper from "@/app/practice/interactive/Flipper";
-import Ruby from "@/app/Ruby";
-import DashboardNav from "@/app/DashboardNav";
-import KatsuyouInterface from "@/app/practice/interactive/KatsuyouInterface";
+import ValueChooser from "@/components/ValueChooser";
+import OptionMenu from "@/components/OptionMenu";
+import KatsuyouCheckBox from "@/components/CheckBox";
+import Flipper from "@/components/Flipper";
+import Ruby from "@/components/Ruby";
+import DashboardNav from "@/components/DashboardNav";
+import KatsuyouInterface from "@/components/KatsuyouInterface";
 
 interface KatsuyouPracticeProps {
     settings: SettingDesc

@@ -8,7 +8,7 @@ import {
 } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import FormEntry from "@/app/(account)/FormEntry";
+import FormEntry from "@/components/FormEntry";
 
 interface KatsuyouInterfaceProps {
     trials: number

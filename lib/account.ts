@@ -69,7 +69,7 @@ export function loginWithGoogle() {
     supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-            redirectTo: `${window.location.origin}/login/callback`
+            redirectTo: `https://katsuyou.xyz/login/callback`
         }
     }).then()
 }
@@ -78,7 +78,7 @@ export function loginWithGithub() {
     supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
-            redirectTo: `${window.location.origin}/login/callback`
+            redirectTo: `https://katsuyou.xyz/login/callback`
         }
     }).then()
 }
@@ -88,7 +88,7 @@ export function signUp(username: string, email: string, password: string, router
         email: email,
         password: password,
         options: {
-            emailRedirectTo: `${window.location.origin}/signup/callback/verify`
+            emailRedirectTo: `https://katsuyou.xyz/signup/callback/verify`
         }
     }).then(async (res) => {
         return fetch("/api/auth/signup", {

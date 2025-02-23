@@ -10,24 +10,17 @@ import SideLink from "@/components/SideLink";
 import SideEntry from "@/components/SideEntry";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { loginWithGithub, loginWithGoogle } from "@/lib/account";
 
 const SignupPage: FC = () => {
     const t = useTranslations("Signup")
-
-    const loginWithGoogle = () => {
-        console.log("google")
-    }
-
-    const loginWithMicrosoft = () => {
-        console.log("microsoft")
-    }
 
     const router = useRouter()
 
     const side = <>
         <SideEntry name={t("sso.name")}>
             <SideLink display={t("sso.google")} onClick={loginWithGoogle} />
-            <SideLink display={t("sso.microsoft")} onClick={loginWithMicrosoft} />
+            <SideLink display={t("sso.github")} onClick={loginWithGithub} />
         </SideEntry>
         <SideEntry name={t("login.name")}>
             <SideLink display={t("login.link")} onClick={() => router.push("/login")} />

@@ -12,9 +12,9 @@ const AccountForm: FC<AccountFormProps> = ({ caption, children, side }) => {
             <div className={"flex-grow max-w-[400px] hidden xl:block"}>
                 <span className={"text-3xl arrow"}>{caption}</span>
             </div>
-            <div className={"flex flex-col gap-24 flex-grow max-w-[700px]"}>
+            <form className={"flex flex-col gap-24 flex-grow max-w-[700px]"}>
                 {children}
-            </div>
+            </form>
             <div className={"flex flex-col gap-24 z-20 lg:gap-16 flex-grow max-w-[400px]"}>
                 {side}
             </div>

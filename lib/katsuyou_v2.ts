@@ -1,6 +1,6 @@
 // noinspection NonAsciiCharacters,JSNonASCIINames
 
-import { kanaToGrade, voiceChange, voiceChangeToDakuon } from "@/data/kana";
+import { kanaToGrade, voiceChange, voiceChangeToDakuon } from "@/lib/kana";
 
 export class KatsuyouConstants {
     static END_TOKEN: KatsuyouToken

@@ -169,3 +169,13 @@ interface SettingTokenOption {
     display: string
     trigger: any[]
 }
+
+interface SignUpRequest {
+    uuid: string
+    username: string
+    email: string
+}
+
+interface VerifyRequest {
+    uuid: string
+}

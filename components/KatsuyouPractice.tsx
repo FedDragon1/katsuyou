@@ -1,6 +1,6 @@
 import { Dispatch, FC, JSX, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Katsuyou, KatsuyouConstants } from "@/data/katsuyou_v2";
+import { Katsuyou, KatsuyouConstants } from "@/lib/katsuyou_v2";
 import ValueChooser from "@/components/ValueChooser";
 import OptionMenu from "@/components/OptionMenu";
 import KatsuyouCheckBox from "@/components/CheckBox";

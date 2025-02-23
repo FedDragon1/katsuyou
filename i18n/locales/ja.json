@@ -65,7 +65,7 @@
     "sso": {
       "name": "他のアカウントでログイン",
       "google": "Googleで続ける",
-      "microsoft": "Microsoftで続ける"
+      "github": "GitHubで続ける"
     },
     "signup": {
       "name": "初めてカツヨウをご利用ですか？",
@@ -97,7 +97,7 @@
     "sso": {
       "name": "他のアカウントでログイン",
       "google": "Googleで続ける",
-      "microsoft": "Microsoftで続ける"
+      "github": "GitHubで続ける"
     },
     "login": {
       "name": "すでにアカウントを持ちますか？",

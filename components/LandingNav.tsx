@@ -27,7 +27,7 @@ interface LandingNavProps {
 const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
     const t = useTranslations("Landing")
 
-    const linkSizes = "arrow-link text-[2rem] md:text-[3rem] 2xl:text-[4rem] m-0 ml-10"
+    const linkSizes = "arrow-link text-[2rem] md:text-[3rem] 2xl:text-[4rem] m-0 mx-10"
     const router = useRouter();
     const checkbox = useRef<HTMLInputElement>(null)
 
@@ -75,18 +75,25 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
                         <hr className={"border-b border-[#ffffff22] mb-10"}/>
                         <div
                             className={"flex flex-col lg:flex-row flex-wrap w-full flex-grow justify-between gap-10 lg:gap-14 xl:gap-20"}>
-                            <div className={"hidden 2xl:block"}>
-                                <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>カツヨウ</h1>
-                                <span>By Skyline High School</span>
-                                <br/>
-                                <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>カツヨウ</h1>
-                                <span>By Skyline High School</span>
-                                <br/>
-                                <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>カツヨウ</h1>
-                                <span>By Skyline High School</span>
-                                <br/>
+                            <div className={"hidden min-[1900px]:flex flex-1 flex-col gap-10 lg:gap-14 xl:gap-20"}>
+                                <div className={"flex gap-2 items-baseline flex-wrap"}>
+                                    <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>カツヨウ</h1>
+                                    <span className={"italic"}>By Skyline High School</span>
+                                </div>
+                                <div className={"flex gap-2 items-baseline"}>
+                                    <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>Fedele W</h1>
+                                    <span className={"italic"}>2026</span>
+                                </div>
+                                <div className={"flex gap-2 items-baseline"}>
+                                    <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>Jacky W</h1>
+                                    <span className={"italic"}>2025</span>
+                                </div>
+                                <div className={"flex gap-2 items-baseline"}>
+                                    <h1 className={"text-[4rem] leading-[5rem] m-0 inline"}>Jason H</h1>
+                                    <span className={"italic"}>2025</span>
+                                </div>
                             </div>
-                            <div className={"lg:flex flex-col gap-14 xl:gap-20 hidden"}>
+                            <div className={"lg:flex flex-col gap-14 xl:gap-20 hidden flex-1"}>
                                 <KatsuyouLink className={linkSizes} onClick={() => changeLanguage("en")}
                                               display={"English"} redirect={"#"}/>
                                 <KatsuyouLink className={linkSizes} onClick={() => changeLanguage("ja")}
@@ -94,7 +101,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
                                 <KatsuyouLink className={linkSizes} onClick={() => changeLanguage("zh")}
                                               display={"简体中文"} redirect={"#"}/>
                             </div>
-                            <div className={"flex flex-col gap-10 lg:gap-14 xl:gap-20"}>
+                            <div className={"flex flex-col gap-10 lg:gap-14 xl:gap-20 flex-1"}>
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={"Home"}
                                               redirect={homeRedirect}/>
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={t("links.solution")}

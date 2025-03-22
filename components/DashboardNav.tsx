@@ -1,3 +1,5 @@
+"use client"
+
 import { FC, ReactNode } from "react";
 import KatsuyouLink from "@/components/Link";
 import Image from "next/image";

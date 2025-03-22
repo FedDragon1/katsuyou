@@ -1,5 +1,7 @@
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabaseClient";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+const supabase = createClient()
 
 export async function loginWithEmail(router: AppRouterInstance, email: string, password: string) {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -11,7 +13,13 @@ export async function loginWithEmail(router: AppRouterInstance, email: string, p
         router.push(`/login?error=auth&message=${error.message}`)
     }
 
-    setSession(router, data.session?.access_token, data.session?.refresh_token)
+    setSession(router, data.session?.access_token, data.session?.refresh_token)?.then(({ error }) => {
+        if (error) {
+            router.push(`/login?error=auth&message=${error.message}`)
+        } else {
+            router.push("/dashboard")
+        }
+    })
 }
 
 export function setSession(router: AppRouterInstance, accessToken?: string | null, refreshToken?: string | null) {
@@ -20,18 +28,9 @@ export function setSession(router: AppRouterInstance, accessToken?: string | nul
         return
     }
 
-    supabase.auth.setSession({
+    return supabase.auth.setSession({
         access_token: accessToken,
         refresh_token: refreshToken
-    }).then(async ({ error }) => {
-        const user = await supabase.auth.getUser();
-        console.log(user)
-
-        if (error) {
-            router.push(`/login?error=auth&message=${error.message}`)
-        } else {
-            router.push("/dashboard")
-        }
     })
 }
 
@@ -41,27 +40,9 @@ export async function verify(router: AppRouterInstance, accessToken?: string | n
         return
     }
 
-    await supabase.auth.setSession({
+    return await supabase.auth.setSession({
         access_token: accessToken,
         refresh_token: refreshToken
-    })
-    const user = await supabase.auth.getUser()
-
-    return await fetch("/api/auth/verify", {
-        method: "POST",
-        body: JSON.stringify({ uuid: user.data.user?.id }),
-        headers: { "Content-Type": "application/json" }
-    })
-}
-
-export async function test() {
-    const user = await supabase.auth.getUser()
-    console.log(user)
-
-    return await fetch("/api/auth/verify", {
-        method: "POST",
-        body: JSON.stringify({ uuid: user.data.user?.id }),
-        headers: { "Content-Type": "application/json" }
     })
 }
 
@@ -91,9 +72,16 @@ export function signUp(username: string, email: string, password: string, router
             emailRedirectTo: `https://katsuyou.xyz/signup/callback/verify`
         }
     }).then(async (res) => {
+        const req: SignUpRequest = {
+            username,
+            email,
+            uuid: res.data.user!.id,
+            platform: "email",
+            locale: "ja"
+        }
         return fetch("/api/auth/signup", {
             method: "POST",
-            body: JSON.stringify({ username, email, uuid: res.data.user?.id }),
+            body: JSON.stringify(req),
             headers: { "Content-Type": "application/json" }
         });
     }).then(() => router.push("/signup/callback"))

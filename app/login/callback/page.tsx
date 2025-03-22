@@ -3,6 +3,8 @@
 import { FC, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setSession } from "@/lib/account";
+import LoadingPage from "@/components/LoadingPage";
+import { createClient } from "@/lib/supabaseClient";
 
 const Callback: FC = () => {
     const router = useRouter()
@@ -12,17 +14,29 @@ const Callback: FC = () => {
         const accessToken = hashParams.get("access_token")
         const refreshToken = hashParams.get("refresh_token")
 
-        setSession(router, accessToken, refreshToken)
+        setSession(router, accessToken, refreshToken)?.then(({ error }) => {
+            if (error) {
+                router.push(`/login?error=auth&message=${error.message}`)
+                return
+            }
+
+            const supabase = createClient();
+            return supabase.auth.getUser()
+        }).then((userResp) => {
+            if (!userResp) {
+                return
+            }
+
+            const id = userResp.data.user?.id
+            console.log(id)
+            // TODO: sign up if doesn't exist
+
+            router.push("/dashboard")
+        })
     }, [router]);
     
     return (
-        <div className={"h-screen w-screen flex items-center justify-center gap-4"}>
-            <div className={"size-14 relative flex justify-center items-center"}>
-                <div className={"size-14 bg-[conic-gradient(var(--foreground),var(--background))] absolute rounded-full animate-spin"}></div>
-                <div className={"size-12 bg-background absolute rounded-full"}></div>
-            </div>
-            <h1 className={"text-6xl"}>カツヨウ</h1>
-        </div>
+        <LoadingPage />
     )
 }
 

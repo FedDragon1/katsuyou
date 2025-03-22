@@ -174,6 +174,8 @@ interface SignUpRequest {
     uuid: string
     username: string
     email: string
+    locale: string
+    platform: "email" | "google" | "github"
 }
 
 interface VerifyRequest {

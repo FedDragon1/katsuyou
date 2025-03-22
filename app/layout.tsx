@@ -19,7 +19,7 @@ const RootLayout: FC<RootLayoutProps> = async ({ children }) => {
 
     return (
         <html lang={locale}>
-        <body className={`antialiased m-0 p-0`}>
+        <body className={`antialiased m-0 p-0 overflow-x-hidden`}>
         <NextIntlClientProvider messages={messages}>
             {children}
         </NextIntlClientProvider>

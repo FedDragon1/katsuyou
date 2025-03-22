@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import supabaseService from "@/lib/supabaseService";
+import { createClient } from "@/lib/supabaseServer";
 
 export async function POST(request: Request) {
     const body = await request.json() as SignUpRequest;
+    const supabaseService = await createClient()
 
     if (!supabaseService) {
         return NextResponse.json({
@@ -17,7 +18,8 @@ export async function POST(request: Request) {
             uuid: body.uuid,
             name: body.username,
             email: body.email,
-            platform: "email"
+            platform: "email",
+            locale: body.locale
         }])
         .select()
 

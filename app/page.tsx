@@ -48,7 +48,7 @@ export default function Home() {
                         <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line1")}</h1>
                         <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line2")}</h1>
                     </div>
-                    <div className={"flex mt-10"}>
+                    <div className={"flex mt-10 w-[350px] flex-wrap sm:w-auto"}>
                         <h1 className={`${titleSize} emphasis sm:pr-8`}>{t("title.slogan.emphasis")}</h1>
                         <h1 className={`${titleSize}`}>{t("title.slogan.remainder")}</h1>
                     </div>

@@ -1,0 +1,141 @@
+{
+  "Landing": {
+    "links": {
+      "solution": "解决方案",
+      "login": "登录",
+      "about": "关于我们"
+    },
+    "title": {
+      "slogan": {
+        "line1": "从零开始",
+        "line2": "通古文。",
+        "emphasis": "カツヨウ",
+        "remainder": "助你"
+      },
+      "description": "轻松学习动词、助动词、形容词、和形容动词的变形！\n一站式日语变形学习解决方案，提升您日常对话及文学欣赏的能力。",
+      "scroll": "滚动鼠标"
+    },
+    "solution": {
+      "title": "解决方案",
+      "aside": "Our Solution",
+      "subtitle": "为日语学习者和学生提供简单、高效、真实的活用练习",
+      "verb": {
+        "description": "从标准日本语动词着手",
+        "emphasis": "五段・一段活用"
+      },
+      "adjective": {
+        "description": "轻松学习\n形容词活用",
+        "emphasis": "イ・ナ形容詞"
+      },
+      "adjectivalNoun": {
+        "description": "熟练掌握\n形容动词活用",
+        "emphasis": "形容動詞"
+      },
+      "classic": {
+        "description": "博览群书、贯通古今",
+        "emphasis": "古文的活用"
+      },
+      "auxiliary": {
+        "description": "形容词品词转换及助动词变形技巧"
+      }
+    },
+    "join": {
+      "slogan": {
+        "line1": "准备好掌握日语活用了吗？",
+        "emphasis": "无需彷徨，",
+        "remainder": "抓紧开始吧！"
+      },
+      "button": "加入カツヨウ"
+    }
+  },
+  "Login": {
+    "title": "登录",
+    "caption": "欢迎回来",
+    "form": {
+      "email": {
+        "name": "电子邮箱",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "密码",
+        "placeholder": "秘密"
+      },
+      "button": "继续"
+    },
+    "sso": {
+      "name": "使用其他账号登录",
+      "google": "使用Google继续",
+      "github": "使用GitHub继续"
+    },
+    "signup": {
+      "name": "没有カツヨウ账号？",
+      "link": "注册"
+    }
+  },
+  "Signup": {
+    "title": "注册",
+    "caption": "创建账号",
+    "form": {
+      "username": {
+        "name": "用户名",
+        "placeholder": "欢迎使用カツヨウ"
+      },
+      "email": {
+        "name": "电子邮箱",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "密码",
+        "placeholder": "6-20字符"
+      },
+      "verification": {
+        "name": "确认密码",
+        "placeholder": "重复输入密码"
+      },
+      "button": "继续"
+    },
+    "sso": {
+      "name": "使用其他账号登录",
+      "google": "使用Google继续",
+      "github": "使用GitHub继续"
+    },
+    "login": {
+      "name": "已经拥有カツヨウ帐号？",
+      "link": "登录"
+    },
+    "callback": "我们向您的邮箱发送了一封邮件。请点击邮件里的链接完成账号注册。"
+  },
+  "Practice": {
+    "activity": {
+      "allModern": "动词和助动词的活用及接续",
+      "teForm": "动词テ形活用",
+      "taForm": "动词タ形活用",
+      "naiForm": "动词ナイ形活用",
+      "intentionForm": "动词意志型活用"
+    },
+    "accuracy": "正确率",
+    "hint": "提示",
+    "skip": "跳过",
+    "check": "检查",
+    "correct": "正确！",
+    "placeholder": "在此输入",
+    "incorrect": {
+      "single": "再仔细想一想！<break></break>答案是「{answer}」",
+      "double": "再仔细想一想！<break></break>答案是「{option1}」或「{option2}」",
+      "multiple": "再仔细想一想！<break></break>答案包括「{option1}」等等"
+    },
+    "settings": {
+      "title": "カツヨウ设置",
+      "maxLength": "最大生成元素数量",
+      "allowedVerbs": "动词",
+      "allowedAuxiliary": "助动词",
+      "allowedParticle": "助词",
+      "allowedSubsidiary": "补助动词",
+      "useNoun": "名词"
+    }
+  },
+  "Navigation": {
+    "settings": "更改账号设置",
+    "logout": "退出登录"
+  }
+}

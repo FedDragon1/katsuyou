@@ -1,33 +1,34 @@
 {
   "Landing": {
     "links": {
-      "solution": "ソリューション",
-      "login": "ログイン",
-      "about": "お問い合わせ"
+      "solution": "Solution",
+      "login": "Sign In",
+      "about": "About"
     },
     "title": {
       "slogan": {
-        "line1": "ゼロから",
-        "line2": "古文へ。",
+        "line1": "From zero",
+        "line2": "to hero.",
         "emphasis": "カツヨウ",
-        "remainder": "で"
-      }
+        "remainder": "Helps"
+      },
+      "description": "Have fun learning how to conjugate verbs, auxiliary verbs, adjectives, and adjectival verbs!\nThis is an all-in-one solution that will dramatically improve your Japanese language skills, from everyday conversation to literary appreciation.",
+      "scroll": "Scroll"
     },
-    "description": "動詞、助動詞、形容詞、形容動詞の活用を楽しくて学ぼう！\n日常会話から文学作品鑑賞まで、日本語力を飛躍的に高めるオールインワンソリューションです。",
-    "scroll": "スクロール",
     "solution": {
-      "title": "ソリューション",
-      "subtitle": "生徒と日本語学習者のために、分かりやすい活用を。",
+      "title": "Solution",
+      "aside": "ソリューション",
+      "subtitle": "Easy to use for students and Japanese language learners.",
       "verb": {
-        "description": "現代動詞の活用形から始める学び",
+        "description": "Start learning from modern verb conjugations",
         "emphasis": "五段・一段活用"
       },
       "adjective": {
-        "description": "現代形容詞、\n難しくないで",
+        "description": "Modern adjectives,\nnot difficult",
         "emphasis": "イ・ナ形容詞"
       },
       "adjectivalNoun": {
-        "description": "得意に活用して、\n簡単に学ぶ",
+        "description": "Use it to your advantage,\n learn easily",
         "emphasis": "形容動詞"
       },
       "classic": {
@@ -35,16 +36,106 @@
         "emphasis": "古文の活用"
       },
       "auxiliary": {
-        "description": "形容詞の品詞転換と助動詞への接続のポイント"
+        "description": "Tips on converting adjectives and auxiliary verbs"
       }
     },
     "join": {
       "slogan": {
-        "line1": "活用、一緒に極めよう！",
-        "emphasis": "待たずに、",
-        "remainder": "さっさと始めよう！"
+        "line1": "Let's master Japanese conjugation!",
+        "emphasis": "Don't wait, ",
+        "remainder": "start now!"
       },
       "button": "JOIN カツヨウ"
     }
+  },
+  "Login": {
+    "title": "Sign In",
+    "caption": "Welcome Back",
+    "form": {
+      "email": {
+        "name": "Email",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "Password",
+        "placeholder": "Secret"
+      },
+      "button": "Continue"
+    },
+    "sso": {
+      "name": "Continue with OAuth",
+      "google": "Sign in with Google",
+      "github": "Sign in with GitHub"
+    },
+    "signup": {
+      "name": "Do not have an account?",
+      "link": "Sign Up Here"
+    }
+  },
+  "Signup": {
+    "title": "Sign Up",
+    "caption": "Create an Account",
+    "form": {
+      "username": {
+        "name": "Username",
+        "placeholder": "Welcome to カツヨウ"
+      },
+      "email": {
+        "name": "Email",
+        "placeholder": "aabbcc@eee.com"
+      },
+      "password": {
+        "name": "Password",
+        "placeholder": "6-20 Characters"
+      },
+      "verification": {
+        "name": "Verify Password",
+        "placeholder": "Please Enter the Password Again"
+      },
+      "button": "Continue"
+    },
+    "sso": {
+      "name": "Continue with OAuth",
+      "google": "Sign in with Google",
+      "github": "Sign in with GitHub"
+    },
+    "login": {
+      "name": "Already have an account?",
+      "link": "Sign In"
+    },
+    "callback": "An email has been sent. Please click the link in the email to complete your account registration."
+  },
+  "Practice": {
+    "activity": {
+      "allModern": "All Verbs and Auxiliary Verbs",
+      "teForm": "Verb テ-Form",
+      "taForm": "Verb タ-Form",
+      "naiForm": "Verb ナイ-Form",
+      "intentionForm": "Verb Volitional Form 「う・よう」"
+    },
+    "accuracy": "Accuracy",
+    "hint": "Hint",
+    "skip": "Skip",
+    "check": "Check",
+    "correct": "Correct!",
+    "placeholder": "Please Enter in Here",
+    "incorrect": {
+      "single": "Try again!<break></break>The correct answer is「{answer}」",
+      "double": "Try again!<break></break>The correct answers are「{option1}」and「{option2}」",
+      "multiple": "Try again!<break></break>The correct answers include「{option1}」"
+    },
+    "settings": {
+      "title": "カツヨウ Settings",
+      "maxLength": "Max Sequence Length",
+      "allowedVerbs": "Allowed Verbs",
+      "allowedAuxiliary": "Allowed Auxiliary Verbs",
+      "allowedParticle": "Allowed Particles",
+      "allowedSubsidiary": "Allowed Subsidiary Verbs",
+      "useNoun": "Allowed Nouns"
+    }
+  },
+  "Navigation": {
+    "settings": "Account Settings",
+    "logout": "Sign Out"
   }
 }

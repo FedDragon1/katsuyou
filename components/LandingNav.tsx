@@ -3,8 +3,8 @@
 import { FC, MouseEventHandler, useRef } from "react";
 import { useTranslations } from "next-intl";
 import KatsuyouLink from "@/components/Link";
-import { usePathname } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
+import { setLocale } from "@/app/actions";
 interface LanguageButtonProps {
     display: string
     onClick: MouseEventHandler
@@ -28,7 +28,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
     const t = useTranslations("Landing")
 
     const linkSizes = "arrow-link text-[2rem] md:text-[3rem] 2xl:text-[4rem] m-0 ml-10"
-
+    const router = useRouter();
     const checkbox = useRef<HTMLInputElement>(null)
 
     const closeNav = () => {
@@ -37,13 +37,15 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
         }
     }
 
-    const changeLanguage = (locale: string) => {
-        console.log(locale)
+    const changeLanguage = async (locale: string) => {
+        await setLocale(locale)
         closeNav()
+        router.refresh()
     }
 
     const pathname = usePathname()
     const homeRedirect = pathname === "/" ? "#main" : "/"
+    const solutionRedirect = pathname === "/" ? "#solution" : "/#solution"
 
     return (
         <nav
@@ -53,7 +55,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
                               redirect={homeRedirect}
                               display={"Katsuyō"}></KatsuyouLink>
                 {hideOptions ? <></> : <div className={"lg:flex flex-row gap-10 hidden"}>
-                    <KatsuyouLink className={"fancy-link"} display={t("links.solution")} redirect={"#solution"}/>
+                    <KatsuyouLink className={"fancy-link"} display={t("links.solution")} redirect={solutionRedirect}/>
                     <KatsuyouLink className={"fancy-link"} display={t("links.login")} redirect={"/login"}/>
                     <KatsuyouLink className={"fancy-link"} display={t("links.about")} redirect={"/about"}/>
                 </div>}
@@ -96,7 +98,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={"Home"}
                                               redirect={homeRedirect}/>
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={t("links.solution")}
-                                              redirect={"#solution"}/>
+                                              redirect={solutionRedirect}/>
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={t("links.login")}
                                               redirect={"/login"}/>
                                 <KatsuyouLink className={linkSizes} onClick={closeNav} display={t("links.about")}

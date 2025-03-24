@@ -170,14 +170,23 @@ interface SettingTokenOption {
     trigger: any[]
 }
 
-interface SignUpRequest {
+interface User {
     uuid: string
-    username: string
+    name: string
     email: string
     locale: string
     platform: "email" | "google" | "github"
+    created_at?: string
+    avatar?: string
 }
 
-interface VerifyRequest {
-    uuid: string
+interface SignupRequest {
+    data: User
+    checkExistence?: boolean
+}
+
+interface ResponseOf<T> {
+    data?: T
+    errorMessage?: string
+    success: boolean
 }

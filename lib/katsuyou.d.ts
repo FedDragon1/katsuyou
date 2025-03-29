@@ -29,19 +29,6 @@ type AdjectiveDict = Dict<AdjectiveTypes>
 type AdjectiveTerm = Term<AdjectiveTypes>
 type ConjugatedAdjective = ConjugatedTerm<AdjectiveConjugations>
 
-interface Activity {
-    identifier: VerbTypes | AdjectiveTypes,
-    display: string,
-    description: string,
-    examples: string[],
-    archaic: boolean
-}
-
-interface Practice {
-    category: string,
-    activities: Activity[],
-}
-
 type Hiragana = "あ" | "い" | "う" | "え" | "お" | "か" | "き" | "く" | "け" | "こ" | "さ" | "し" | "す" | "せ" | "そ"
     | "た" | "ち" | "つ" | "て" | "と" | "な" | "に" | "ぬ" | "ね" | "の" | "ま" | "み" | "む" | "め" | "も" | "や"
     | "ゆ" | "よ" | "ら" | "り" | "る" | "れ" | "ろ" | "わ" | "ゐ" | "ゑ" | "を" | "ん" | "が" | "ぎ" | "ぐ"
@@ -144,6 +131,7 @@ interface KatsuyouModernAdjectivalNoun {
 // UI
 
 interface SettingDesc {
+    type: ActivityType
     predicate: SettingPredicateSection
     token: SettingTokenSection[]
 }
@@ -174,14 +162,54 @@ interface SettingTokenOption {
 
 // MODELS
 
+type SupportedLocale = "ja" | "zh" | "en"
+type ActivityType =
+    // GRAND COLLECTION
+    "modern_verb"           // all modern verbs
+    | "classic_verb"        // all classic verbs
+    | "modern_adjective"    // all modern adjectives
+    | "classic_adjective"   // all classic adjectives
+    // BY FIRST TOKEN TYPE
+    | "modern_godan"        // 五段活用
+    | "modern_ichidan"      // 上下一段活用
+    | "modern_henkaku"      // サ行カ行変格活用
+    | "classic_yodan"       // 四段活用
+    | "classic_nidan"       // 上下二段活用
+    | "classic_ichidan"     // 上下一段活用
+    | "classic_henkaku"     // カサナラ行変格活用
+    | "modern_i"            // 形容詞
+    | "modern_na"           // 形容動詞
+    | "classic_ku"          // ク活用
+    | "classic_shiku"       // シク活用
+    | "classic_nari"        // ナリ活用
+    | "classic_tari"        // タリ活用
+    // TODO: 本活用と補助活用 https://www.try-it.jp/chapters-14468/lessons-14592/point-3/
+    // BY SPECIFIC CONJUGATION
+    | "modern_te"           // テ形
+    | "modern_ta"           // タ形
+    | "modern_ba"           // バ形
+    | "modern_u"            // う・よう形
+    | "modern_nai"          // ない形
+    // TODO: maybe more
+
 interface User {
     uuid: string
     name: string
     email: string
-    locale: string
+    locale: SupportedLocale
     platform: "email" | "google" | "github"
     created_at?: string
     avatar?: string
+}
+
+interface PracticeHistory {
+    uuid: string
+    user_id: string
+    type: ActivityType
+    time: string
+    duration: number
+    n_correct: number
+    n_attempted: number
 }
 
 // CONTROLLER PARAMS
@@ -206,4 +234,16 @@ interface UserPutRequest {
 
 interface UserDeleteRequest {
     data: PartialWithUuid<User>
+}
+
+interface HistoryPostRequest {
+    data: PracticeHistory
+}
+
+interface HistoryPutRequest {
+    data: PartialWithUuid<PracticeHistory>
+}
+
+interface HistoryDeleteRequest {
+    data: PartialWithUuid<PracticeHistory>
 }

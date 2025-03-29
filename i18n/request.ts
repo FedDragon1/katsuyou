@@ -1,9 +1,7 @@
 import { getRequestConfig } from "next-intl/server";
 import { headers } from "next/headers";
 
-type SupportedLocales = "en" | "zh" | "ja"
-
-const SUPPORTED_LOCALES: SupportedLocales[] = ["en", "ja", "zh"]
+const SUPPORTED_LOCALES: SupportedLocale[] = ["en", "ja", "zh"]
 
 
 export default getRequestConfig(async () => {
@@ -22,15 +20,15 @@ async function getTranslation(locale: string) {
     }
 }
 
-function sanitizeLocale(rawLocale?: string | null): SupportedLocales | null {
+function sanitizeLocale(rawLocale?: string | null): SupportedLocale | null {
     if (!rawLocale) {
         return null
     }
 
     const baseLocale = rawLocale.toLowerCase().split(/[-_/]/)[0].trim()
 
-    if (baseLocale && SUPPORTED_LOCALES.includes(baseLocale as SupportedLocales)) {
-        return baseLocale as SupportedLocales
+    if (baseLocale && SUPPORTED_LOCALES.includes(baseLocale as SupportedLocale)) {
+        return baseLocale as SupportedLocale
     }
 
     return null

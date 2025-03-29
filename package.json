@@ -17,7 +17,7 @@
     "core-js": "^3.39.0",
     "gsap": "^3.12.7",
     "lodash": "^4.17.21",
-    "next": "15.1.2",
+    "next": "^15.2.4",
     "next-intl": "^3.26.3",
     "postprocessing": "^6.36.7",
     "raw-loader": "^4.0.2",
@@ -25,6 +25,7 @@
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "tailwind-merge": "^3.0.1",
     "three": "^0.173.0",
+    "uuid": "^11.1.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -33,6 +34,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.173.0",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "postcss": "^8.5.1",

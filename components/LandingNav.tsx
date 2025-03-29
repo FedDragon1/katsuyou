@@ -37,7 +37,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
         }
     }
 
-    const changeLanguage = async (locale: string) => {
+    const changeLanguage = async (locale: SupportedLocale) => {
         await setLocaleCookie(locale)
         closeNav()
         router.refresh()

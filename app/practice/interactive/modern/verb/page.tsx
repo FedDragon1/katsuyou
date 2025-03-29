@@ -8,10 +8,11 @@ import { KatsuyouConstants } from "@/lib/katsuyou_v2";
 import { getRandomVerb, getVerbKatsuyouType } from "@/lib/dictionary_v2";
 import KatsuyouPractice from "@/components/KatsuyouPractice";
 
-const KatsuyouModern: FC = () => {
+const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
     const modernSettingDesc: SettingDesc = {
+        type: "modern_verb",
         predicate: {
             name: t("settings.allowedVerbs"),
             poller: (allowed) => getRandomVerb((v) => v.modern && allowed[v.type]),
@@ -112,4 +113,4 @@ const KatsuyouModern: FC = () => {
     )
 }
 
-export default KatsuyouModern
+export default KatsuyouModernVerb

@@ -11,7 +11,7 @@ import { cookies } from "next/headers";
  *
  * @param locale
  */
-export async function setLocaleCookie(locale: string) {
+export async function setLocaleCookie(locale: SupportedLocale) {
     const cookieStore = await cookies()
     cookieStore.set("next-locale", locale, {
         path: "/",

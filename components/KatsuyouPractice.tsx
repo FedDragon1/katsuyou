@@ -8,6 +8,9 @@ import Flipper from "@/components/Flipper";
 import Ruby from "@/components/Ruby";
 import DashboardNav from "@/components/DashboardNav";
 import KatsuyouInterface from "@/components/KatsuyouInterface";
+import { createClient } from "@/lib/supabaseClient";
+import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/navigation";
 
 interface KatsuyouPracticeProps {
     settings: SettingDesc
@@ -15,6 +18,7 @@ interface KatsuyouPracticeProps {
 
 const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
     const t = useTranslations("Practice")
+    const router = useRouter();
 
     // interface
     const [userAnswer, setUserAnswer] = useState("")
@@ -28,6 +32,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
 
     // katsuyou data
     const [katsuyou,] = useState(new Katsuyou())
+    const [uuid] = useState(uuidv4())
     const [startTime,] = useState(Date.now())
     const [hintIndex, setHintIndex] = useState(0)
     const [maxLength, setMaxLength] = useState(Infinity)
@@ -45,7 +50,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
         <OptionMenu title={settings.predicate.name} key={settings.predicate.name}>
             {settings.predicate.children.map(op =>
                 <KatsuyouCheckBox display={op.display} value={allowedTerms[op.key]} key={op.key}
-                                  onChange={(e) => updateEntry(allowedTerms, setAllowedTerms, op.key, e.target.checked, true)} />)}
+                                  onChange={(e) => updateEntry(allowedTerms, setAllowedTerms, op.key, e.target.checked, true)}/>)}
         </OptionMenu>
         {settings.token.map(section => (
             <OptionMenu title={section.name} key={section.name}
@@ -249,6 +254,43 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
         katsuyou.maxLength = maxLength
     }, [maxLength, katsuyou]);
 
+    const saveProgress = () => {
+        const supabase = createClient()
+        supabase.auth.getUser().then(({ data, error }) => {
+            if (error) {
+                console.error(error)
+                return
+            }
+
+            return data.user?.id
+        }).then((id) => {
+            const request: HistoryPostRequest = {
+                data: {
+                    uuid,
+                    user_id: id!,
+                    type: settings.type,
+                    time: new Date(startTime).toISOString(),
+                    duration: Math.round((Date.now() - startTime) / 1000),
+                    n_correct: correct,
+                    n_attempted: trials
+                }
+            }
+            return fetch("/api/history", {
+                body: JSON.stringify(request),
+                method: "POST"
+            })
+        }).then((resp) => {
+            return resp.json()
+        }).then((resp: ResponseOf<PracticeHistory>) => {
+            if (resp.success) {
+                router.push("/dashboard")
+                return
+            }
+
+            console.error(resp.errorMessage)
+        })
+    }
+
     return (
         <>
             <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
@@ -256,7 +298,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
                 <main className={"w-screen flex justify-center items-center flex-grow"}>
                     <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
                                        correct={correct} trials={trials} verbType={termType} value={userAnswer}
-                                       menu={menu}
+                                       menu={menu} onSave={saveProgress}
                                        status={status} message={message} onHint={hint} onSkip={skip} time={timeDisplay}>
                         {children}
                     </KatsuyouInterface>

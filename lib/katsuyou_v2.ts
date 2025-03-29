@@ -125,7 +125,6 @@ class KatsuyouToken {
     }
 
     dispatch(showModern: boolean, showClassic: boolean, allowedTokens: KatsuyouToken[]): KatsuyouDispatchInfo | undefined {
-        debugger
         const candidates = this.dispatchables.filter(
             (candidate) =>
                 ((showModern && showClassic) || candidate.modern === showModern)

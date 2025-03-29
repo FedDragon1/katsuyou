@@ -132,6 +132,14 @@
       "allowedParticle": "Allowed Particles",
       "allowedSubsidiary": "Allowed Subsidiary Verbs",
       "useNoun": "Allowed Nouns"
+    },
+    "dialogue": {
+      "title": "Saving Progress",
+      "question": "You are about to save the following:",
+      "confirm": "Save",
+      "cancel": "Cancel",
+      "duration": "Duration",
+      "attempts": "Attempts"
     }
   },
   "Navigation": {

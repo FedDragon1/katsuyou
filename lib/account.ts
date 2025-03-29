@@ -50,7 +50,8 @@ export function loginWithGoogle() {
     supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-            redirectTo: `https://katsuyou.xyz/login/callback`
+            // redirectTo: `https://katsuyou.xyz/login/callback`
+            redirectTo: `http://localhost:3000/login/callback`
         }
     }).then()
 }

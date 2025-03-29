@@ -11,7 +11,7 @@ const Callback: FC = () => {
     const router = useRouter()
 
     function signUpAndRedirect(user: User, locale: string) {
-        const request: SignupRequest = {
+        const request: UserPostRequest = {
             data: {
                 uuid: user.id,
                 name: user.user_metadata.name as string,
@@ -21,15 +21,17 @@ const Callback: FC = () => {
             },
             checkExistence: true
         }
-        fetch("/api/auth/signup", {
+        fetch("/api/user", {
             method: "POST",
             body: JSON.stringify(request),
             headers: { "Content-Type": "application/json" }
         }).then((user) => {
             return user.json()
-        }).then((user) => {
-            console.log(user)
-            router.push("/dashboard")
+        }).then(() => {
+            // use router.push will not trigger i18n request
+            // sometimes the nav bar stays in the language of landing page
+            // force reload to refresh locale
+            window.location.href = "/dashboard"
         })
     }
 

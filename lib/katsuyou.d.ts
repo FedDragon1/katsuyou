@@ -141,6 +141,8 @@ interface KatsuyouModernAdjectivalNoun {
     ruby?: Record<number, string>
 }
 
+// UI
+
 interface SettingDesc {
     predicate: SettingPredicateSection
     token: SettingTokenSection[]
@@ -170,6 +172,8 @@ interface SettingTokenOption {
     trigger: any[]
 }
 
+// MODELS
+
 interface User {
     uuid: string
     name: string
@@ -180,13 +184,26 @@ interface User {
     avatar?: string
 }
 
-interface SignupRequest {
-    data: User
-    checkExistence?: boolean
-}
+// CONTROLLER PARAMS
+
+type PartialWithUuid<T> = Partial<T> & Require<Pick<T, "uuid">>
 
 interface ResponseOf<T> {
     data?: T
     errorMessage?: string
     success: boolean
+}
+
+interface UserPostRequest {
+    data: User
+    checkExistence?: boolean
+}
+
+interface UserPutRequest {
+    data: PartialWithUuid<User>
+    updateLocale?: boolean
+}
+
+interface UserDeleteRequest {
+    data: PartialWithUuid<User>
 }

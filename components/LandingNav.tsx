@@ -4,7 +4,7 @@ import { FC, MouseEventHandler, useRef } from "react";
 import { useTranslations } from "next-intl";
 import KatsuyouLink from "@/components/Link";
 import { usePathname, useRouter } from "next/navigation";
-import { setLocale } from "@/app/actions";
+import { setLocaleCookie } from "@/app/actions";
 interface LanguageButtonProps {
     display: string
     onClick: MouseEventHandler
@@ -38,7 +38,7 @@ const LandingNav: FC<LandingNavProps> = ({ hideOptions, sticky }) => {
     }
 
     const changeLanguage = async (locale: string) => {
-        await setLocale(locale)
+        await setLocaleCookie(locale)
         closeNav()
         router.refresh()
     }

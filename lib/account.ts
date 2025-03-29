@@ -72,7 +72,7 @@ export function signUp(username: string, email: string, password: string, router
             emailRedirectTo: `https://katsuyou.xyz/signup/callback/verify`
         }
     }).then(async (res) => {
-        const req: SignupRequest = {
+        const req: UserPostRequest = {
             data: {
                 name: username,
                 email,
@@ -82,7 +82,7 @@ export function signUp(username: string, email: string, password: string, router
             },
             checkExistence: false
         }
-        return fetch("/api/auth/signup", {
+        return fetch("/api/user", {
             method: "POST",
             body: JSON.stringify(req),
             headers: { "Content-Type": "application/json" }

@@ -149,6 +149,14 @@
       "allowedParticle": "助詞種類",
       "allowedSubsidiary": "補助動詞",
       "useNoun": "使用名詞"
+    },
+    "dialogue": {
+      "title": "進捗を保存",
+      "question": "以下のデータを保存します：",
+      "confirm": "保存",
+      "cancel": "キャンセル",
+      "duration": "時間",
+      "attempts": "試行回数"
     }
   },
   "Navigation": {

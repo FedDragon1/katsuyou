@@ -107,13 +107,6 @@
   },
   "Practice": {
     "activity": {
-      "allModern": "动词和助动词的活用及接续",
-      "teForm": "动词テ形活用",
-      "taForm": "动词タ形活用",
-      "naiForm": "动词ナイ形活用",
-      "intentionForm": "动词意志型活用"
-    },
-    "activity": {
       "modern_verb": "动词和助动词的活用及接续",
       "classic_verb": "动词和助动词的活用及接续（古文）",
       "modern_adjective": "形容词和形容动词的活用及接续",
@@ -156,6 +149,14 @@
       "allowedParticle": "助词",
       "allowedSubsidiary": "补助动词",
       "useNoun": "名词"
+    },
+    "dialogue": {
+      "title": "保存进度",
+      "question": "即将保存以下数据：",
+      "confirm": "保存",
+      "cancel": "取消",
+      "duration": "时长",
+      "attempts": "尝试次数"
     }
   },
   "Navigation": {

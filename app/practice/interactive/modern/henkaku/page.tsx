@@ -11,7 +11,7 @@ import { getModernVerbTokenDesc } from "@/lib/tokens";
 const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
-    const modernSettingDesc: SettingDesc = {
+    const settings: SettingDesc = {
         type: "modern_henkaku",
         predicate: {
             name: t("settings.allowedVerbs"),
@@ -26,7 +26,7 @@ const KatsuyouModernVerb: FC = () => {
     }
 
     return (
-        <KatsuyouPractice settings={modernSettingDesc}/>
+        <KatsuyouPractice settings={settings}/>
     )
 }
 

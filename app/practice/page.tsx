@@ -1,5 +1,3 @@
-"use client"
-
 import { FC } from "react";
 import DashboardNav from "@/components/DashboardNav";
 import Link from "next/link";

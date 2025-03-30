@@ -1,3 +1,5 @@
+"use client"
+
 import { Dispatch, FC, JSX, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Katsuyou, KatsuyouConstants } from "@/lib/katsuyou_v2";
@@ -6,11 +8,11 @@ import OptionMenu from "@/components/OptionMenu";
 import KatsuyouCheckBox from "@/components/CheckBox";
 import Flipper from "@/components/Flipper";
 import Ruby from "@/components/Ruby";
-import DashboardNav from "@/components/DashboardNav";
 import KatsuyouInterface from "@/components/KatsuyouInterface";
 import { createClient } from "@/lib/supabaseClient";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
+import DashboardNav from "@/components/DashboardNav";
 
 interface KatsuyouPracticeProps {
     settings: SettingDesc
@@ -293,19 +295,17 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
     }
 
     return (
-        <>
-            <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
-                <DashboardNav subtitle={t(`activity.${settings.type}`)}/>
-                <main className={"w-screen flex justify-center items-center flex-grow"}>
-                    <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
-                                       correct={correct} trials={trials} verbType={termType} value={userAnswer}
-                                       menu={menu} onSave={saveProgress}
-                                       status={status} message={message} onHint={hint} onSkip={skip} time={timeDisplay}>
-                        {children}
-                    </KatsuyouInterface>
-                </main>
-            </div>
-        </>
+        <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
+            <DashboardNav subtitle={t(`activity.${settings.type}`)}/>
+            <main className={"w-screen flex justify-center items-center flex-grow"}>
+                <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
+                                   correct={correct} trials={trials} verbType={termType} value={userAnswer}
+                                   menu={menu} onSave={saveProgress}
+                                   status={status} message={message} onHint={hint} onSkip={skip} time={timeDisplay}>
+                    {children}
+                </KatsuyouInterface>
+            </main>
+        </div>
     )
 }
 

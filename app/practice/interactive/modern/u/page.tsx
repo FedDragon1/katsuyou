@@ -3,15 +3,15 @@
 "use client"
 
 import { FC } from "react";
-import { useTranslations } from "next-intl";
 import { getRandomVerb, getVerbKatsuyouType } from "@/lib/dictionary_v2";
 import KatsuyouPractice from "@/components/KatsuyouPractice";
 import { KatsuyouConstants } from "@/lib/katsuyou_v2";
+import { useTranslations } from "next-intl";
 
 const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
-    const modernSettingDesc: SettingDesc = {
+    const settings: SettingDesc = {
         type: "modern_u",
         predicate: {
             name: t("settings.allowedVerbs"),
@@ -39,7 +39,7 @@ const KatsuyouModernVerb: FC = () => {
     }
 
     return (
-        <KatsuyouPractice settings={modernSettingDesc}/>
+        <KatsuyouPractice settings={settings}/>
     )
 }
 

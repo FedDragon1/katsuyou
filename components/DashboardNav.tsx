@@ -1,19 +1,27 @@
-import { FC, ReactNode } from "react";
-import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
+"use client"
+
+import { FC, ReactNode, useEffect, useState } from "react";
 import KatsuyouLink from "@/components/Link";
 import NavLink from "@/components/NavLink";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import Cookies from 'js-cookie';
 
 interface DashboardNavProps {
     subtitle?: ReactNode
 }
 
-const DashboardNav: FC<DashboardNavProps> = async ({ subtitle }) => {
-    const t = await getTranslations("Navigation")
-    const cookieState = await cookies()
+const DashboardNav: FC<DashboardNavProps> = ({ subtitle }) => {
+    const t = useTranslations("Navigation")
+    const [user, setUser] = useState({
+        name: "カツヨウ User",
+        email: "xxxxxx@xxx.xxx",
+        avatar: "/default_pfp.jpg"
+    })
 
-    const user = JSON.parse(cookieState.get("resolved-user")!.value)
+    useEffect(() => {
+        setUser(JSON.parse(Cookies.get("resolved-user")!))
+    }, []);
 
     return (
         <nav className={"sticky flex-shrink-0 flex z-50 sm:px-20 px-10 sm:h-24 h-20 items-center top-0 justify-between w-full border-b border-zinc-800 before:backdrop-blur-lg before:w-full before:h-full before:absolute before:-z-10"}>

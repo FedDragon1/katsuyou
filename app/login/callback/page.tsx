@@ -10,7 +10,7 @@ import { User } from "@supabase/auth-js";
 const Callback: FC = () => {
     const router = useRouter()
 
-    function signUpAndRedirect(user: User, locale: string) {
+    function signUpAndRedirect(user: User, locale: SupportedLocale) {
         const request: UserPostRequest = {
             data: {
                 uuid: user.id,
@@ -37,7 +37,7 @@ const Callback: FC = () => {
 
     useEffect(() => {
         const supabase = createClient();
-        const locale = document.documentElement.lang
+        const locale = document.documentElement.lang as SupportedLocale
 
         supabase.auth.getUser().then((userResp) => {
             if (!userResp.error) {

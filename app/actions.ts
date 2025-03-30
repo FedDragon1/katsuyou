@@ -18,3 +18,8 @@ export async function setLocaleCookie(locale: SupportedLocale) {
         maxAge: 60 * 60 * 24 * 365
     })
 }
+
+export async function clearUserCookie() {
+    const cookieStore = await cookies()
+    cookieStore.delete("resolved-user")
+}

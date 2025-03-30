@@ -1,5 +1,6 @@
 import { FC } from "react";
 import DashboardNav from "@/components/DashboardNav";
+import Link from "next/link";
 
 const Dashboard: FC = () => {
     return (
@@ -7,6 +8,7 @@ const Dashboard: FC = () => {
             <DashboardNav />
             <div>
                 <h1>Dashboard</h1>
+                <Link href={"/practice"} className={"underline"}>Practices</Link>
             </div>
         </>
 

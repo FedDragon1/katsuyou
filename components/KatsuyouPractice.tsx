@@ -57,7 +57,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
                         titleButton={section.reverse && <Flipper
                             onClick={() => reverse(allowedTokens, setAllowedTokens, section.children.map(op => op.key))}/>}>
                 {section.children.map(op => (
-                    <KatsuyouCheckBox display={op.display} value={allowedTokens[op.key]} key={op.key}
+                    <KatsuyouCheckBox display={op.display} value={allowedTokens[op.key]} key={op.key} disabled={op.disabled}
                                       onChange={(e) => updateEntry(allowedTokens, setAllowedTokens, op.key, e.target.checked)}/>
                 ))}
             </OptionMenu>
@@ -231,7 +231,6 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
     }
 
     useEffect(() => {
-        pollTerm()
         const handle = setInterval(tick, 1000)
         return () => clearInterval(handle)
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -249,6 +248,8 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
             tok.push(...triggers)
         }
         katsuyou.allowedTokens = tok
+
+        pollTerm()
     }, [allowedTokens, katsuyou, settings]);
     useEffect(() => {
         katsuyou.maxLength = maxLength
@@ -294,7 +295,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
     return (
         <>
             <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
-                <DashboardNav subtitle={t("activity.allModern")}/>
+                <DashboardNav subtitle={t(`activity.${settings.type}`)}/>
                 <main className={"w-screen flex justify-center items-center flex-grow"}>
                     <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
                                        correct={correct} trials={trials} verbType={termType} value={userAnswer}

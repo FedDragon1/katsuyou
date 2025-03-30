@@ -12,16 +12,13 @@ const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
     const modernSettingDesc: SettingDesc = {
-        type: "modern_verb",
+        type: "modern_ichidan",
         predicate: {
             name: t("settings.allowedVerbs"),
             poller: (allowed) => getRandomVerb((v) => v.modern && allowed[v.type]),
             describeType: (term: KatsuyouVerb) => getVerbKatsuyouType(term.row, term.type),
             children: [
-                { key: "pentagrade", display: "五段活用「洗う・書く」" },
                 { key: "monograde", display: "一段活用「寝る・起きる」" },
-                { key: "sagyou", display: "サ行変格活用「する」" },
-                { key: "kagyou", display: "カ行変格活用「来る」" },
             ]
         },
         token: getModernVerbTokenDesc(t)

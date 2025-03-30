@@ -6,13 +6,13 @@ import { FC } from "react";
 import { useTranslations } from "next-intl";
 import { getRandomVerb, getVerbKatsuyouType } from "@/lib/dictionary_v2";
 import KatsuyouPractice from "@/components/KatsuyouPractice";
-import { getModernVerbTokenDesc } from "@/lib/tokens";
+import { KatsuyouConstants } from "@/lib/katsuyou_v2";
 
 const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
     const modernSettingDesc: SettingDesc = {
-        type: "modern_verb",
+        type: "modern_nai",
         predicate: {
             name: t("settings.allowedVerbs"),
             poller: (allowed) => getRandomVerb((v) => v.modern && allowed[v.type]),
@@ -24,7 +24,18 @@ const KatsuyouModernVerb: FC = () => {
                 { key: "kagyou", display: "カ行変格活用「来る」" },
             ]
         },
-        token: getModernVerbTokenDesc(t)
+        token: [
+            {
+                name: t("settings.allowedAuxiliary"),
+                reverse: true,
+                children: [
+                    {
+                        key: "ない",
+                        display: "打消し「ない」",
+                        trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN]
+                    },
+                ]
+            }]
     }
 
     return (

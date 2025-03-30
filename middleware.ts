@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from '@/lib/supabaseMiddleware'
 import { createClient } from "@/lib/supabaseServer";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { User } from "@supabase/auth-js";
 
 const SESSION_UPDATE_PATHS = [
     /^\/dashboard(\/.*)?$/,
@@ -57,6 +58,33 @@ function basicResolve(request: NextRequest) {
         "ja"
 }
 
+/**
+ * Resolve the basic user appearance, with fallbacks
+ *
+ * @param user
+ * @param supabase
+ */
+async function resolveUser(user: User, supabase: SupabaseClient) {
+    // to resolve username and pfp, first see they exist in user_metadata
+    // if no, check the database
+    // if still no, use the fallback
+
+    const { data, error } = await supabase
+        .from("user")
+        .select("name, email, avatar")
+        .single()
+
+    if (error) {
+        console.error(error)
+    }
+
+    return {
+        name: data?.name ?? "カツヨウ User",
+        avatar: data?.avatar ?? user.user_metadata.avatar_url ?? "/default_pfp.jpg",
+        email: data?.email ?? user.email ?? "xxxxxx@xxx.xxx"
+    }
+}
+
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname
 
@@ -96,6 +124,12 @@ export async function middleware(request: NextRequest) {
 
     if (signedInPages) {
         newResponse.cookies.set("resolved-locale", locale)
+
+        const userCookie = request.cookies.get("resolved-user")?.value
+        if (!userCookie) {
+            const userInfo = await resolveUser(user!, supabase)
+            newResponse.cookies.set("resolved-user", JSON.stringify(userInfo))
+        }
     }
 
     return newResponse

@@ -158,6 +158,7 @@ interface SettingTokenOption {
     key: string
     display: string
     trigger: any[]
+    disabled?: boolean
 }
 
 // MODELS

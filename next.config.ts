@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'picsum.photos',
             },
+            {
+                protocol: "https",
+                hostname: "*.googleusercontent.com",
+                port: "",
+                pathname: "**",
+            },
+            {
+                protocol: "https",
+                hostname: "*.githubusercontent.com",
+                port: "",
+                pathname: "**",
+            },
         ],
     },
     webpack: (config, context) => {

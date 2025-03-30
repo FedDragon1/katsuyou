@@ -288,7 +288,7 @@ const KatsuyouInterface: FC<KatsuyouInterfaceProps> = ({
                         <div className={"flex md:flex-row-reverse justify-between gap-10 items-center"}>
                             <button
                                 className={`${lgText} hidden md:block py-4 px-6 rounded-lg flex-shrink-0 border-primary border hover:bg-primary transition`}
-                                onClick={onClick}>{t("check")}</button>
+                                onClick={() => onClick()}>{t("check")}</button>
                             {status === "empty" ? <></> : <div className={`${lgText} flex items-center gap-4`}>
                                 {icon}
                                 <span>{message}</span>

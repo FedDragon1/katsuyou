@@ -140,8 +140,6 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
             }
             const alt = words.join('')
 
-            console.log(alt, answer, ans)
-
             if ((ans === answer || answer === alt) && !fail) {
                 handleCorrect()
                 return

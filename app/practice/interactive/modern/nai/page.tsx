@@ -32,7 +32,8 @@ const KatsuyouModernVerb: FC = () => {
                     {
                         key: "ない",
                         display: "打消し「ない」",
-                        trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN]
+                        trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN],
+                        disabled: true
                     },
                 ]
             }]

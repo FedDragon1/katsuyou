@@ -32,7 +32,8 @@ const KatsuyouModernVerb: FC = () => {
                     {
                         key: "よう",
                         display: "推量・意志「う・よう」",
-                        trigger: [KatsuyouConstants.う_TOKEN, KatsuyouConstants.よう_TOKEN]
+                        trigger: [KatsuyouConstants.う_TOKEN, KatsuyouConstants.よう_TOKEN],
+                        disabled: true
                     },
                 ]
             }]

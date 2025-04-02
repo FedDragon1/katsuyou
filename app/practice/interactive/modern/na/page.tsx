@@ -12,7 +12,7 @@ const KatsuyouModernVerb: FC = () => {
     const t = useTranslations("Practice")
 
     const settings: SettingDesc = {
-        type: "modern_adjective",
+        type: "modern_na",
         predicate: {
             name: t("settings.allowedBaseTokens"),
             poller: (allowed) => getRandomAdjective((v) => allowed[v.type]),

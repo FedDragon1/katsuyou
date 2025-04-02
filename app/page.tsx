@@ -21,7 +21,8 @@ const ListItem: FC<ListProps> = ({ order, desc, emphasis }) => {
                     emphasis ?
                         <>
                             <p className={"text-xl sm:text-2xl"}>{desc}</p>
-                            <span className={"emphasis text-xl sm:text-2xl self-start before:-bottom-1 pr-2"}>{emphasis}</span>
+                            <span
+                                className={"emphasis text-xl sm:text-2xl self-start before:-bottom-1 pr-2"}>{emphasis}</span>
                         </>
                         : <>
                             <p className={"text-xl sm:text-2xl leading-9"}>{desc}</p>
@@ -42,13 +43,14 @@ export default function Home() {
     return (
         <>
             <LandingNav/>
-            <main id={"main"} className={"px-10 sm:px-20 pt-[220px] box-border w-full h-screen flex justify-between"}>
+            <main id={"main"}
+                  className={"px-10 sm:px-20 pt-[220px] sm:pt-[150px] 2xl:pt-[220px] box-border w-full h-screen flex justify-between lg:min-h-[850px]"}>
                 <div className={"h-full flex flex-col pb-4"}>
                     <div className={"flex flex-col gap-0"}>
                         <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line1")}</h1>
                         <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line2")}</h1>
                     </div>
-                    <div className={"flex mt-10 w-[350px] flex-wrap sm:w-auto"}>
+                    <div className={"flex mt-10 lg:flex-nowrap flex-wrap"}>
                         <h1 className={`${titleSize} emphasis sm:pr-8`}>{t("title.slogan.emphasis")}</h1>
                         <h1 className={`${titleSize}`}>{t("title.slogan.remainder")}</h1>
                     </div>
@@ -56,18 +58,19 @@ export default function Home() {
                         <span className={"text-lg"}>{t("title.scroll")}</span>
                     </div>
                 </div>
-                <div className={"w-[400px] xl:flex flex-col gap-8 2xl:text-2xl lg:text-xl hidden mt-20"}>
+                <div className={"w-[400px] 2xl:flex flex-col gap-8 2xl:text-2xl xl:text-xl hidden mt-20"}>
                     {desc.map((para) => (
                         <p key={para}>{para}</p>
                     ))}
                 </div>
             </main>
             <div
-                className={"flex absolute w-full h-full top-0 -z-10 justify-center items-center sm:pt-[220px] sm:pb-[100px]"}>
+                className={"flex absolute w-full h-full top-0 -z-10 justify-center items-center sm:pt-[150px] sm:pb-[100px] 2xl:pt-[220px]"}>
                 <video src={"/landing_book.mp4"} muted autoPlay loop playsInline preload="auto"
                        className={"w-full h-full sm:max-w-[70%] sm:max-h-[90%] object-cover brightness-50 saturate-50"}/>
             </div>
-            <div className={"w-full min-h-screen flex flex-col md:flex-row px-10 sm:px-20 pt-32 gap-10"} id={"solution"}>
+            <div className={"w-full min-h-screen flex flex-col md:flex-row px-10 sm:px-20 pt-32 gap-10"}
+                 id={"solution"}>
                 <div>
                     <span className={"text-emphasis leading-[3.75rem] text-nowrap"}>{t("solution.aside")}</span>
                 </div>
@@ -79,7 +82,8 @@ export default function Home() {
                     <div className={"flex-grow max-h-[150px]"}>
                         <p className={"text-xl sm:text-3xl max-w-[520px]"}>{t("solution.subtitle")}</p>
                     </div>
-                    <div className={"grid grid-cols-1 pb-20 xl:grid-cols-2 2xl:grid-cols-3 gap-x-20 gap-y-20 justify-evenly flex-grow"}>
+                    <div
+                        className={"grid grid-cols-1 pb-20 xl:grid-cols-2 2xl:grid-cols-3 gap-x-20 gap-y-20 justify-evenly flex-grow"}>
                         <ListItem order={"01"} desc={t("solution.verb.description")}
                                   emphasis={t("solution.verb.emphasis")}/>
                         <ListItem order={"02"} desc={t("solution.adjective.description")}
@@ -99,16 +103,19 @@ export default function Home() {
                     <span className={`${sloganSize}`}>{t("join.slogan.remainder")}</span>
                 </div>
                 <div className={"self-start"}>
-                    <Button className={"py-4 px-8 md:py-8 md:px-20 xl:py-10 xl:px-28"}>
-                        <Link href={"/signup"} className={"text-2xl md:text-4xl"}>{t("join.button")}</Link>
+                    <Button>
+                        <Link href={"/signup"}
+                              className={"block text-2xl md:text-4xl py-4 px-8 md:py-8 md:px-20 xl:py-10 xl:px-28"}>
+                            {t("join.button")}
+                        </Link>
                     </Button>
                 </div>
                 <div className={"absolute right-0 -z-10 max-w-[20px] md:max-w-[40%] xl:max-w-[50%] h-2/3"}>
                     <Image src={"/landing_decoration.png"} alt={"landing decoration"} width={900} height={700}
-                           className={"block h-full object-cover"}  />
+                           className={"block h-full object-cover"}/>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 }

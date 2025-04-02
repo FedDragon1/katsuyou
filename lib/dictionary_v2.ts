@@ -3670,7 +3670,7 @@ const adjectives: KatsuyouAdjective[] = [
         "baseForm": "欲しい",
         "display": "ほしい",
         "ruby": {
-            "0": ""
+            "0": "ほ"
         },
         "type": "i"
     },

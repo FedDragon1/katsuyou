@@ -3387,90 +3387,633 @@ const verbs: KatsuyouVerb[] = [
     }
 ]
 
-const adjectives: KatsuyouModernAdjective[] = [
+const adjectives: KatsuyouAdjective[] = [
     {
-        baseForm: "高い",
-        nounify: {
-            ge: false
+        "baseForm": "嬉しい",
+        "ruby": {
+            "0": "うれ"
         },
-        ruby: {
-            0: "たか"
-        }
+        "type": "i"
     },
     {
-        baseForm: "嬉しい",
-        nounify: {
-            mi: false,
-            me: false
+        "baseForm": "赤い",
+        "ruby": {
+            "0": "あか"
         },
-        ruby: {
-            0: "うれ"
-        }
+        "type": "i"
     },
     {
-        baseForm: "赤い",
-        nounify: {
-            stem: true
+        "baseForm": "悔しい",
+        "ruby": {
+            "0": "くや"
         },
-        ruby: {
-            0: "あか"
-        }
+        "type": "i"
     },
     {
-        baseForm: "悔しい",
-        nounify: {
-            mi: false,
-            me: false
+        "baseForm": "勿体ない",
+        "ruby": {
+            "0": "もっ",
+            "1": "たい"
         },
-        ruby: {
-            0: "くや"
-        }
+        "type": "i"
     },
     {
-        baseForm: "勿体ない",
-        nounify: {
-            mi: false,
-            me: false,
-            ge: false
+        "baseForm": "大きい",
+        "ruby": {
+            "0": "おお"
         },
-        ruby: {
-            0: "もっ",
-            1: "たい"
-        }
-    },
-]
-
-const adjectivalNouns: KatsuyouModernAdjectivalNoun[] = [
-    {
-        baseForm: "賑やか",
-        nounify: {
-            me: false,
-            ge: false
-        },
-        ruby: {
-            0: "にぎ"
-        }
+        "type": "i"
     },
     {
-        baseForm: "同じ",
-        nounify: {
-            stem: true
+        "baseForm": "小さい",
+        "ruby": {
+            "0": "ちい"
         },
-        ruby: {
-            0: "おな"
-        }
+        "type": "i"
     },
     {
-        baseForm: "得意",
-        nounify: {
-            me: false
+        "baseForm": "新しい",
+        "ruby": {
+            "0": "あたら"
         },
-        ruby: {
-            0: "とく",
-            1: "い"
-        }
+        "type": "i"
+    },
+    {
+        "baseForm": "古い",
+        "ruby": {
+            "0": "ふる"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "良い",
+        "display": "よい",
+        "ruby": {
+            "0": "よ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "悪い",
+        "ruby": {
+            "0": "わる"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "暑い",
+        "ruby": {
+            "0": "あつ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "寒い",
+        "ruby": {
+            "0": "さむ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "熱い",
+        "ruby": {
+            "0": "あつ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "冷たい",
+        "ruby": {
+            "0": "つめ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "難しい",
+        "ruby": {
+            "0": "むずか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "易しい",
+        "ruby": {
+            "0": "やさ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "高い",
+        "ruby": {
+            "0": "たか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "低い",
+        "ruby": {
+            "0": "ひく"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "面白い",
+        "ruby": {
+            "0": "おも",
+            "1": "しろ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "美味しい",
+        "display": "おいしい",
+        "ruby": {
+            "0": "お",
+            "1": "い"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "忙しい",
+        "ruby": {
+            "0": "いそが"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "楽しい",
+        "ruby": {
+            "0": "たの"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "白い",
+        "ruby": {
+            "0": "しろ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "黒い",
+        "ruby": {
+            "0": "くろ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "青い",
+        "ruby": {
+            "0": "あお"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "近い",
+        "ruby": {
+            "0": "ちか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "遠い",
+        "ruby": {
+            "0": "とお"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "早い",
+        "ruby": {
+            "0": "はや"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "速い",
+        "ruby": {
+            "0": "はや"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "遅い",
+        "ruby": {
+            "0": "おそ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "多い",
+        "ruby": {
+            "0": "おお"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "少ない",
+        "ruby": {
+            "0": "すく"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "暖かい",
+        "ruby": {
+            "0": "あたた"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "温かい",
+        "ruby": {
+            "0": "あたた"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "涼しい",
+        "ruby": {
+            "0": "すず"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "甘い",
+        "ruby": {
+            "0": "あま"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "辛い",
+        "ruby": {
+            "0": "から"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "重い",
+        "ruby": {
+            "0": "おも"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "軽い",
+        "ruby": {
+            "0": "かる"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "欲しい",
+        "display": "ほしい",
+        "ruby": {
+            "0": ""
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "寂しい",
+        "ruby": {
+            "0": "さび"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "広い",
+        "ruby": {
+            "0": "ひろ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "狭い",
+        "ruby": {
+            "0": "せま"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "若い",
+        "ruby": {
+            "0": "わか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "長い",
+        "ruby": {
+            "0": "なが"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "短い",
+        "ruby": {
+            "0": "みじか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "明るい",
+        "ruby": {
+            "0": "あか"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "暗い",
+        "ruby": {
+            "0": "くら"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "危ない",
+        "ruby": {
+            "0": "あぶ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "眠い",
+        "ruby": {
+            "0": "ねむ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "強い",
+        "ruby": {
+            "0": "つよ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "弱い",
+        "ruby": {
+            "0": "よわ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "凄い",
+        "display": "すごい",
+        "ruby": {
+            "0": "すご"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "素晴らしい",
+        "ruby": {
+            "0": "す",
+            "1": "ば"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "優しい",
+        "ruby": {
+            "0": "やさ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "偉い",
+        "ruby": {
+            "0": "えら"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "可笑しい",
+        "ruby": {
+            "0": "お",
+            "1": "か"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "うるさい",
+        "ruby": {
+            "0": ""
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "細い",
+        "ruby": {
+            "0": "ほそ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "太い",
+        "ruby": {
+            "0": "ふと"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "苦い",
+        "ruby": {
+            "0": "にが"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "正しい",
+        "ruby": {
+            "0": "ただ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "珍しい",
+        "ruby": {
+            "0": "めずら"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "詳しい",
+        "ruby": {
+            "0": "くわ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "硬い",
+        "ruby": {
+            "0": "かた"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "軟らかい",
+        "ruby": {
+            "0": "やわ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "汚い",
+        "ruby": {
+            "0": "きたな"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "悲しい",
+        "ruby": {
+            "0": "かな"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "恥ずかしい",
+        "ruby": {
+            "0": "は"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "可愛い",
+        "display": "かわいい",
+        "ruby": {
+            "0": "か",
+            "1": "わ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "厚い",
+        "ruby": {
+            "0": "あつ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "薄い",
+        "ruby": {
+            "0": "うす"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "美味い",
+        "display": "うまい",
+        "ruby": {
+            "0": "う",
+            "1": "ま"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "不味い",
+        "display": "まずい",
+        "ruby": {
+            "0": "ま",
+            "1": "ず"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "詰まらない",
+        "display": "つまらない",
+        "ruby": {
+            "0": "つ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "細かい",
+        "ruby": {
+            "0": "こま"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "濃い",
+        "ruby": {
+            "0": "こ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "薄い",
+        "ruby": {
+            "0": "うす"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "酷い",
+        "ruby": {
+            "0": "ひど"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "怖い",
+        "ruby": {
+            "0": "こわ"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "厳しい",
+        "ruby": {
+            "0": "きび"
+        },
+        "type": "i"
+    },
+    {
+        "baseForm": "綺麗",
+        "display": "きれい",
+        "ruby": {
+            "0": "き",
+            "1": "れい"
+        },
+        "type": "na"
     }
 ]
+
+
+// const adjectivalNouns: KatsuyouModernAdjectivalNoun[] = [
+//     {
+//         baseForm: "賑やか",
+//         nounify: {
+//             me: false,
+//             ge: false
+//         },
+//         ruby: {
+//             0: "にぎ"
+//         }
+//     },
+//     {
+//         baseForm: "同じ",
+//         nounify: {
+//             stem: true
+//         },
+//         ruby: {
+//             0: "おな"
+//         }
+//     },
+//     {
+//         baseForm: "得意",
+//         nounify: {
+//             me: false
+//         },
+//         ruby: {
+//             0: "とく",
+//             1: "い"
+//         }
+//     }
+// ]
 
 const verbsByType: { [key in KatsuyouVerbType]: KatsuyouVerb[] } = {
     pentagrade: [],
@@ -3525,7 +4068,7 @@ export function getRandomVerbByType(type: KatsuyouVerbType): KatsuyouVerb {
  *
  * @param predicate
  */
-export function getRandomAdjective(predicate?: (term: KatsuyouModernAdjective) => boolean) {
+export function getRandomAdjective(predicate?: (term: KatsuyouAdjective) => boolean) {
     return getRandomItem(adjectives, predicate)
 }
 
@@ -3537,9 +4080,9 @@ export function getRandomAdjective(predicate?: (term: KatsuyouModernAdjective) =
  *
  * @param predicate
  */
-export function getRandomAdjectivalNoun(predicate?: (term: KatsuyouModernAdjectivalNoun) => boolean) {
-    return getRandomItem(adjectivalNouns, predicate)
-}
+// export function getRandomAdjectivalNoun(predicate?: (term: KatsuyouModernAdjectivalNoun) => boolean) {
+//     return getRandomItem(adjectivalNouns, predicate)
+// }
 
 /**
  * Gets the description of the verb conjugation type
@@ -3577,4 +4120,24 @@ export function getVerbKatsuyouType(row: Row, type: KatsuyouVerbType) {
             throw Error(`Unknown verb type ${type}`)
     }
     return `${row}行${typeName}活用`
+}
+
+
+export function getAdjectiveType(term: KatsuyouAdjective) {
+    switch (term.type) {
+        case "i":
+            return "イ形容詞"
+        case "na":
+            return "ナ形容動詞"
+        case "ku":
+            return "ク活用"
+        case "shiku":
+            return "シク活用"
+        case "nari":
+            return "ナリ活用"
+        case "tari":
+            return "タリ活用"
+        default:
+            throw Error(`Unknown adjective type ${term.type}`)
+    }
 }

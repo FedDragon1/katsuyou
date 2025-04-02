@@ -145,10 +145,12 @@
       "title": "カツヨウ Settings",
       "maxLength": "Max Sequence Length",
       "allowedVerbs": "Allowed Verbs",
+      "allowedBaseTokens": "Allowed Expressions",
       "allowedAuxiliary": "Allowed Auxiliary Verbs",
       "allowedParticle": "Allowed Particles",
       "allowedSubsidiary": "Allowed Subsidiary Verbs",
-      "useNoun": "Allowed Nouns"
+      "useNoun": "Allowed Nouns",
+      "useAdditional": "Additional Elements"
     },
     "dialogue": {
       "title": "Saving Progress",

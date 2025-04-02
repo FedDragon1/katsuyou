@@ -145,10 +145,12 @@
       "title": "カツヨウ设置",
       "maxLength": "最大生成元素数量",
       "allowedVerbs": "动词",
+      "allowedBaseTokens": "形容词",
       "allowedAuxiliary": "助动词",
       "allowedParticle": "助词",
       "allowedSubsidiary": "补助动词",
-      "useNoun": "名词"
+      "useNoun": "名词",
+      "useAdditional": "名词与动词"
     },
     "dialogue": {
       "title": "保存进度",

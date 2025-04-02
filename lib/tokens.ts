@@ -86,3 +86,58 @@ export function getModernVerbTokenDesc(t: (s: string) => string) {
                 [{ key: "とき", display: "とき", trigger: [KatsuyouConstants.NOUN_TOKEN] }]
         }]
 }
+
+export function getModernAdjectiveTokenDesc(t: (s: string) => string) {
+    return [
+        {
+            name: t("settings.allowedAuxiliary"),
+            reverse: true,
+            children: [
+                { key: "がる", display: "感情・要望・希望「がる」", trigger: [KatsuyouConstants.たがる_TOKEN] },
+                {
+                    key: "ない",
+                    display: "打消し「ない」",
+                    trigger: [KatsuyouConstants.ない_TOKEN, KatsuyouConstants.ない_SHORT_TOKEN, KatsuyouConstants.ん_TOKEN]
+                },
+                {
+                    key: "よう",
+                    display: "推量・意志「う・よう」",
+                    trigger: [KatsuyouConstants.う_TOKEN, KatsuyouConstants.よう_TOKEN]
+                },
+                {
+                    key: "た",
+                    display: "過去・完了・存続「た」",
+                    trigger: [KatsuyouConstants.た_TOKEN, KatsuyouConstants.た_SHORT_TOKEN]
+                },
+                { key: "そうだ様態", display: "様態「そうだ」", trigger: [KatsuyouConstants.そうだ様態_TOKEN] },
+                { key: "そうだ伝聞", display: "伝聞「そうだ」", trigger: [KatsuyouConstants.そうだ伝聞_TOKEN] },
+                {
+                    key: "ようだ",
+                    display: "推定・比況・例示「ようだ」",
+                    trigger: [KatsuyouConstants.ようだ_TOKEN]
+                },
+                { key: "らしい", display: "推定「らしい」", trigger: [KatsuyouConstants.らしい_TOKEN] },
+                { key: "だ", display: "断定「だ」", trigger: [KatsuyouConstants.だ_TOKEN] },
+                {
+                    key: "です",
+                    display: "丁寧な断定「です」",
+                    trigger: [KatsuyouConstants.です_TOKEN, KatsuyouConstants.です_SHORT_TOKEN]
+                },
+            ]
+        },
+        {
+            name: t("settings.allowedParticle"),
+            reverse: true,
+            children:
+                [
+                    { key: "ば", display: "ば", trigger: [KatsuyouConstants.ば_TOKEN] },
+                    { key: "て", display: "て", trigger: [KatsuyouConstants.て_TOKEN] },
+                ]
+        },
+        {
+            name: t("settings.useNoun"),
+            reverse: true,
+            children:
+                [{ key: "とき", display: "とき", trigger: [KatsuyouConstants.NOUN_TOKEN] }]
+        }]
+}

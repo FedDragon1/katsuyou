@@ -100,31 +100,24 @@ type Row =
     | "ワ"
 
 // 形容詞
-interface KatsuyouModernAdjective {
+interface KatsuyouAdjective {
     baseForm: string
     display?: string,
-    nounify?: {     // blank -> sa + mi + me + ge
-        sa?: boolean,    // all default true
-        mi?: boolean,
-        me?: boolean,
-        ge?: boolean,
-        // if this is true, then all other will be false
-        stem?: boolean   // default to false 赤い -> 赤
-    }
     ruby?: Record<number, string>
+    type: "i" | "na" | "ku" | "shiku" | "tari" | "nari"
 }
 
 // 形容動詞
 interface KatsuyouModernAdjectivalNoun {
     baseForm: string,
     display?: string,
-    nounify?: {     // blank -> sa + me + ge
-        sa?: boolean,   // all default true
-        me?: boolean,   // 穏やかめ
-        ge?: boolean,   // 得意げ
-        // if this is true, then all other will be false
-        stem?: boolean  // default false 同じ -> 同じ (noun)
-    },
+    // nounify?: {     // blank -> sa + me + ge
+    //     sa?: boolean,   // all default true
+    //     me?: boolean,   // 穏やかめ
+    //     ge?: boolean,   // 得意げ
+    //     // if this is true, then all other will be false
+    //     stem?: boolean  // default false 同じ -> 同じ (noun)
+    // },
     ruby?: Record<number, string>
 }
 

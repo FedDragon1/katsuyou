@@ -7,7 +7,7 @@ const Practice: FC = () => {
         <>
             <DashboardNav />
             <div className={"flex flex-col"}>
-                <Link href={"/practice/interactive/modern/verb"}>all</Link>
+                <Link href={"/practice/interactive/modern/verb"}>all verbs</Link>
                 <Link href={"/practice/interactive/modern/ba"}>ba form</Link>
                 <Link href={"/practice/interactive/modern/te"}>te form</Link>
                 <Link href={"/practice/interactive/modern/ta"}>ta form</Link>
@@ -16,6 +16,9 @@ const Practice: FC = () => {
                 <Link href={"/practice/interactive/modern/godan"}>godan verb</Link>
                 <Link href={"/practice/interactive/modern/ichidan"}>inchidan verb</Link>
                 <Link href={"/practice/interactive/modern/henkaku"}>henkaku verb</Link>
+                <Link href={"/practice/interactive/modern/adjective"}>all adjectives</Link>
+                <Link href={"/practice/interactive/modern/i"}>i adjectives</Link>
+                <Link href={"/practice/interactive/modern/na"}>na adjectives</Link>
             </div>
         </>
     )

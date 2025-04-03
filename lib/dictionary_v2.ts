@@ -3979,41 +3979,307 @@ const adjectives: KatsuyouAdjective[] = [
             "1": "れい"
         },
         "type": "na"
+    },
+    {
+        baseForm: "ハンサム",
+        type: "na"
+    },
+    {
+        baseForm: "綺麗",
+        display: "きれい",
+        ruby: {
+            0: "き",
+            1: "れい"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "静か",
+        ruby: {
+            0: "しず"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "賑やか",
+        display: "にぎやか",
+        ruby: {
+            0: "にぎ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "有名",
+        ruby: {
+            0: "ゆう",
+            1: "めい"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "親切",
+        ruby: {
+            0: "しん",
+            1: "せつ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "元気",
+        ruby: {
+            0: "げん",
+            1: "き"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "暇",
+        ruby: {
+            0: "ひま"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "便利",
+        ruby: {
+            0: "べん",
+            1: "り"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "素敵",
+        ruby: {
+            0: "す",
+            1: "てき"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "好き",
+        ruby: {
+            0: "す"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "嫌い",
+        ruby: {
+            0: "きら"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "上手",
+        ruby: {
+            0: "じょう",
+            1: "ず"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "色々",
+        ruby: {
+            0: "いろ",
+            1: "いろ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "簡単",
+        ruby: {
+            0: "かん",
+            1: "たん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "大変",
+        ruby: {
+            0: "たい",
+            1: "へん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "大切",
+        ruby: {
+            0: "たい",
+            1: "せつ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "大丈夫",
+        ruby: {
+            0: "だい",
+            1: "じょう",
+            2: "ぶ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "無理",
+        ruby: {
+            0: "む",
+            1: "り"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "無駄",
+        ruby: {
+            0: "む",
+            1: "だ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "不便",
+        ruby: {
+            0: "ふ",
+            1: "べん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "同じ",
+        ruby: {
+            0: "おな"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "真面目",
+        display: "まじめ",
+        ruby: {
+            0: "ま",
+            1: "じ",
+            2: "め"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "熱心",
+        ruby: {
+            0: "ねっ",
+            1: "しん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "心配",
+        ruby: {
+            0: "しん",
+            1: "ぱい"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "十分",
+        ruby: {
+            0: "じゅう",
+            1: "ぶん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "だめ",
+        type: "na"
+    },
+    {
+        baseForm: "楽",
+        ruby: {
+            0: "らく"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "特別",
+        ruby: {
+            0: "とく",
+            1: "べつ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "複雑",
+        ruby: {
+            0: "ふく",
+            1: "ざつ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "邪魔",
+        ruby: {
+            0: "じゃ",
+            1: "ま"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "危険",
+        ruby: {
+            0: "き",
+            1: "けん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "必要",
+        ruby: {
+            0: "ひつ",
+            1: "よう"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "変",
+        ruby: {
+            0: "へん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "幸せ",
+        ruby: {
+            0: "しあわ"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "適当",
+        ruby: {
+            0: "てき",
+            1: "とう"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "安全",
+        ruby: {
+            0: "あん",
+            1: "ぜん"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "丁寧",
+        ruby: {
+            0: "てい",
+            1: "ねい"
+        },
+        type: "na"
+    },
+    {
+        baseForm: "嫌",
+        ruby: {
+            0: "いや"
+        },
+        type: "na"
     }
 ]
-
-
-// const adjectivalNouns: KatsuyouModernAdjectivalNoun[] = [
-//     {
-//         baseForm: "賑やか",
-//         nounify: {
-//             me: false,
-//             ge: false
-//         },
-//         ruby: {
-//             0: "にぎ"
-//         }
-//     },
-//     {
-//         baseForm: "同じ",
-//         nounify: {
-//             stem: true
-//         },
-//         ruby: {
-//             0: "おな"
-//         }
-//     },
-//     {
-//         baseForm: "得意",
-//         nounify: {
-//             me: false
-//         },
-//         ruby: {
-//             0: "とく",
-//             1: "い"
-//         }
-//     }
-// ]
 
 const verbsByType: { [key in KatsuyouVerbType]: KatsuyouVerb[] } = {
     pentagrade: [],

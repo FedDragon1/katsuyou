@@ -296,7 +296,7 @@ const KatsuyouPractice: FC<KatsuyouPracticeProps> = ({ settings }) => {
         <div className={"flex flex-col h-screen overflow-y-auto overflow-x-hidden gap-8"}>
             <DashboardNav>{t(`activity.${settings.type}`)}</DashboardNav>
             <main className={"w-screen flex justify-center items-center flex-grow"}>
-                <KatsuyouInterface onClick={checkAnswer} onChange={(e) => setUserAnswer(e.target.value)}
+                <KatsuyouInterface onClick={() => checkAnswer()} onChange={(e) => setUserAnswer(e.target.value)}
                                    correct={correct} trials={trials} verbType={termType} value={userAnswer}
                                    menu={menu} onSave={saveProgress}
                                    status={status} message={message} onHint={hint} onSkip={skip} time={timeDisplay}>

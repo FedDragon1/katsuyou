@@ -4281,21 +4281,6 @@ const adjectives: KatsuyouAdjective[] = [
     }
 ]
 
-const verbsByType: { [key in KatsuyouVerbType]: KatsuyouVerb[] } = {
-    pentagrade: [],
-    monograde: [],
-    quadrigrade: [],
-    upper_bigrade: [],
-    lower_bigrade: [],
-    honorific: [],
-    kagyou: [],
-    sagyou: [],
-    nagyou: [],
-    ragyou: [],
-    aru: []
-}
-verbs.forEach((v) => verbsByType[v.type].push(v))
-
 function getRandomItem<T>(targets: T[], predicate?: (term: T) => boolean): T {
     if (predicate) {
         targets = targets.filter(predicate)
@@ -4317,16 +4302,6 @@ export function getRandomVerb(predicate?: (term: KatsuyouVerb) => boolean): Kats
 }
 
 /**
- * Randomly selects a verb from the dictionary based
- * on the required type.
- *
- * @param type
- */
-export function getRandomVerbByType(type: KatsuyouVerbType): KatsuyouVerb {
-    return getRandomVerb((k) => k.type === type)
-}
-
-/**
  * Randomly selects an adjective from the dictionary
  *
  * Optionally a predicate can be passed in to filter the
@@ -4337,18 +4312,6 @@ export function getRandomVerbByType(type: KatsuyouVerbType): KatsuyouVerb {
 export function getRandomAdjective(predicate?: (term: KatsuyouAdjective) => boolean) {
     return getRandomItem(adjectives, predicate)
 }
-
-/**
- * Randomly selects an adjectival noun from the dictionary
- *
- * Optionally a predicate can be passed in to filter the
- * dictionary before selection
- *
- * @param predicate
- */
-// export function getRandomAdjectivalNoun(predicate?: (term: KatsuyouModernAdjectivalNoun) => boolean) {
-//     return getRandomItem(adjectivalNouns, predicate)
-// }
 
 /**
  * Gets the description of the verb conjugation type

@@ -16,10 +16,10 @@ interface DonezoGradientProps {
     width?: number
     height?: number
     className?: string
-    colorA?: THREE.Color
-    colorB?: THREE.Color
-    colorC?: THREE.Color
-    colorD?: THREE.Color
+    colorA?: THREE.Color | number
+    colorB?: THREE.Color | number
+    colorC?: THREE.Color | number
+    colorD?: THREE.Color | number
 }
 
 function initializeCanvas(canvas: HTMLCanvasElement, colorA?: THREE.Color, colorB?: THREE.Color, colorC?: THREE.Color, colorD?: THREE.Color,) {
@@ -183,7 +183,12 @@ const DonezoGradient: FC<DonezoGradientProps> = ({ width, height, className, col
         canvas.current.width = width ?? tw
         canvas.current.height = height ?? th
 
-        return initializeCanvas(canvas.current, colorA, colorB, colorC, colorD)
+        const a = typeof colorA === "number" ? new THREE.Color(colorA) : colorA
+        const b = typeof colorB === "number" ? new THREE.Color(colorB) : colorB
+        const c = typeof colorC === "number" ? new THREE.Color(colorC) : colorC
+        const d = typeof colorD === "number" ? new THREE.Color(colorD) : colorD
+
+        return initializeCanvas(canvas.current, a, b, c, d)
     }, [canvas]);
 
     return (

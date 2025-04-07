@@ -230,6 +230,10 @@ interface UserDeleteRequest {
     data: PartialWithUuid<User>
 }
 
+interface HistoryGetRequest {
+    uuids?: string[]
+}
+
 interface HistoryPostRequest {
     data: PracticeHistory
 }

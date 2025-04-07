@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { twMerge } from "tailwind-merge";
+import { createClient } from "@/lib/supabaseServer";
 
 interface TableRowProps {
     index: number | string
@@ -56,26 +57,17 @@ const TableRow: FC<TableRowProps> = ({ index, date, duration, name, accuracy, ch
 const LearningHistoryTable: FC<TableProps> = async ({ min, max, headingClassName }) => {
     const t = await getTranslations("Practice")
     const p = await getTranslations("Dashboard")
-    const data: PracticeHistory[] = [
-        {
-            uuid: "asdlfkjasl;kdfj",
-            user_id: "a;sldkfjaklsjdfh",
-            type: "modern_verb",
-            time: "2025-03-29 23:02:51.552+00",
-            duration: 47,
-            n_correct: 1,
-            n_attempted: 2,
-        },
-        {
-            uuid: "asdfasdfasdf",
-            user_id: "a;sldkfjaklsjdfh",
-            type: "modern_ba",
-            time: "2025-03-30 03:15:46.154+00",
-            duration: 47,
-            n_correct: 10,
-            n_attempted: 20,
-        }
-    ]
+
+    const supabase = await createClient()
+
+    const { data: dat, error } = await supabase.from("history")
+        .select("*")
+
+    const data = dat ?? [] as PracticeHistory[]
+
+    if (error) {
+        console.error(error.message)
+    }
 
     const minItems = Math.max(min ?? 0, 0)
     const maxItems = Math.min(max ?? data.length, data.length)
@@ -90,33 +82,41 @@ const LearningHistoryTable: FC<TableProps> = async ({ min, max, headingClassName
                       heading={true} className={headingClassName}>
                 <p className={"text-right"}>{p("history.table.link")}</p>
             </TableRow>
-            {data.slice(0, maxItems).map((history, i) => {
-                const date = new Date(history.time).toLocaleDateString(locale)
+            {
+                !error ? <>
+                    {data.slice(0, maxItems).map((history, i) => {
+                        const date = new Date(history.time).toLocaleDateString(locale)
 
-                const name = t(`activity.${history.type}`)
-                const accuracy = `${Math.round(history.n_correct / history.n_attempted * 100)}%`
+                        const name = t(`activity.${history.type}`)
+                        const accuracy = history.n_attempted === 0 ? "0%" :
+                            `${Math.round(history.n_correct / history.n_attempted * 100)}%`
 
-                const min = Math.round(history.duration / 60).toString().padStart(2, "0")
-                const sec = (history.duration % 60).toString().padStart(2, "0")
-                const duration = `${min}:${sec}`
+                        const min = Math.round(history.duration / 60).toString().padStart(2, "0")
+                        const sec = (history.duration % 60).toString().padStart(2, "0")
+                        const duration = `${min}:${sec}`
 
-                const href = `practice/interactive/${history.type.split("_").join("/")}`
+                        const href = `practice/interactive/${history.type.split("_").join("/")}`
 
-                return (
-                    <TableRow key={history.uuid} index={i + 1} date={date} duration={duration} name={name}
-                              accuracy={accuracy}>
-                        <TableLink href={href}/>
-                    </TableRow>
-                )
-            })}
-            {Array(Math.max(minItems - data.length, 0)).fill(0).map((_, i) => {
-                return (
-                    <TableRow index={"--"} date={"--"} duration={"--:--"} name={"--"} accuracy={"--%"} key={i}
-                              className={"text-zinc-300"}>
-                        <p className={"text-nowrap whitespace-nowrap text-right"}>--</p>
-                    </TableRow>
-                )
-            })}
+                        return (
+                            <TableRow key={history.uuid} index={i + 1} date={date} duration={duration} name={name}
+                                      accuracy={accuracy}>
+                                <TableLink href={href}/>
+                            </TableRow>
+                        )
+                    })}
+                    {Array(Math.max(minItems - data.length, 0)).fill(0).map((_, i) => {
+                        return (
+                            <TableRow index={"--"} date={"--"} duration={"--:--"} name={"--"} accuracy={"--%"} key={i}
+                                      className={"text-zinc-300"}>
+                                <p className={"text-nowrap whitespace-nowrap text-right"}>--</p>
+                            </TableRow>
+                        )
+                    })}
+                </> : <div className={"flex flex-col p-20 items-center gap-4 border-b border-zinc-700"}>
+                    <span>Error Fetching Data</span>
+                    <pre>{error.message}</pre>
+                </div>
+            }
         </div>
     )
 }

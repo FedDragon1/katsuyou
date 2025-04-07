@@ -9,7 +9,7 @@ const HistoryPage: FC = async () => {
     return (
         <TabFrame title={t("title")}>
             <div className={"w-full px-20 pb-20 relative"}>
-                <LearningHistoryTable min={20} max={100}
+                <LearningHistoryTable min={5}
                                       headingClassName={"bg-background pt-20 sticky top-[50px] sm:top-[66px] z-10"} />
             </div>
         </TabFrame>

@@ -9,6 +9,8 @@ const SESSION_UPDATE_PATHS = [
     /^\/practice(\/.*)?$/
 ]
 
+const COOKIE_TTL = 60 * 1000
+
 /**
  * Test if a path requires sign in
  *
@@ -103,6 +105,8 @@ export async function middleware(request: NextRequest) {
 
     let response = NextResponse.next()
     let locale = request.cookies.get("resolved-locale")?.value
+    const localeExpiration = Number(request.cookies.get("resolved-locale-expiration")?.value ?? 0)
+    const nowTime = Date.now()
 
     if (signedInPages) {
         // for signed in pages, refresh supabase session
@@ -112,7 +116,8 @@ export async function middleware(request: NextRequest) {
     }
 
     // no cached resolved-locale (only if the current page requires sign in the locale might be undefined)
-    if (!locale) {
+    if (!locale || !localeExpiration || localeExpiration < nowTime) {
+        console.log("resolve locale")
         locale = await resolveLocale(request, supabase)
     }
 
@@ -129,6 +134,10 @@ export async function middleware(request: NextRequest) {
         if (!userCookie) {
             const userInfo = await resolveUser(user!, supabase)
             newResponse.cookies.set("resolved-user", JSON.stringify(userInfo))
+        }
+
+        if (localeExpiration < nowTime) {
+            newResponse.cookies.set("resolved-locale-expiration", (nowTime + COOKIE_TTL).toString());
         }
     }
 

@@ -50,12 +50,34 @@ export async function POST(request: Request) {
  * @constructor
  */
 export async function PUT(request: Request) {
-    //TODO actual logic
     const body = await request.json() as UserPutRequest
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+        .from("user")
+        .update(body.data)
+        .eq("uuid", body.data.uuid)
+        .select("*")
 
     if (body.updateLocale) {
         const cookieState = await cookies()
         cookieState.delete("resolved-locale")
     }
 
+    if (error) {
+        const response: ResponseOf<User> = {
+            success: false,
+            errorMessage: error.message
+        }
+        return NextResponse.json(response)
+    }
+
+    const response: ResponseOf<User> = { success: true, data: data[0] as User }
+
+    if (body.updateLocale && body.data.locale) {
+        const cookieState = await cookies()
+        cookieState.set("resolved-locale", body.data.locale)
+    }
+
+    return NextResponse.json(response)
 }

@@ -198,6 +198,10 @@
     "title": "历史记录"
   },
   "Settings": {
-    "title": "设置"
+    "title": "设置",
+    "language": {
+      "aside": "语言偏好设置",
+      "title": "界面语言"
+    }
   }
 }

@@ -63,7 +63,8 @@ const LearningHistoryTable: FC<TableProps> = async ({ min, max, headingClassName
     const { data: dat, error } = await supabase.from("history")
         .select("*")
 
-    const data = dat ?? [] as PracticeHistory[]
+    const data = ((dat ?? []) as PracticeHistory[])
+        .toSorted((h1, h2) => new Date(h2.time).getTime() - new Date(h1.time).getTime())
 
     if (error) {
         console.error(error.message)

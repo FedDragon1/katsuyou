@@ -1,34 +1,3 @@
-interface Term<T> {
-    text: string,
-    ruby: (string | null)[],
-    type: T
-}
-
-interface Dict<T> {
-    [term: string]: {
-        ruby: (string | null)[],
-        type: T
-    };
-}
-
-interface ConjugatedTermOption {
-    text: string,
-    ruby: (string | null)[]
-}
-
-interface ConjugatedTerm<T> {
-    options: ConjugatedTermOption[]
-    original: string,
-    conjugationType: T
-}
-
-// ない形、テ形、意向形、辞書形、バ形、タ形
-type AdjectiveConjugations = "negation" | "te" | "intentional" | "dictionary" | "ba" | "ta"
-type AdjectiveTypes = "i" | "na"
-type AdjectiveDict = Dict<AdjectiveTypes>
-type AdjectiveTerm = Term<AdjectiveTypes>
-type ConjugatedAdjective = ConjugatedTerm<AdjectiveConjugations>
-
 type Hiragana = "あ" | "い" | "う" | "え" | "お" | "か" | "き" | "く" | "け" | "こ" | "さ" | "し" | "す" | "せ" | "そ"
     | "た" | "ち" | "つ" | "て" | "と" | "な" | "に" | "ぬ" | "ね" | "の" | "ま" | "み" | "む" | "め" | "も" | "や"
     | "ゆ" | "よ" | "ら" | "り" | "る" | "れ" | "ろ" | "わ" | "ゐ" | "ゑ" | "を" | "ん" | "が" | "ぎ" | "ぐ"
@@ -105,20 +74,6 @@ interface KatsuyouAdjective {
     display?: string,
     ruby?: Record<number, string>
     type: "i" | "na" | "ku" | "shiku" | "tari" | "nari"
-}
-
-// 形容動詞
-interface KatsuyouModernAdjectivalNoun {
-    baseForm: string,
-    display?: string,
-    // nounify?: {     // blank -> sa + me + ge
-    //     sa?: boolean,   // all default true
-    //     me?: boolean,   // 穏やかめ
-    //     ge?: boolean,   // 得意げ
-    //     // if this is true, then all other will be false
-    //     stem?: boolean  // default false 同じ -> 同じ (noun)
-    // },
-    ruby?: Record<number, string>
 }
 
 // UI

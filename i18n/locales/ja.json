@@ -198,6 +198,10 @@
     "title": "学習履歴"
   },
   "Settings": {
-    "title": "設定"
+    "title": "設定",
+    "language": {
+      "aside": "言語の設定",
+      "title": "インターフェースの言語"
+    }
   }
 }

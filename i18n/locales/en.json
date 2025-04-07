@@ -198,6 +198,10 @@
     "title": "History"
   },
   "Settings": {
-    "title": "Settings"
+    "title": "Settings",
+    "language": {
+      "aside": "Language Preference",
+      "title": "Interface Language"
+    }
   }
 }

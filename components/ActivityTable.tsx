@@ -12,6 +12,7 @@ interface ActivityTableProps {
     desc: ActivityTableRowDesc[]
     className?: string
     children?: ReactNode
+    title: string
 }
 
 const ActivityTableRow: FC<ActivityTableRowDesc> = ({ name, example, href }) => {
@@ -31,13 +32,13 @@ const ActivityTableRow: FC<ActivityTableRowDesc> = ({ name, example, href }) => 
     )
 }
 
-const ActivityTable: FC<ActivityTableProps> = ({ desc, className, children }) => {
+const ActivityTable: FC<ActivityTableProps> = ({ desc, className, children, title }) => {
     return (
         <div className={"w-full flex flex-col px-10 sm:px-20 py-24 gap-10"}>
             <hr className={"hidden xl:block"}/>
             <div className={"flex w-full gap-10 flex-col xl:flex-row"}>
                 <div className={"max-w-[300px] flex-grow self-start xl:sticky top-36"}>
-                    <h1 className={"text-4xl emphasis inline before:bottom-0 before:h-4"}>Activities</h1>
+                    <h1 className={"text-4xl emphasis inline before:bottom-0 before:h-4"}>{title}</h1>
                 </div>
                 <hr className={"xl:hidden"}/>
                 <div className={twMerge("flex flex-col", className)}>

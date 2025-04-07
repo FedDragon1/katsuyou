@@ -163,6 +163,41 @@
   },
   "Navigation": {
     "settings": "Account Settings",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "activities": "Activities",
+    "history": "History"
+  },
+  "Dashboard": {
+    "history": {
+      "title": "History",
+      "aside": "ヒストリー",
+      "caption": "Your three most recent activities.",
+      "button": "View All",
+      "table": {
+        "date": "Date",
+        "duration": "Duration",
+        "name": "Activity",
+        "accuracy": "Accuracy",
+        "link": "Link"
+      }
+    },
+    "activities": {
+      "title": "Activities",
+      "button": "View All"
+    }
+  },
+  "Activities": {
+    "title": "Practice",
+    "table": "Activities",
+    "nav": {
+      "activities": "Activities",
+      "history": "History"
+    }
+  },
+  "History": {
+    "title": "History"
+  },
+  "Settings": {
+    "title": "Settings"
   }
 }

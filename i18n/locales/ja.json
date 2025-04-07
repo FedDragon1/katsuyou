@@ -162,7 +162,42 @@
     }
   },
   "Navigation": {
-    "settings": "アカウント設定の変更",
-    "logout": "ログアウト"
+    "settings": "アカウント設定",
+    "logout": "ログアウト",
+    "activities": "アクティビティ",
+    "history": "学習履歴"
+  },
+  "Dashboard": {
+    "history": {
+      "title": "履歴",
+      "aside": "History",
+      "caption": "最新の3件のアクティビティ",
+      "button": "すべて表示",
+      "table": {
+        "date": "日付",
+        "duration": "使った時間",
+        "name": "アクティビティ",
+        "accuracy": "准确率",
+        "link": "もう一度"
+      }
+    },
+    "activities": {
+      "title": "アクティビティ",
+      "button": "すべて表示"
+    }
+  },
+  "Activities": {
+    "title": "練習",
+    "table": "アクティビティ",
+    "nav": {
+      "activities": "アクティビティ",
+      "history": "学習履歴"
+    }
+  },
+  "History": {
+    "title": "学習履歴"
+  },
+  "Settings": {
+    "title": "設定"
   }
 }

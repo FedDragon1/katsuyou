@@ -8,6 +8,7 @@ import TabFrame from "@/components/TabFrame";
 
 const Practice: FC = async () => {
     const t = await getTranslations("Practice")
+    const p = await getTranslations("Activities")
 
     const activities = [
         {
@@ -76,12 +77,12 @@ const Practice: FC = async () => {
         <>
             <DashboardNav>
                 <div className={"lg:flex flex-row gap-10 hidden"}>
-                    <KatsuyouLink className={"fancy-link"} display={"Activities"} redirect={"/practice"}/>
-                    <KatsuyouLink className={"fancy-link"} display={"Learning History"} redirect={"/dashboard/history"}/>
+                    <KatsuyouLink className={"fancy-link"} display={p("nav.activities")} redirect={"/practice"}/>
+                    <KatsuyouLink className={"fancy-link"} display={p("nav.history")} redirect={"/dashboard/history"}/>
                 </div>
             </DashboardNav>
-            <TabFrame title={"Activities"}>
-                <ActivityTable desc={activities} className={"flex-grow"}/>
+            <TabFrame title={p("title")}>
+                <ActivityTable desc={activities} className={"flex-grow"} title={p("table")}/>
             </TabFrame>
             <Footer />
         </>

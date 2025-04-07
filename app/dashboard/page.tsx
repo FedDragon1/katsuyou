@@ -24,28 +24,28 @@ const DashboardCover: FC = () => {
 }
 
 const LearningHistory: FC = async () => {
-    const t = await getTranslations("Landing")
+    const t = await getTranslations("Dashboard")
 
     return (
         <div className={"w-full min-h-screen flex flex-col lg:flex-row px-10 sm:px-20 py-24 gap-10"}>
             <div>
-                <span className={"text-emphasis leading-[3.75rem] text-nowrap"}>{t("solution.aside")}</span>
+                <span className={"text-emphasis leading-[3.75rem] text-nowrap"}>{t("history.aside")}</span>
             </div>
             <div className={"flex-grow flex flex-col gap-16"}>
                 <div className={"flex justify-between items-center gap-8"}>
-                    <h1 className={"text-4xl sm:text-6xl"}>{t("solution.title")}</h1>
+                    <h1 className={"text-4xl sm:text-6xl"}>{t("history.title")}</h1>
                     <hr className={"border-b hidden lg:block border-foreground flex-grow max-w-[50%]"}/>
                 </div>
                 <div className={"flex flex-col gap-2"}>
                     <div className={"max-h-[150px]"}>
-                        <p className={"text-xl sm:text-3xl max-w-[520px]"}>{t("solution.subtitle")}</p>
+                        <p className={"text-xl sm:text-3xl max-w-[520px]"}>{t("history.caption")}</p>
                     </div>
                     <LearningHistoryTable min={3} max={3}/>
                 </div>
                 <Button className={"self-start"}>
                     <Link href={"/dashboard/history"}
-                          className={"block text-2xl md:text-3xl py-4 px-8 md:py-6 md:px-20"}>
-                        {t("join.button")}
+                          className={"block text-2xl md:text-3xl py-4 px-8 md:py-6 md:px-20 xl:px-32"}>
+                        {t("history.button")}
                     </Link>
                 </Button>
             </div>
@@ -55,6 +55,7 @@ const LearningHistory: FC = async () => {
 
 const ActivitySuggestion: FC = async () => {
     const t = await getTranslations("Practice")
+    const p = await getTranslations("Dashboard")
 
     const activities = [
         {
@@ -80,11 +81,11 @@ const ActivitySuggestion: FC = async () => {
     ]
 
     return (
-        <ActivityTable desc={activities} className={"flex-grow"}>
+        <ActivityTable desc={activities} className={"flex-grow"} title={p("activities.title")}>
             <Button className={"self-start mt-16"}>
                 <Link href={"/practice"}
-                      className={"block text-2xl md:text-3xl py-4 px-8 md:py-6 md:px-20 xl:px-40"}>
-                    {"See All"}
+                      className={"block text-2xl md:text-3xl py-4 px-8 md:py-6 md:px-20 xl:px-32"}>
+                    {p("activities.button")}
                 </Link>
             </Button>
         </ActivityTable>

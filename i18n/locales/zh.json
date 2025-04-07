@@ -162,7 +162,42 @@
     }
   },
   "Navigation": {
-    "settings": "更改账号设置",
-    "logout": "退出登录"
+    "settings": "账号设置",
+    "logout": "退出登录",
+    "activities": "活用练习",
+    "history": "学习记录"
+  },
+  "Dashboard": {
+    "history": {
+      "title": "历史记录",
+      "aside": "ヒストリー",
+      "caption": "最近三次使用カツヨウ保存的数据",
+      "button": "查看全部",
+      "table": {
+        "date": "日期",
+        "duration": "时长",
+        "name": "练习类别",
+        "accuracy": "准确率",
+        "link": "再次练习"
+      }
+    },
+    "activities": {
+      "title": "活用练习",
+      "button": "查看全部"
+    }
+  },
+  "Activities": {
+    "title": "刷题",
+    "table": "活用练习",
+    "nav": {
+      "activities": "活用练习",
+      "history": "学习记录"
+    }
+  },
+  "History": {
+    "title": "历史记录"
+  },
+  "Settings": {
+    "title": "设置"
   }
 }

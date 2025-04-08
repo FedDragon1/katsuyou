@@ -151,6 +151,12 @@ interface User {
     avatar?: string
 }
 
+interface ResolvedUser {
+    name: string,
+    email: string,
+    avatar: string
+}
+
 interface PracticeHistory {
     uuid: string
     user_id: string

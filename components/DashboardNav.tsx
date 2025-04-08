@@ -13,7 +13,7 @@ interface DashboardNavProps {
 
 const DashboardNav: FC<DashboardNavProps> = ({ children }) => {
     const t = useTranslations("Navigation")
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<ResolvedUser>({
         name: "カツヨウ User",
         email: "xxxxxx@xxx.xxx",
         avatar: "/default_pfp.jpg"

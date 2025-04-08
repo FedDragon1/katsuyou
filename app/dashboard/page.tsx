@@ -6,17 +6,32 @@ import { getTranslations } from "next-intl/server";
 import ActivityTable from "@/components/ActivityTable";
 import DonezoGradient from "@/components/DonezoGradient";
 
-const DashboardCover: FC = () => {
+const DashboardCover: FC = async () => {
+    const t = await getTranslations("Landing")
+    const titleSize = "xl:text-[9rem] md:text-[8rem] sm:text-[6rem] text-6xl text-nowrap"
+
     return (
-        <div className={"sm:h-[calc(100%-96px)] h-[calc(100%-80px)] w-full flex-shrink-0 relative"}>
+        <div className={"sm:mt-[calc(-96px)] mt-[calc(-80px)] h-screen w-full flex-shrink-0 relative"}>
             <DonezoGradient className={"w-full h-full overflow-hidden absolute"}
                             colorA={0xF32635} colorB={0xF3A470}
                             colorC={0x93a181} colorD={0x5C3F45} />
             <div className={"w-full h-full flex gap-10 z-40 relative"}>
-                <div></div>
-                <div className={"flex-grow bg-background"}>
-
-                </div>
+                <main id={"main"}
+                      className={"bg-background lg:bg-transparent px-10 sm:px-20 pt-[220px] box-border w-full h-full flex justify-between lg:min-h-[850px]"}>
+                    <div className={"h-full flex flex-col pb-4"}>
+                        <div className={"flex flex-col gap-0"}>
+                            <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line1")}</h1>
+                            <h1 className={`${titleSize} leading-none m-0`}>{t("title.slogan.line2")}</h1>
+                        </div>
+                        <div className={"flex mt-10 lg:flex-nowrap flex-wrap"}>
+                            <h1 className={`${titleSize} emphasis sm:pr-8`}>{t("title.slogan.emphasis")}</h1>
+                            <h1 className={`${titleSize}`}>{t("title.slogan.remainder")}</h1>
+                        </div>
+                        <div className={"flex-grow border-l border-foreground pl-4 flex items-end"}>
+                            <span className={"text-lg"}>{t("title.scroll")}</span>
+                        </div>
+                    </div>
+                </main>
                 <div></div>
             </div>
         </div>

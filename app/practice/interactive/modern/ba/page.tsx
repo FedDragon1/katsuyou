@@ -13,6 +13,7 @@ const KatsuyouModernVerb: FC = () => {
 
     const settings: SettingDesc = {
         type: "modern_ba",
+        subtitle: t(`activity.modern_ba`),
         predicate: {
             name: t("settings.allowedVerbs"),
             poller: (allowed) => getRandomVerb((v) => v.modern && allowed[v.type]),

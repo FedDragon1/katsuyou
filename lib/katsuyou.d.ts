@@ -80,6 +80,7 @@ interface KatsuyouAdjective {
 
 interface SettingDesc {
     type: ActivityType
+    subtitle: string
     predicate: SettingPredicateSection
     token: SettingTokenSection[]
 }
